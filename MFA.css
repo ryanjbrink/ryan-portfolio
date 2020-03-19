@@ -1,0 +1,115 @@
+html, body, button {
+    font-family: Pt Serif;
+    margin: 0;
+  }
+  
+  h1, h2, h3, p {
+    color: #2D2D2D;
+    padding: 0;
+    margin: 0;
+  }
+  
+  h1 {
+    font-size: 36px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    font-weight: lighter;
+  }
+  
+  p {
+    font-size: 18px;
+  }
+  
+  
+  .header-thing {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8vh;
+    margin-right: 15vh;
+  }
+  
+  a {
+    text-decoration: none;
+    padding: 1em 2em 1em 2em;
+    color: #2D2D2D;
+    font-size: 24px;
+  }
+  
+  a:hover {
+    color: #0084FF;
+  }
+  
+  .home-container{
+    display: block;
+    margin: 15vh 30vh 0vh 30vh;
+  }
+  
+  .topthree{
+    display:flex;
+  }
+  
+  .topthree {
+    margin: 5vh 5vh 1vh 0vh;
+  }
+  
+  .pthree {
+    width: 300px;
+    margin: 0vh 10vh 5vh 0vh;
+  }
+  
+  .onetwothree {
+    display: flex;
+  }
+  
+  /* Website Audit */
+  
+  .webauditflex {
+    display: flex;
+  }
+  
+  .homeold {
+    width: 50vh;
+    margin: 0vh 0vh 0vh 0vh;
+  }
+  
+  .subheadgroup {
+    margin: 5vh 0vh 5vh 0vh;
+  }
+  
+  .section {
+    margin: 10vh 0vh 1vh 0vh;
+  }
+  
+  .sectiongroup {
+    margin: 0vh 20vh 1vh 0vh;
+  }
+  
+  .new {
+    margin-top: 5vh;
+  }
+  
+  .sectiongrouptwo {
+    width: 400px;
+    margin: 10vw 5vw 5vw 5vw;
+  }
+  
+  /* about */
+  /* ministries */
+  
+  /* Call To Action Button */
+  
+  .bottom-button {
+    display: flex;
+    justify-content: center;
+    margin: 25vh 0vh 25vh 0vh;
+  }
+  
+  button{
+    padding: 15px 50px 15px 50px;
+    border-radius: 5px;
+    color: #F9F9F9;
+    background-color: #2D2D2D;
+    border: none;
+  }

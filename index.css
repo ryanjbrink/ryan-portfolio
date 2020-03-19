@@ -1,0 +1,166 @@
+html, body, button {
+    font-family: Pt Serif;
+    margin: 0;
+  }
+  
+  h1, h2, h3, p {
+    color: #2D2D2D;
+    padding: 0;
+    margin: 0;
+  }
+  
+  h1 {
+    font-size: 36px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    font-weight: lighter;
+  }
+  
+  p {
+    font-size: 18px;
+  }
+  
+  
+  .header-thing {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8vh;
+    margin-right: 15vh;
+  }
+  
+  a {
+    text-decoration: none;
+    padding: 1em 2em 1em 2em;
+    color: #2D2D2D;
+    font-size: 24px;
+  }
+  
+  a:hover {
+    color: #0084FF;
+  }
+  
+  .home-container{
+    display: block;
+    margin: 15vh 30vh 0vh 30vh;
+  }
+  
+  .RB{
+    margin-bottom: 8vh;
+  }
+  
+  .IAM{
+    margin-bottom: 3vh;
+  }
+  
+  .FORMER{
+    margin-bottom: 8vh;
+  }
+  
+  button{
+    padding: 15px 50px 15px 50px;
+    border-radius: 5px;
+    color: #F9F9F9;
+    background-color: #2D2D2D;
+    border: none;
+  }
+  
+  /* Case Studies */
+  
+  .case-studies {
+     margin: 15vh 30vh 15vh 30vh;
+  }
+  
+  /* Business Card Organizer */
+  
+  .bus-img {
+    width: 60vh;
+    margin: 0vh 0vh 0vh 30vh;
+  }
+  
+  .BCO-text {
+    width: 149px;
+    margin-bottom: 5vh;
+    text-align: center;
+  }
+  
+  .BCO-button {
+    border-radius: 5px;
+    color: #F9F9F9;
+    background-color: #1DA3F6;
+    border: none;
+  }
+  
+  .BCO-container {
+    display: flex;
+    Margin: 0vh 25vh 0vh 15vh;
+  }
+  
+  .BCO-text-button {
+    margin: 25vh 0vh 0vh 0vh;
+  }
+  
+  /* Mission French Africa */
+  
+  .MFA-img {
+    width: 90vh;
+    margin: 20vh 0vh 0vh 20vh;
+  }
+  
+  .MFA-text {
+    width: 143px;
+    margin-bottom: 5vh;
+    text-align: center;
+  }
+  
+  .MFA-button {
+    border-radius: 5px;
+    color: #F9F9F9;
+    background-color: #EEAC3F;
+    border: none;
+  }
+  
+  .MFA-container {
+    display: flex;
+    Margin: 0vh 25vh 0vh 0vh;
+  }
+  
+  .MFA-text-button {
+    margin: 30vh 0vh 0vh 30vh;
+  }
+  
+  /* Daily UI */
+  
+  .dailyui {
+    margin: 15vh 30vh 0vh 30vh;
+  }
+  
+  .UI1 {
+    display: flex;
+  }
+  
+  .boarding-img {
+    width: 75vh;
+    margin: 10vh 0vh 5vh 30vh;
+  }
+  
+  .boarding-pass {
+    font-weight: bold;
+    margin: 10vh 0vh 5vh 10vh;
+  }
+  
+  .boarding-pass-p {
+     margin-left: 10vh;
+     width: 50%;
+  }
+  
+  /* Call To Action Button */
+  
+  .bottom-button {
+    display: flex;
+    justify-content: center;
+    margin: 25vh 0vh 25vh 0vh;
+  }
+  
+  

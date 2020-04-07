@@ -157,3 +157,33 @@
   }
   
   
+  /* new */
+.hifi-pic-row-one {
+  display: flex;
+}
+
+/* new */
+.hi-fi-pics {
+  width: 20vw
+}
+
+/* new */
+.making-changes {
+  display: flex;
+}
+
+/* new */
+.guy-point {
+  width: 20vw;
+}
+
+/* new */
+.bus-card-stack {
+  width: 15vw;
+}
+
+/* New */
+.hidfi {
+  width: 17vw;
+  margin: 10vh 0vh 5vh 0vh;
+}

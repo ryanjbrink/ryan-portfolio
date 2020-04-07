@@ -1,0 +1,194 @@
+/* Helpers */
+.flexbox {
+  display: flex;
+}
+
+.section {
+  margin-bottom: 8em;
+}
+
+/* Generic Page Styles */
+h3 {
+  font-weight: lighter;
+  font-size: 1.6em;
+}
+a {
+  text-decoration: none;
+  padding: 1em 2em 1em 2em;
+  color: #2d2d2d;
+  font-size: 24px;
+}
+
+a:hover {
+  color: #0084ff;
+}
+
+/* Gutter main area */
+.content-container {
+  width: 80%;
+}
+.grid-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* New CSS Grid Stuff */
+/* 
+ * Learn more here: 
+ * https://css-tricks.com/look-ma-no-media-queries-responsive-layouts-using-css-grid/
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Realizing_common_layouts_using_CSS_Grid_Layout
+*/
+.grid-container {
+  display: grid;
+  grid-template-rows: 100px auto 100px;
+  grid-template-columns: auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+
+.grid-header {
+  grid-area: header;
+}
+
+.grid-main {
+  grid-area: main;
+}
+
+.grid-footer {
+  grid-area: footer;
+}
+
+/***
+ * MFA Top Section
+ ***/
+/* .top-section {
+ } */
+
+.top-text-container {
+  margin-bottom: 3em;
+}
+
+.top-item-list div:nth-child(even) {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+/***
+ * MFA Website Audit (Section A)
+ ***/
+/* .section-a {
+ } */
+
+.rectangle-container {
+  position: relative;
+}
+.rectangle-background {
+  background: linear-gradient(
+    0.6turn,
+    rgba(240, 185, 66, 0.666),
+    rgba(239, 181, 65, 0.783)
+  );
+  border-radius: 50px;
+  width: 45vw;
+  height: 45vw;
+  max-height: 40em;
+  max-width: 40em;
+  position: absolute;
+  left: -6vw;
+  top: -25px;
+  z-index: -1;
+}
+
+.mfa-images-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  top: -13em;
+}
+
+.mfa-image-1 {
+  width: 46%;
+  min-width: 400px;
+  box-shadow: 0 4px 4px hsla(0, 0%, 0%, 0.25);
+}
+
+.mfa-image-2 {
+  width: 100%;
+}
+
+.mfa-image-with-text-container {
+  position: relative;
+  width: 41%;
+}
+
+.mfa-image-text-overlay {
+  left: 0;
+  position: absolute;
+  top: 30vw;
+  width: 100%;
+}
+
+.mfa-image-text-overlay div {
+  text-align: center;
+  padding-left: 8vw;
+  padding-right: 8vw;
+  font-size: 1.05em;
+}
+
+@media screen and (max-width: 1200px) {
+  .mfa-image-text-overlay { 
+    top: 29vw;
+  }
+
+  .mfa-image-text-overlay div {
+    font-size: 0.875em;
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+}
+
+/* Website Audit */
+
+.webauditflex {
+  display: flex;
+}
+
+.section {
+  margin: 10vh 0vh 1vh 0vh;
+}
+
+.sectiongroup {
+  margin: 0vh 20vh 1vh 0vh;
+}
+
+.new {
+  margin-top: 5vh;
+}
+
+.sectiongrouptwo {
+  width: 400px;
+  margin: 10vw 5vw 5vw 5vw;
+}
+
+/* about */
+/* ministries */
+
+/* Call To Action Button */
+
+.bottom-button {
+  display: flex;
+  justify-content: center;
+  margin: 25vh 0vh 25vh 0vh;
+}
+
+button {
+  padding: 15px 50px 15px 50px;
+  border-radius: 5px;
+  color: #f9f9f9;
+  background-color: #2d2d2d;
+  border: none;
+}

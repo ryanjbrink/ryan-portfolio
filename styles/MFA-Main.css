@@ -12,6 +12,18 @@ h3 {
   font-weight: lighter;
   font-size: 1.6em;
 }
+
+.odd-h3s {
+  margin-top: 0.5em;
+  font-weight: bold;
+}
+
+.odd-h3s-2 {
+  font-weight: 200;
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+
 a {
   text-decoration: none;
   padding: 1em 2em 1em 2em;
@@ -61,6 +73,7 @@ a:hover {
   grid-area: footer;
 }
 
+
 /***
  * MFA Top Section
  ***/
@@ -82,6 +95,15 @@ a:hover {
 /* .section-a {
  } */
 
+#images-container-offset {
+  top: -12vw;
+  align-items: center;
+}
+
+
+/***
+ * MFA Generic to All Sections
+ ***/
 .rectangle-container {
   position: relative;
 }
@@ -104,15 +126,14 @@ a:hover {
 
 .mfa-section-a-text {
   width: 33vw;
-  max-width: 38em;
+  max-width: 28em;
 }
 
 .mfa-images-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
-  top: -13em;
 }
 
 .mfa-image-1 {
@@ -121,20 +142,51 @@ a:hover {
   box-shadow: 0 4px 4px hsla(0, 0%, 0%, 0.25);
 }
 
+/* Right hand side image is different sizes given a each section */
+.mfa-images-section-a {
+  width: 46%;
+}
+
+.mfa-images-section-b, .mfa-images-section-c, .mfa-images-section-d {
+  width: 35%;
+}
+
+.mfa-images-section-e {
+  width: 50%;
+}
+
 .mfa-image-2 {
   width: 100%;
 }
 
 .mfa-image-with-text-container {
   position: relative;
-  width: 41%;
 }
 
 .mfa-image-text-overlay {
   left: 0;
   position: absolute;
-  top: 30vw;
   width: 100%;
+}
+
+.image-text-overlay-section-a {
+  top: 30vw;
+}
+
+.image-text-overlay-section-b {
+  top: 35vw;
+}
+
+.image-text-overlay-section-c {
+  top: 27vw;
+}
+
+.image-text-overlay-section-d {
+  top: 13vw;
+}
+
+.image-text-overlay-section-e {
+  top: 8vw;
 }
 
 .mfa-image-text-overlay div {

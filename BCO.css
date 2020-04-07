@@ -108,8 +108,8 @@ a:hover {
 }
 
 li {
-  margin: 5vh 3vh 3vh 0vh;
-  width: 400px;
+  margin: 1vh 3vh 0vh 0vh;
+  width: 406px;
 }
 
 .hidfi {
@@ -191,7 +191,8 @@ width: 25vh;
 }
 
 .guy-point {
-  width: 20vw;
+  width: 13vw;
+  margin: 5vh 5vw 5vh 15vw;
 }
 
 .bus-card-stack {
@@ -203,6 +204,23 @@ width: 25vh;
   width: 15vw;
 }
 
+.protoh2 {
+  margin-top: 5vh;
+}
+
+.protop {
+  margin-top: 1vh;
+}
+
+.protopbottom {
+  margin-top: 5vh;
+}
+.bco-stack {
+  display: flex;
+  justify-content: flex-end;
+}
+
 main {
   margin: 0vw 15vw 15vw 15vw;
 }
+

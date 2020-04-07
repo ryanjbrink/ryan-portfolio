@@ -1,51 +1,41 @@
-html, body, button {
-    font-family: Pt Serif;
-    margin: 0;
-  }
-  
-  h1, h2, h3, p {
-    color: #2D2D2D;
-    padding: 0;
-    margin: 0;
-  }
-  
-  h1 {
-    font-size: 36px;
-  }
-  
-  h2 {
-    font-size: 24px;
-    font-weight: lighter;
-  }
-  
-  p {
-    font-size: 18px;
-  }
-  
-  
-  .header-thing {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 8vh;
-    margin-right: 15vh;
-  }
-  
-  a {
-    text-decoration: none;
-    padding: 1em 2em 1em 2em;
-    color: #2D2D2D;
-    font-size: 24px;
-  }
+
   
   a:hover {
     color: #0084FF;
   }
   
-  .home-container{
-    display: block;
-    margin: 15vh 30vh 0vh 30vh;
-  }
-  
+/* section container */
+.section-container {
+
+}
+
+.section-background {
+  position: absolute;
+  left: 15vh;
+  width: 40%;
+  z-index: -1;
+}
+
+.horizontal-slide {
+  display: flex;
+  border: 1px solid blue;
+  overflow-x: scroll;
+}
+
+.slide {
+  min-width: 100vw;
+  scroll-margin-left: 30em;
+}
+
+/* wireframing
+.wireframing {
+  margin: 10em, 30em, 0em, 30em;
+} */
+
+
+
+
+  /* old */
   .topthree{
     display:flex;
   }
@@ -63,30 +53,9 @@ html, body, button {
     display: flex;
   }
   
-  .research {
-    margin: 5vh 10vh 1vh 0vh;
-  }
-  
-  .researchp {
-    width: 70vh;
-  }
-  
-  .researchpic {
-    width: 90%;
-    margin: 25vh 25vh 25vh 25vh;
-  }
-  
-  .researchflex{
-    display:flex;
-  }
-  
   .ideationpic {
     width: 95%;
     margin: 5vh 50vh 0vh 0vh;
-  }
-  
-  .researchflex{
-    display:flex;
   }
   
   .ideationflex {
@@ -187,18 +156,4 @@ html, body, button {
     margin: 3vh 0vh 0vh 0vh;
   }
   
-  /* Call To Action Button */
   
-  .bottom-button {
-    display: flex;
-    justify-content: center;
-    margin: 25vh 0vh 25vh 0vh;
-  }
-  
-  button{
-    padding: 15px 50px 15px 50px;
-    border-radius: 5px;
-    color: #F9F9F9;
-    background-color: #2D2D2D;
-    border: none;
-  }

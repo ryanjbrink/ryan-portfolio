@@ -102,6 +102,11 @@ a:hover {
   z-index: -1;
 }
 
+.mfa-section-a-text {
+  width: 33vw;
+  max-width: 38em;
+}
+
 .mfa-images-container {
   display: flex;
   justify-content: space-between;
@@ -137,6 +142,12 @@ a:hover {
   padding-left: 8vw;
   padding-right: 8vw;
   font-size: 1.05em;
+}
+
+@media screen and (min-width: 1200px) and (max-width: 2500px) {
+  .mfa-image-text-overlay div {
+    font-size: 1.3vw;
+  }
 }
 
 @media screen and (max-width: 1200px) {

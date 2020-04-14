@@ -3,14 +3,17 @@
 
 <head>
   <title>Mission French Africa - Ryan Brink</title>
+  <!-- For Ryan: https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="reset.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles/MFA-Shared.css" media='screen' />
   <link rel="stylesheet" href="styles/MFA-Main.css" media='screen and (min-width: 901px)' />
   <link rel="stylesheet" href="styles/MFA-Mobile.css" media='screen and (max-width: 900px)' />
-  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <div class="grid-container">
+  <div class="mfa-container grid-container">
     <!-- Navigation -->
     <header class="header-thing grid-header">
       <nav class="header-nav">
@@ -19,10 +22,13 @@
         <a href="Contact.html">Contact</a>
       </nav>
       <div class="mobile-bar">
+        <input type="checkbox" id="menu-icon" name="menu-icon" style="visibility: hidden; position: absolute; top: -20px;" />
         <span style="font-size: 24px; flex: 1;">Ryan Brink</span>
-        <img class="menu-icon"
-          src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iMzJweCIgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMyIDMyOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMzIgMzIiIHdpZHRoPSIzMnB4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48cGF0aCBkPSJNNCwxMGgyNGMxLjEwNCwwLDItMC44OTYsMi0ycy0wLjg5Ni0yLTItMkg0QzIuODk2LDYsMiw2Ljg5NiwyLDhTMi44OTYsMTAsNCwxMHogTTI4LDE0SDRjLTEuMTA0LDAtMiwwLjg5Ni0yLDIgIHMwLjg5NiwyLDIsMmgyNGMxLjEwNCwwLDItMC44OTYsMi0yUzI5LjEwNCwxNCwyOCwxNHogTTI4LDIySDRjLTEuMTA0LDAtMiwwLjg5Ni0yLDJzMC44OTYsMiwyLDJoMjRjMS4xMDQsMCwyLTAuODk2LDItMiAgUzI5LjEwNCwyMiwyOCwyMnoiLz48L3N2Zz4="
-          width="30" />
+        <label for="menu-icon" class="menu-icon" href="#">
+          <img
+            src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iMzJweCIgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMyIDMyOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMzIgMzIiIHdpZHRoPSIzMnB4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48cGF0aCBkPSJNNCwxMGgyNGMxLjEwNCwwLDItMC44OTYsMi0ycy0wLjg5Ni0yLTItMkg0QzIuODk2LDYsMiw2Ljg5NiwyLDhTMi44OTYsMTAsNCwxMHogTTI4LDE0SDRjLTEuMTA0LDAtMiwwLjg5Ni0yLDIgIHMwLjg5NiwyLDIsMmgyNGMxLjEwNCwwLDItMC44OTYsMi0yUzI5LjEwNCwxNCwyOCwxNHogTTI4LDIySDRjLTEuMTA0LDAtMiwwLjg5Ni0yLDJzMC44OTYsMiwyLDJoMjRjMS4xMDQsMCwyLTAuODk2LDItMiAgUzI5LjEwNCwyMiwyOCwyMnoiLz48L3N2Zz4="
+            width="30" />
+        </label>
           <br style="clear: both;" />
           <nav class="mobile-nav">
             <a href="Home.html">Home</a>
@@ -39,7 +45,7 @@
         <div class="top-section section">
           <div class="top-text-container">
             <h1>Mission French Africa</h1>
-            <span>December 2019</span>
+            <span class="subheading">December 2019</span>
           </div>
           <div class="flexbox top-item-list">
             <div>
@@ -59,13 +65,13 @@
             </div>
           </div>
         </div>
-
+        <hr class="rule" />
         <!--  Website Audit -->
         <div class="section section-a">
           <div class="rectangle-container">
             <div class="rectangle-background"></div>
           </div>
-          <h2 style="font-size: 36px;">Website Audit</h2>
+          <h2 class="section-header" style="font-size: 36px;">Website Audit</h2>
 
           <h3 class="odd-h3s">Home</h3>
           <p class="mfa-section-a-text">A lot is happening on the home page. Keeping design simple is always a great
@@ -85,6 +91,7 @@
             </div>
           </div>
         </div>
+        <hr class="rule" />
         <div class="section section-b">
           <h3 class="odd-h3s">About</h3>
           <p class="mfa-section-a-text">There is no need to have two pages for the about section. A better layout can
@@ -102,6 +109,7 @@
             </div>
           </div>
         </div>
+        <hr class="rule" />
         <div class="section section-c">
           <h3 class="odd-h3s">Ministries</h3>
           <p class="mfa-section-a-text">There is no need to have three pages for the Ministries section. Again, a user
@@ -119,6 +127,7 @@
             </div>
           </div>
         </div>
+        <hr class="rule" />
         <div class="section section-d">
           <h3 class="odd-h3s">Donate</h3>
           <p class="mfa-section-a-text">The old website made my eyes bounce around, and I did not know where to focus my
@@ -137,6 +146,7 @@
             </div>
           </div>
         </div>
+        <hr class="rule" />
         <div class="section section-e">
           <h3 class="odd-h3s">Contact</h3>
           <p class="mfa-section-a-text">The contact page is already well put togehter, but the new one follows some

@@ -1,10 +1,22 @@
+/** Mobile exclusive stylesheet */
+
+/* Top level Containers */
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.mfa-container {
+  padding: 10px;
+}
+
 /***
  * Header / mobile navigation
  */
-body {
-  padding: 10px;
-  width: 100%;
-  overflow-x: hidden;
+
+.header-thing {
+  margin: 0;
+  margin-top: 1em;
 }
 
 .rectangle-container {
@@ -12,9 +24,13 @@ body {
 }
 
 .mobile-bar {
-  display: flex;
   width: 100%;
-  align-items: center;
+}
+
+.header-thing a {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-right: 0;
 }
 
 .header-nav {
@@ -23,7 +39,8 @@ body {
 
 .mobile-nav {
   display: none;
-  width: 100%;
+  width: 95%;
+  text-align: right;
 }
 
 .mobile-nav a {
@@ -32,14 +49,85 @@ body {
 
 .menu-icon {
   float: right;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
-.menu-icon:active ~ .mobile-nav, .menu-icon:hover ~ .mobile-nav, .mobile-nav:hover {
+#menu-icon:checked ~ .mobile-nav, .menu-icon:hover ~ .mobile-nav, .mobile-nav:hover {
   display: block;
-  width: 100%;
+
 }
 
 /***
- * Grid main
+* Grid main
+***/
+.grid-main {
+  margin-top: 2em;
+}
+
+/***
+* MFA Top Section
+***/
+.top-text-container {
+  margin-bottom: 2em;
+}
+
+.top-text-container > .subheading {
+  font-weight: 200;
+}
+
+.top-item-list > div {
+  margin-bottom: 1em;
+}
+
+.top-item-list > div > h3 {
+  font-weight: 400;
+}
+
+.top-item-list > div > p {
+  font-weight: 200;
+  font-size: 0.9em;
+}
+
+/***
+* MFA Website Audit (Section A)
+***/
+
+
+
+/***
+ * MFA Generic to all sections
  ***/
- 
+ .rule {
+   position: relative;
+   left: -10px;
+ }
+
+.section-header {
+  margin-top: 2em;
+  font-weight: 400;
+  font-size: 1.5em !important;
+}
+
+.mfa-container p {
+  font-size: 0.9em;
+  font-weight: 200;
+}
+
+.odd-h3s-2 {
+  font-weight: 400;
+  margin-top: 1em;
+}
+
+.odd-h3s {
+  font-weight: 400;
+  margin-top: 2em;
+}
+
+.section img {
+  width: 100%;
+}
+
+.mfa-image-with-text-container {
+  display: none;
+}

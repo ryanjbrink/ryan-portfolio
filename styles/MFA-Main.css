@@ -73,6 +73,14 @@ a:hover {
   grid-area: footer;
 }
 
+/***
+ * (Eventually should be site wide,) Top navigation
+ ***/
+ /* Will be shown using MFA-Mobile on screens smaller than 900px */
+ .mobile-bar {
+   display: none;
+ }
+
 
 /***
  * MFA Top Section

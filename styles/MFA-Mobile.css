@@ -1,3 +1,45 @@
+/***
+ * Header / mobile navigation
+ */
+body {
+  padding: 10px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 .rectangle-container {
   display: none;
 }
+
+.mobile-bar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.header-nav {
+  display: none;
+}
+
+.mobile-nav {
+  display: none;
+  width: 100%;
+}
+
+.mobile-nav a {
+  display: block;
+}
+
+.menu-icon {
+  float: right;
+}
+
+.menu-icon:active ~ .mobile-nav, .menu-icon:hover ~ .mobile-nav, .mobile-nav:hover {
+  display: block;
+  width: 100%;
+}
+
+/***
+ * Grid main
+ ***/
+ 

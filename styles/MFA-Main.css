@@ -35,6 +35,10 @@ a:hover {
   color: #0084ff;
 }
 
+.rule {
+  margin-top: 2em;
+}
+
 /* Gutter main area */
 .content-container {
   width: 80%;
@@ -178,7 +182,7 @@ a:hover {
 }
 
 .image-text-overlay-section-a {
-  top: 30vw;
+  top: 34vw;
 }
 
 .image-text-overlay-section-b {
@@ -208,17 +212,37 @@ a:hover {
   .mfa-image-text-overlay div {
     font-size: 1.3vw;
   }
+
+  .image-text-overlay-section-c {
+    top: 28vw;
+  }
+
+  .image-text-overlay-section-b div {
+    padding-left: 6vw;
+    padding-right: 4vw;
+  }
+
+  .image-text-overlay-section-c div {
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+
+  
 }
 
 @media screen and (max-width: 1200px) {
   .mfa-image-text-overlay { 
-    top: 29vw;
+    top: 30vw;
   }
 
   .mfa-image-text-overlay div {
     font-size: 0.875em;
     padding-left: 6vw;
     padding-right: 6vw;
+  }
+
+  .image-text-overlay-section-c div {
+    font-size: 0.7em;
   }
 }
 
@@ -256,10 +280,10 @@ a:hover {
   margin: 25vh 0vh 25vh 0vh;
 }
 
-button {
+.contact-link, .contact-link:visited, .contact-link:hover {
   padding: 15px 50px 15px 50px;
   border-radius: 5px;
   color: #f9f9f9;
   background-color: #2d2d2d;
-  border: none;
+  text-decoration: none;
 }

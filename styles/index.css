@@ -54,20 +54,8 @@ html, body {
     margin-bottom: 3vh;
   }
   
-  .FORMER{
+  .FORMER {
     margin-bottom: 8vh;
-  }
-  
-  .button {
-    padding: 15px 50px 15px 50px;
-    border-radius: 5px;
-    color: #F9F9F9;
-    background-color: #2D2D2D;
-    border: none;
-  }
-
-  .button:hover {
-    background-color: #222222;
   }
   
   /* Case Studies */

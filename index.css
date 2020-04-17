@@ -1,4 +1,4 @@
-html, body, button {
+html, body {
     font-family: Pt Serif;
     margin: 0;
   }
@@ -58,12 +58,16 @@ html, body, button {
     margin-bottom: 8vh;
   }
   
-  button{
+  .button {
     padding: 15px 50px 15px 50px;
     border-radius: 5px;
     color: #F9F9F9;
     background-color: #2D2D2D;
     border: none;
+  }
+
+  .button:hover {
+    background-color: #222222;
   }
   
   /* Case Studies */
@@ -85,12 +89,15 @@ html, body, button {
     text-align: center;
   }
   
-  .BCO-button {
-    border-radius: 5px;
-    color: #F9F9F9;
+  #BCO-button, #BCO-button:visited, #BCO-button:active {
     background-color: #1DA3F6;
-    border: none;
   }
+
+  #BCO-button:hover {
+    background-color: #0084FF;
+    color: #F9F9F9;
+  }
+
   
   .BCO-container {
     display: flex;
@@ -114,11 +121,13 @@ html, body, button {
     text-align: center;
   }
   
-  .MFA-button {
-    border-radius: 5px;
-    color: #F9F9F9;
+  #MFA-button, #MFA-button:visited, #MFA-button:active {
     background-color: #EEAC3F;
-    border: none;
+  }
+
+  #MFA-button:hover {
+    background-color: rgb(240, 189, 108);
+    color: #F9F9F9;
   }
   
   .MFA-container {

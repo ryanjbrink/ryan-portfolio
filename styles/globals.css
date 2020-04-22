@@ -6,11 +6,13 @@ input {
   font-size: 1em;
 }
 
-.button, .button:visited, .button:link {
+.button,
+.button:visited,
+.button:link {
   padding: 15px 50px 15px 50px;
   border-radius: 5px;
-  color: #F9F9F9;
-  background-color: #2D2D2D;
+  color: #f9f9f9;
+  background-color: #2d2d2d;
   border: none;
 }
 
@@ -18,11 +20,44 @@ input {
   background-color: #222222;
 }
 
+
+.button-primary {
+  background: #2d2d2d;
+  padding: 0.8vh 3em 0.8vh 3em;
+  text-decoration: none;
+  color: white;
+  border-radius: 5px;
+  margin-top: 2vh;
+  display: inline-block;
+}
+
+.button:hover {
+  background-color: hsla(0, 0%, 0%, 0);
+}
+
+.button-primary-outline {
+  background: hsla(0, 0%, 0%, 0);
+  padding: 0.8vh 3em 0.8vh 3em;
+  text-decoration: none;
+  color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  margin-top: 2vh;
+  display: inline-block;
+}
+
+.button-secondary {
+
+}
+
+
 html,
 body,
 button {
   font-family: "noto sans";
+  font-weight: lighter;
   margin: 0;
+  line-height: 2;
 }
 
 h1,
@@ -36,27 +71,124 @@ p {
 
 h1 {
   font-size: 36px;
+  font-weight: 700;
 }
 
 h2 {
   font-size: 24px;
-  font-weight: lighter;
+  font-weight: bold;
 }
 
 p {
   font-size: 18px;
 }
 
+/* New CSS Grid Stuff */
+/* 
+ * Learn more here: 
+ * https://css-tricks.com/look-ma-no-media-queries-responsive-layouts-using-css-grid/
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Realizing_common_layouts_using_CSS_Grid_Layout
+*/
+.grid-container {
+  display: grid;
+  grid-template-rows: minmax(80px, auto) auto minmax(80px, auto);
+  grid-template-columns: 15% auto 15%;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+
+.grid-header {
+  grid-area: header;
+}
+
+.grid-main {
+  grid-area: main;
+}
+
+.grid-footer {
+  grid-area: footer;
+}
+
+/***
+ * Top navigation
+ ***/
+/* Will be shown using MFA-Mobile on screens smaller than 900px */
+.mobile-bar {
+  display: none;
+}
+
 .header-thing {
   display: flex;
   justify-content: flex-end;
-  margin-top: 8vh;
-  margin-right: 15vh;
+  margin-top: 5em;
 }
 
 .header-thing a {
   text-decoration: none;
   padding: 1em 2em 1em 2em;
   color: #2d2d2d;
-  font-size: 24px;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 900px) {
+  /***
+ * Header / mobile navigation
+ */
+
+  .header-thing {
+    margin-top: 16px;
+  }
+
+  .rectangle-container {
+    display: none;
+  }
+
+  .mobile-bar {
+    width: 100%;
+    display: block;
+  }
+
+  .header-thing a {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-right: 0;
+  }
+
+  .header-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: none;
+    width: 100%;
+    text-align: right;
+  }
+
+  .mobile-nav a {
+    display: block;
+  }
+
+  .menu-icon {
+    float: right;
+    cursor: pointer;
+  }
+
+  #menu-icon:checked ~ .mobile-nav,
+  .menu-icon:hover ~ .mobile-nav,
+  .mobile-nav:hover {
+    display: block;
+  }
+
+  /***
+* Grid main
+***/
+  .grid-main {
+    margin-top: 2em;
+  }
+}
+
+main {
+  overflow: hidden;
 }

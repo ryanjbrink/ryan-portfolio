@@ -8,171 +8,205 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles/reset.css" />
   <link rel="stylesheet" href="styles/globals.css" />
+  <link rel="stylesheet" href="styles/mobile.css" media='screen and (max-width: 900px)' />
   <link rel="stylesheet" href="styles/index.css" />
 </head>
 
 <body>
-  <!-- Navigation -->
-  <header class="header-thing">
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <!-- Home Container -->
-  <main>
-    <div class="RB">
-      <h1>Ryan Brink</h1>
-    </div>
-    <div class="IAM">
-      <h2>I am a UX Designer. My mind on the user, and my heart on creative solutions.</h2>
-    </div>
-    <div class="FORMER">
-      <p>Former digital Marketer | Current User Experience Designer | Life Long Learner | Still an aspiring
-        professional athlete.</p>
-    </div>
-    <a href="button">Get in Touch</a>
-
-    <!-- Case Studies -->
+  <div class="grid-container">
+    <div></div>
+    <!-- Navigation -->
     <div>
-      <div class="case-studies">
-        <h1>Case Studies</h1>
+
+      <header class="header-thing grid-header">
+        <nav class="header-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="mobile-bar">
+          <input type="checkbox" id="menu-icon" name="menu-icon"
+            style="visibility: hidden; position: absolute; top: -20px;" />
+          <label for="menu-icon" class="menu-icon" href="#">
+            <img
+              src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iMzJweCIgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMyIDMyOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMzIgMzIiIHdpZHRoPSIzMnB4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48cGF0aCBkPSJNNCwxMGgyNGMxLjEwNCwwLDItMC44OTYsMi0ycy0wLjg5Ni0yLTItMkg0QzIuODk2LDYsMiw2Ljg5NiwyLDhTMi44OTYsMTAsNCwxMHogTTI4LDE0SDRjLTEuMTA0LDAtMiwwLjg5Ni0yLDIgIHMwLjg5NiwyLDIsMmgyNGMxLjEwNCwwLDItMC44OTYsMi0yUzI5LjEwNCwxNCwyOCwxNHogTTI4LDIySDRjLTEuMTA0LDAtMiwwLjg5Ni0yLDJzMC44OTYsMiwyLDJoMjRjMS4xMDQsMCwyLTAuODk2LDItMiAgUzI5LjEwNCwyMiwyOCwyMnoiLz48L3N2Zz4="
+              width="30" />
+          </label>
+          <br style="clear: both;" />
+          <nav class="mobile-nav">
+            <a href="index.html">Home</a>
+            <a href="About.html">About</a>
+            <a href="Contact.html">Contact</a>
+          </nav>
+        </div>
+      </header>
+    </div>
+    <div></div>
+    <div></div>
+    <!-- Home Container -->
+    <main>
+      <div class="above-fold">
+        <h1 class="above-fold-header-text" style="font-weight: 600;">Ryan Brink</h1>
+        <p class="above-fold-paragraph-text">I am a UX Designer. My 🧠 on the user, and my 💛 on creative solutions.</p>
+        <p class="above-fold-paragraph-text-2">Current User Experience Designer | Former digital Marketer | Life Long
+          Learner |
+          Still an aspiring professional athlete.</p>
+        <a class="button button-primary" href="button"><img src="Images/icons/email-icon.png"
+            style="width: 1em; margin-right: 0.4em;" />Hire Me</a>
+        <h1 class="above-fold-header-bottom">Case Studies</h1>
+      </div>
+      <!-- Case Studies -->
+      <div>
+        <div class="section section-1">
+          <div class="section-inner section-1-inner">
+            <div class="section-leftside section-1-leftside">
+              <h2 style="color: white">Tech Sorting Hat</h2>
+              <span style="color: white; font-size: 20px; display: block">Find the tech career for you</span>
+              <a href="." class="button-primary-outline">Learn More</a>
+            </div>
+            <img src="Images/home-page/tech-sorting-hat.png" style="width: 50%; min-width: 300px" />
+          </div>
+        </div>
+
+        <!-- Business Card Organizer -->
+        <div class="BCO-container">
+          <div>
+            <img class="bus-img"
+              src="https://previews.dropbox.com/p/thumb/AAtm5yq0KPCHyMrmA04Xn-L4-uNvrhIfS1faIYk_1zq2w4ZTK0MZBwvQ8TZmEwYn-ug-7DfyDsN0sVOomL8ZAsHQ23oIXp8tLajBk-4woTeUalPvrAohr9I9w4blzMTGOUDv5U3XTJ1hGLQP6u8g3fTo-5MFd7KSs6fb67T0BvhNMAcA05WkfxEPsqQIJbYuakMrhEoPQPweCQ2H9JTYMdQpuWPtl38ZpN4-2P1WhyS0IGGWFYFoI7EQVrhapntfMCpzMXqwZMTX3wUBWgFvaif_j_pGTwlZFpUvN5h_LvNRe3OquwTi3f-6qVOhq_0ET2IJWJT7XeG7IoyE9vfvHsOQ/p.png?fv_content=true&size_mode=5"
+              alt="business card organizer login iphone mockup">
+          </div>
+          <div class="BCO-text-button">
+            <div class="BCO-text">
+              <h2>Business Card Organizer</h2>
+            </div>
+            <div>
+              <a href="BCO.html" class="button" id="BCO-button">Learn More</a>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Business Card Organizer -->
-      <div class="BCO-container">
-        <div>
-          <img class="bus-img"
-            src="https://previews.dropbox.com/p/thumb/AAtm5yq0KPCHyMrmA04Xn-L4-uNvrhIfS1faIYk_1zq2w4ZTK0MZBwvQ8TZmEwYn-ug-7DfyDsN0sVOomL8ZAsHQ23oIXp8tLajBk-4woTeUalPvrAohr9I9w4blzMTGOUDv5U3XTJ1hGLQP6u8g3fTo-5MFd7KSs6fb67T0BvhNMAcA05WkfxEPsqQIJbYuakMrhEoPQPweCQ2H9JTYMdQpuWPtl38ZpN4-2P1WhyS0IGGWFYFoI7EQVrhapntfMCpzMXqwZMTX3wUBWgFvaif_j_pGTwlZFpUvN5h_LvNRe3OquwTi3f-6qVOhq_0ET2IJWJT7XeG7IoyE9vfvHsOQ/p.png?fv_content=true&size_mode=5"
-            alt="business card organizer login iphone mockup">
-        </div>
-        <div class="BCO-text-button">
-          <div class="BCO-text">
-            <h2>Business Card Organizer</h2>
+      <!--   Mission French Africa -->
+      <div class="MFA-container">
+        <div class="MFA-text-button">
+          <div class="MFA-text">
+            <h2>Mission French Africa</h2>
           </div>
           <div>
-            <a href="BCO.html" class="button" id="BCO-button">Learn More</a>
+            <a href="MFA.html" class="button" id="MFA-button">Learn More</a>
+          </div>
+        </div>
+        <div>
+          <img class="MFA-img"
+            src="https://previews.dropbox.com/p/thumb/AAtRu-58ngjOgO_qVq1-HOfei8Yo3dRpoJazJFbeGcOVIS4wZF172uMHjmL_-RtnymtT0OlpzJhX3Y4CAqJT_YE8dCR9zdzzhO_3UXxEhTGhE7JOZSIGHxyrTerMjp1Ctcpbx-zB8lR6BuvjspVfcsrjxI5AhWhWNyaFFY7KvE74wUIDYaMooBoXLKHzpRvmc327rym7SvHXJ52KV7los8hLDQLQiEO6z6klH6nxPANE7BN-8di1cwiRH56u9T-xy4wmA3oqOFeXQt3L1FihK7Csb06rHOK3P00YscNNxBEbMdZLxGwPbpgoVtxkE6h4rTY7Z1WDmkqJyMiciAGvoLGG/p.png?fv_content=true&size_mode=5"
+            alt="Mission French Africa UI Mockup">
+        </div>
+      </div>
+
+      <!-- Daily UI -->
+
+      <div>
+        <h1 class="dailyui"> Daily UI </h1>
+      </div>
+
+      <!-- Boarding Pass -->
+
+      <div>
+        <div class=UI1>
+          <img class="boarding-img"
+            src="https://previews.dropbox.com/p/thumb/AAsPzMbbSZahDBFf_E83EuMycXt-du7iYFWVtA_UgimamnszQoiMe9UNL7nxnc-N2AARJLi4rEyks17ig81exWYlqepDjgI31LMKc7fhyzuHrU3rdur0DOrIKNg0JwGEkWCXQjzmAMCRK_zHOVQTtBPLdaVKDL_LdDyYJQTH69fs_LNLcb5d2o2QA9AB501MM4srIUdKwqDEeYDSFTvHe8zwUJOdz0aU5AD-hpNuuv6rHHAS2Oe0Wsg4A575n6FTmvTVkH1uUrsRJjPP4w_Cdape4ef38xFZZpoD-WAYCNUsLnwololRt5JrLdHt7cE_4oqgnbn-CHOxBJ5hBl544Qr6/p.png?fv_content=true&size_mode=5"
+            alt="boarding pass mockup">
+          <div>
+            <h2 class="boarding-pass">Boarding Pass
+            </h2>
+            <h2 Class="boarding-pass-p">Barcode at the end for easy scanning. Personal welcoming touch. Key information
+              highlighted with color, and visual heirarchy.</h2>
           </div>
         </div>
       </div>
-    </div>
 
-    <!--   Mission French Africa -->
-    <div class="MFA-container">
-      <div class="MFA-text-button">
-        <div class="MFA-text">
-          <h2>Mission French Africa</h2>
-        </div>
-        <div>
-          <a href="MFA.html" class="button" id="MFA-button">Learn More</a>
-        </div>
-      </div>
+      <!-- Home Control -->
       <div>
-        <img class="MFA-img"
-          src="https://previews.dropbox.com/p/thumb/AAtRu-58ngjOgO_qVq1-HOfei8Yo3dRpoJazJFbeGcOVIS4wZF172uMHjmL_-RtnymtT0OlpzJhX3Y4CAqJT_YE8dCR9zdzzhO_3UXxEhTGhE7JOZSIGHxyrTerMjp1Ctcpbx-zB8lR6BuvjspVfcsrjxI5AhWhWNyaFFY7KvE74wUIDYaMooBoXLKHzpRvmc327rym7SvHXJ52KV7los8hLDQLQiEO6z6klH6nxPANE7BN-8di1cwiRH56u9T-xy4wmA3oqOFeXQt3L1FihK7Csb06rHOK3P00YscNNxBEbMdZLxGwPbpgoVtxkE6h4rTY7Z1WDmkqJyMiciAGvoLGG/p.png?fv_content=true&size_mode=5"
-          alt="Mission French Africa UI Mockup">
-      </div>
-    </div>
-
-    <!-- Daily UI -->
-
-    <div>
-      <h1 class="dailyui"> Daily UI </h1>
-    </div>
-
-    <!-- Boarding Pass -->
-
-    <div>
-      <div class=UI1>
-        <img class="boarding-img"
-          src="https://previews.dropbox.com/p/thumb/AAsPzMbbSZahDBFf_E83EuMycXt-du7iYFWVtA_UgimamnszQoiMe9UNL7nxnc-N2AARJLi4rEyks17ig81exWYlqepDjgI31LMKc7fhyzuHrU3rdur0DOrIKNg0JwGEkWCXQjzmAMCRK_zHOVQTtBPLdaVKDL_LdDyYJQTH69fs_LNLcb5d2o2QA9AB501MM4srIUdKwqDEeYDSFTvHe8zwUJOdz0aU5AD-hpNuuv6rHHAS2Oe0Wsg4A575n6FTmvTVkH1uUrsRJjPP4w_Cdape4ef38xFZZpoD-WAYCNUsLnwololRt5JrLdHt7cE_4oqgnbn-CHOxBJ5hBl544Qr6/p.png?fv_content=true&size_mode=5"
-          alt="boarding pass mockup">
-        <div>
-          <h2 class="boarding-pass">Boarding Pass
-          </h2>
-          <h2 Class="boarding-pass-p">Barcode at the end for easy scanning. Personal welcoming touch. Key information
-            highlighted with color, and visual heirarchy.</h2>
-        </div>
-      </div>
-    </div>
-
-    <!-- Home Control -->
-    <div>
-      <div class=UI1>
-        <img class="boarding-img"
-          src="https://previews.dropbox.com/p/thumb/AAu7p8SQLN0QJtXpBhbg4VkH2TeavzPlI6yn3rP4928En-xp3thVbTkeOwYoPtwS-k0zY63gNP-BjB_lVwG5NoHw5Uao0kumKGFn8AKLxCcl4AjPlKiWgnLm-l2wFIenT1XV4F-mMID-dV7jlvxBRI3L2B604dnh9_MkjJY2RofVAUFUD_IsEdfQNUGryVyEp7x-yHhpjF3YxzCtuQ2zAbp6hE0hvwG8z3lgZh5vfFKYMSnV5WwKYvcoFaWaf34-Nu9p72WMu5tnYO4pt-mMc-B0UA5DUEkqHRUD4kb2KizWMRjaqHhBzGX5BAehTDhU41QBttZxaOh3BzQ6CmTHDj0x/p.png?fv_content=true&size_mode=5"
-          alt="Home Control mockup">
-        <div>
-          <h2 class="boarding-pass">Home Control
-          </h2>
-          <h2 Class="boarding-pass-p">Home vitals in one place. Easy to read dashboard with appropriate colors for each
-            category.</h2>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- TV App  -->
-
-    <div>
-      <div class=UI1>
-        <img class="boarding-img"
-          src="https://previews.dropbox.com/p/thumb/AAuoHKNdNucCYIq8OccUbkhCSLuJdcFzU5cc5k2l_LRssOMxk5qgEdNpres3y66LRiy3-j5RbPZ9dDurIIUTOmgu9IwoLulUPhImqBa1us0EHmDcbR-WksZ06ucNP1eTaaiXFp6JAr4dHjtwAzwo3fnWRa5NBOE6VVv3KdUJamNnRVA9VPGckQiSoKQbVUngpswRkM9dpc5t3S9SlEUM42QElJRK5WQazcABM3TKJktXYyIE7geauShfvBL-TTzGR24yPpZTUDNQsEbtn4anAq1yrfRlYGWNRcv_DBOUgV0BX_d33OM-mgQt_zGJygzWeg1Gw-dpf_qpmoeZuQeifr_8/p.png?size=2048x1536&size_mode=3"
-          alt="TV app mockup">
-        <div>
-          <h2 class="boarding-pass">TV app
-          </h2>
-          <h2 Class="boarding-pass-p">Watch all games in any league. Avoid paying full cable package or sports package
-            for one sport.</h2>
-        </div>
-      </div>
-    </div>
-
-    <!-- Shoe Shop  -->
-
-    <div>
-      <div class=UI1>
-        <img class="boarding-img"
-          src="https://previews.dropbox.com/p/thumb/AAujxrG6AHfLovF1jkB9HLhnEnjVqa0JL0E5RfaZbvyls_JBZhTwBSkkKJKbMXbvUSPjpShj0QNLlqMEdJXFeDj1TwlHq6S3WcC7xniLJZDnKnubRPQ5vQyVQlI0IYlcyq54WVV_RvxtDGMSYNYBJgh4YsnlLW7Tr5zIBAbsq9ywgwtJVBKsIcq32NTZRKsQM9JjL76_mWiJJjvHgnO17MB-1OrGZAPTQiPj0fZFgy1FpFwnHrh1p42bOCqzZ65FkO7DOFpvVxaczMOMU8n1nazQNTjhCE7hkwRPSSo9JvCw5JNN13nHkA54v7tBL0xRPG6-3V3EYA-eVmbHKWcSHodx/p.png?fv_content=true&size_mode=5"
-          alt="shoe shop mockup">
-        <div>
-          <h2 class="boarding-pass">Shoe Shop
-          </h2>
-          <h2 Class="boarding-pass-p">Only the best kicks. Like a shoe or add it to your cart. Simple and fun look for
-            the casual shopping experience.</h2>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Blog Landing Page  -->
-
-
-    <div>
-      <div class=UI1>
-        <img class="boarding-img"
-          src="https://previews.dropbox.com/p/thumb/AAuDkoQ4NS8s_Ajz2O0yKVui71cuEr1d6w977ihEb4XqLG2edrtj6urSS-kMQfxx5354dbZ5HIJtceK9TrZG1L3us21Ei4NNtCdvsvCRqemWHtGMwHEXClr2mkDYcxGykkBksWAm5ps2ZVuFHL-Zqphd3ZARbk5rfGB0zCQSgsnvDqBUAtJz7GaFd6TWEN9nEh8hXHLf8KMSbe1PQu2OuilARwgP2hT8BDg3TLnd85QD0LC3Wc-Kes9QnUvYjTy4PY-7vzvkRj5tIp5cXEYJaBPvnXqDNubm-0l56qoMU-V6sFmBpfY7jyoKx9PtDt6MQSEJcbWPHZp6DMacyJhL4n9Q/p.png?fv_content=true&size_mode=5"
-          alt="Blog Landing Page mockup">
-        <div>
-          <h2 class="boarding-pass">Blog Landing Page
-          </h2>
-          <h2 Class="boarding-pass-p">Talkie Hockey is a made up blog. Sharpie typography for the logo for a casual
-            feel, and a game-like typography for the playful nature of the blog. The subscripe button uses color and an
-            outer ring to draw the eye in.</h2>
+        <div class=UI1>
+          <img class="boarding-img"
+            src="https://previews.dropbox.com/p/thumb/AAu7p8SQLN0QJtXpBhbg4VkH2TeavzPlI6yn3rP4928En-xp3thVbTkeOwYoPtwS-k0zY63gNP-BjB_lVwG5NoHw5Uao0kumKGFn8AKLxCcl4AjPlKiWgnLm-l2wFIenT1XV4F-mMID-dV7jlvxBRI3L2B604dnh9_MkjJY2RofVAUFUD_IsEdfQNUGryVyEp7x-yHhpjF3YxzCtuQ2zAbp6hE0hvwG8z3lgZh5vfFKYMSnV5WwKYvcoFaWaf34-Nu9p72WMu5tnYO4pt-mMc-B0UA5DUEkqHRUD4kb2KizWMRjaqHhBzGX5BAehTDhU41QBttZxaOh3BzQ6CmTHDj0x/p.png?fv_content=true&size_mode=5"
+            alt="Home Control mockup">
+          <div>
+            <h2 class="boarding-pass">Home Control
+            </h2>
+            <h2 Class="boarding-pass-p">Home vitals in one place. Easy to read dashboard with appropriate colors for
+              each
+              category.</h2>
+          </div>
         </div>
       </div>
 
-      <!-- Call To Action Button -->
 
-      <div class="bottom-button">
-        <a class="button" href="contact.html">Get in Touch</a>
+      <!-- TV App  -->
+
+      <div>
+        <div class=UI1>
+          <img class="boarding-img"
+            src="https://previews.dropbox.com/p/thumb/AAuoHKNdNucCYIq8OccUbkhCSLuJdcFzU5cc5k2l_LRssOMxk5qgEdNpres3y66LRiy3-j5RbPZ9dDurIIUTOmgu9IwoLulUPhImqBa1us0EHmDcbR-WksZ06ucNP1eTaaiXFp6JAr4dHjtwAzwo3fnWRa5NBOE6VVv3KdUJamNnRVA9VPGckQiSoKQbVUngpswRkM9dpc5t3S9SlEUM42QElJRK5WQazcABM3TKJktXYyIE7geauShfvBL-TTzGR24yPpZTUDNQsEbtn4anAq1yrfRlYGWNRcv_DBOUgV0BX_d33OM-mgQt_zGJygzWeg1Gw-dpf_qpmoeZuQeifr_8/p.png?size=2048x1536&size_mode=3"
+            alt="TV app mockup">
+          <div>
+            <h2 class="boarding-pass">TV app
+            </h2>
+            <h2 Class="boarding-pass-p">Watch all games in any league. Avoid paying full cable package or sports package
+              for one sport.</h2>
+          </div>
+        </div>
       </div>
 
-    </div>
+      <!-- Shoe Shop  -->
 
-  </main>
+      <div>
+        <div class=UI1>
+          <img class="boarding-img"
+            src="https://previews.dropbox.com/p/thumb/AAujxrG6AHfLovF1jkB9HLhnEnjVqa0JL0E5RfaZbvyls_JBZhTwBSkkKJKbMXbvUSPjpShj0QNLlqMEdJXFeDj1TwlHq6S3WcC7xniLJZDnKnubRPQ5vQyVQlI0IYlcyq54WVV_RvxtDGMSYNYBJgh4YsnlLW7Tr5zIBAbsq9ywgwtJVBKsIcq32NTZRKsQM9JjL76_mWiJJjvHgnO17MB-1OrGZAPTQiPj0fZFgy1FpFwnHrh1p42bOCqzZ65FkO7DOFpvVxaczMOMU8n1nazQNTjhCE7hkwRPSSo9JvCw5JNN13nHkA54v7tBL0xRPG6-3V3EYA-eVmbHKWcSHodx/p.png?fv_content=true&size_mode=5"
+            alt="shoe shop mockup">
+          <div>
+            <h2 class="boarding-pass">Shoe Shop
+            </h2>
+            <h2 Class="boarding-pass-p">Only the best kicks. Like a shoe or add it to your cart. Simple and fun look for
+              the casual shopping experience.</h2>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Blog Landing Page  -->
+
+
+      <div>
+        <div class=UI1>
+          <img class="boarding-img"
+            src="https://previews.dropbox.com/p/thumb/AAuDkoQ4NS8s_Ajz2O0yKVui71cuEr1d6w977ihEb4XqLG2edrtj6urSS-kMQfxx5354dbZ5HIJtceK9TrZG1L3us21Ei4NNtCdvsvCRqemWHtGMwHEXClr2mkDYcxGykkBksWAm5ps2ZVuFHL-Zqphd3ZARbk5rfGB0zCQSgsnvDqBUAtJz7GaFd6TWEN9nEh8hXHLf8KMSbe1PQu2OuilARwgP2hT8BDg3TLnd85QD0LC3Wc-Kes9QnUvYjTy4PY-7vzvkRj5tIp5cXEYJaBPvnXqDNubm-0l56qoMU-V6sFmBpfY7jyoKx9PtDt6MQSEJcbWPHZp6DMacyJhL4n9Q/p.png?fv_content=true&size_mode=5"
+            alt="Blog Landing Page mockup">
+          <div>
+            <h2 class="boarding-pass">Blog Landing Page
+            </h2>
+            <h2 Class="boarding-pass-p">Talkie Hockey is a made up blog. Sharpie typography for the logo for a casual
+              feel, and a game-like typography for the playful nature of the blog. The subscripe button uses color and
+              an
+              outer ring to draw the eye in.</h2>
+          </div>
+        </div>
+
+        <!-- Call To Action Button -->
+
+        <div class="bottom-button">
+          <a class="button" href="contact.html">Get in Touch</a>
+        </div>
+
+      </div>
+
+    </main>
+    <div></div>
+    <div></div>
+    <footer>
+      Footer!
+    </footer>
 </body>
 
 </html>

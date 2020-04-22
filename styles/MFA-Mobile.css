@@ -11,61 +11,6 @@ body {
 }
 
 /***
- * Header / mobile navigation
- */
-
-.header-thing {
-  margin: 0;
-  margin-top: 1em;
-}
-
-.rectangle-container {
-  display: none;
-}
-
-.mobile-bar {
-  width: 100%;
-}
-
-.header-thing a {
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  padding-right: 0;
-}
-
-.header-nav {
-  display: none;
-}
-
-.mobile-nav {
-  display: none;
-  width: 95%;
-  text-align: right;
-}
-
-.mobile-nav a {
-  display: block;
-}
-
-.menu-icon {
-  float: right;
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-#menu-icon:checked ~ .mobile-nav, .menu-icon:hover ~ .mobile-nav, .mobile-nav:hover {
-  display: block;
-
-}
-
-/***
-* Grid main
-***/
-.grid-main {
-  margin-top: 2em;
-}
-
-/***
 * MFA Top Section
 ***/
 .top-text-container {

@@ -49,42 +49,6 @@ a:hover {
   align-items: center;
 }
 
-/* New CSS Grid Stuff */
-/* 
- * Learn more here: 
- * https://css-tricks.com/look-ma-no-media-queries-responsive-layouts-using-css-grid/
- * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Realizing_common_layouts_using_CSS_Grid_Layout
-*/
-.grid-container {
-  display: grid;
-  grid-template-rows: 100px auto 100px;
-  grid-template-columns: auto;
-  grid-template-areas:
-    "header"
-    "main"
-    "footer";
-}
-
-.grid-header {
-  grid-area: header;
-}
-
-.grid-main {
-  grid-area: main;
-}
-
-.grid-footer {
-  grid-area: footer;
-}
-
-/***
- * (Eventually should be site wide,) Top navigation
- ***/
- /* Will be shown using MFA-Mobile on screens smaller than 900px */
- .mobile-bar {
-   display: none;
- }
-
 
 /***
  * MFA Top Section

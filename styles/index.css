@@ -83,19 +83,30 @@
   background: #8811ff;
 }
 
+.section-2 {
+  background: #1DA3F6;
+}
+
+.section-3 {
+  background: #4DA360;
+}
+
+.section-4 {
+  background: #EEAC3F;
+}
 .section-1-inner {
 
 }
 
-.section-1-leftside {
+.section-leftside {
   flex: 1;
 }
 
 @media screen and (max-width: 900px) {
-  .section-1-inner {
+  .section-inner {
     flex-direction: column;
   }
-  .section-1-leftside {
+  .section-leftside {
     flex: 0;
   }
 }

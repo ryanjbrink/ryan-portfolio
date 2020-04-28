@@ -122,7 +122,8 @@ p {
 .header-thing {
   display: flex;
   justify-content: flex-end;
-  margin-top: 5em;
+  margin: 5em 15vw 0 15vw;
+  
 }
 
 .header-thing a {

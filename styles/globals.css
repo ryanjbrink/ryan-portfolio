@@ -92,7 +92,7 @@ p {
 .grid-container {
   display: grid;
   grid-template-rows: minmax(80px, auto) auto minmax(80px, auto);
-  grid-template-columns: 15% auto 15%;
+  /* grid-template-columns: 15% auto 15%; */
   grid-template-areas:
     "header"
     "main"

@@ -48,16 +48,24 @@
 
 .section {
   width: 100%;
-  position: absolute;
+  /* position: absolute; */
   left: 0;
   height: 100vh;
 }
 
 .section-inner {
   margin: 0 15vw 0 15vw;
+  height: 100%;
+}
+
+/*  "colored sections" refers to the vibrantly colored sections */
+.colored-sections {
   align-items: center;
   display: flex;
-  height: 100%;
+}
+
+.colored-section-image {
+  height: 45vh; 
 }
 
 @media screen and (max-width: 900px) {
@@ -94,6 +102,13 @@
 .section-4 {
   background: #EEAC3F;
 }
+
+.section-5 {
+  display: flex;
+  justify-content: center;
+  margin-top: 30vh;
+}
+
 .section-1-inner {
 
 }

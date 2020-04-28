@@ -21,7 +21,7 @@
   </header>
 
   <main>
-    <div class="about-container">
+    <div class="contact-container">
       <div class="AB">
         <h1>Contact</h1>
       </div>
@@ -36,19 +36,25 @@
         <!-- Form Fields -->
         <div class="form-yoda">
           <div class="form-fill">
-            <form>
-              <label for="name">Name</label><br />
-              <input type="text" id="name" name="name"><br />
-              <label for="email">Email</label><br />
-              <input type="text" id="email" name="email"><br />
-              <label for="comment">Comment</label><br />
-              <input type="text" id="email" name="email" /><br />
-              <input type="submit" value="Send" class="button" />
+            <form action="https://mailthis.to/ryanjbrink17@gmail.com" method="POST" style="position: absolute">
+                <label for="name">Name</label><br />
+                <input type="text" id="name-input" name="name"><br />
+                <label for="email">Email</label><br />
+                <input type="email" name="_replyto" id="email-input" name="email"><br />
+                <label for="comment">Comment</label><br />
+                <input type="text" id="comment-input" name="comment" /><br />
+                <input type="hidden" name="_after" value="http://ryanbrink.com/confirmation.html">
+                <input type="hidden" name="_honeypot" value="">
+                <input type="submit" value="Send" class="button" style="margin-top: 3em; margin-bottom: 4em;" />
+              <div class="all-the-crazy-img-stuff" style="position: absolute;
+              top: -5em;
+              left: 23em;">
+
+                <img src="./Images/saber-blue.png" width="300px" class="saber saber-blue" />
+                <img src="./Images/saber-red.png" width="300px" class="saber saber-red" />
+                <img class="BBY" src="./Images/baby-yoda.png" />
+              </div>
             </form>
-          </div>
-          <!--  BBY -->
-          <div class="yoda">
-            <img class="BBY" src="./Images/baby-yoda.png" />
           </div>
         </div>
 

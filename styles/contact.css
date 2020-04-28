@@ -1,50 +1,10 @@
-h1,
-h2,
-h3,
-p {
-  color: #2d2d2d;
-  padding: 0;
-  margin: 0;
-}
-
-h1 {
-  font-size: 36px;
-}
-
-h2 {
-  font-size: 24px;
-  font-weight: lighter;
-}
-
-p {
-  font-size: 18px;
-}
-
-.header-thing {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 8vh;
-  margin-right: 15vh;
-}
-
-a {
-  text-decoration: none;
-  padding: 1em 2em 1em 2em;
-  color: #2d2d2d;
-  font-size: 24px;
-}
-
-a:hover {
-  color: #0084ff;
-}
-
-.about-container {
+.contact-container {
   display: block;
-  margin: 15vh 30vh 0vh 30vh;
+  margin: 0 15vw 5vh 15vw;
 }
 
 .AB {
-  margin-bottom: 8vh;
+  margin-bottom: 2vh;
 }
 
 .IAM {
@@ -76,4 +36,50 @@ button {
 .form-yoda {
   display: flex;
   margin: 10vh 0vh 0vh 0vh;
+}
+
+/* Saber */
+.saber {
+  position: absolute;
+  top: 12em;
+  left: -8em;
+}
+
+@media screen and (max-width: 800px) {
+  .all-the-crazy-img-stuff {
+    display: none;
+  }
+}
+
+.saber-red {
+  display: none;
+}
+
+#name-input:focus ~ div .saber {
+  transform: rotate(8deg);
+  top: 10em;
+  left: -8em;
+}
+
+#email-input:focus ~ div .saber-blue {
+  transform: rotate(0deg);
+  top: 12em;
+  left: -8em;
+}
+
+#email-input:invalid ~ div .saber-red {
+  display: block;
+  transform: rotate(0deg);
+  top: 12em;
+  left: -8em;
+}
+
+#email-input:invalid ~ div .saber-blue {
+  display: none;
+}
+
+#comment-input:focus ~ div .saber-blue {
+  transform: rotate(-6deg);
+  top: 15em;
+  left: -8em;
 }

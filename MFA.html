@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="styles/MFA-Shared.css" media='screen' />
   <link rel="stylesheet" href="styles/MFA-Main.css" media='screen and (min-width: 901px)' />
   <link rel="stylesheet" href="styles/MFA-Mobile.css" media='screen and (max-width: 900px)' />
+  <link rel="stylesheet" href="styles/grid.css" />
 </head>
 
 <body>
@@ -23,156 +24,183 @@
         <a href="contact.html">Contact</a>
       </nav>
       <div class="mobile-bar">
-        <input type="checkbox" id="menu-icon" name="menu-icon" style="visibility: hidden; position: absolute; top: -20px;" />
+        <input type="checkbox" id="menu-icon" name="menu-icon"
+          style="visibility: hidden; position: absolute; top: -20px;" />
         <span style="font-size: 24px; flex: 1;">Ryan Brink</span>
         <label for="menu-icon" class="menu-icon" href="#">
           <img
             src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iMzJweCIgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMyIDMyOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMzIgMzIiIHdpZHRoPSIzMnB4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48cGF0aCBkPSJNNCwxMGgyNGMxLjEwNCwwLDItMC44OTYsMi0ycy0wLjg5Ni0yLTItMkg0QzIuODk2LDYsMiw2Ljg5NiwyLDhTMi44OTYsMTAsNCwxMHogTTI4LDE0SDRjLTEuMTA0LDAtMiwwLjg5Ni0yLDIgIHMwLjg5NiwyLDIsMmgyNGMxLjEwNCwwLDItMC44OTYsMi0yUzI5LjEwNCwxNCwyOCwxNHogTTI4LDIySDRjLTEuMTA0LDAtMiwwLjg5Ni0yLDJzMC44OTYsMiwyLDJoMjRjMS4xMDQsMCwyLTAuODk2LDItMiAgUzI5LjEwNCwyMiwyOCwyMnoiLz48L3N2Zz4="
             width="30" />
         </label>
-          <br style="clear: both;" />
-          <nav class="mobile-nav">
-            <a href="Home.html">Home</a>
-            <a href="About.html">About</a>
-            <a href="Contact.html">Contact</a>
-          </nav>
+        <br style="clear: both;" />
+        <nav class="mobile-nav">
+          <a href="Home.html">Home</a>
+          <a href="About.html">About</a>
+          <a href="Contact.html">Contact</a>
+        </nav>
       </div>
     </header>
 
     <!-- Main Container -->
 
     <main class="grid-main">
-      <div class="content-container">
-        <div class="top-section section">
-          <div class="top-text-container">
-            <h1>Mission French Africa</h1>
-            <span class="subheading">December 2019</span>
-          </div>
-          <div class="flexbox top-item-list">
-            <div>
-              <h3>Problem</h3>
-              <p>Mission French Africa’s website is outdated, and needs better usability. The goal is to update and
-                increase functionality for visitors.</p>
-            </div>
-            <div>
-              <h3>Context</h3>
-              <p>Mission French Africa is a non profit organization that needed an update. The website had an old and
-                unorganized look. </p>
-            </div>
-            <div>
-              <h3>Objective</h3>
-              <p>I was responsible for reorganizing and updating the UI of Mission French Africa’s website. The whole
-                process took 5 weeks.</p>
-            </div>
-          </div>
+      <div class="top-section section page-margin">
+        <div class="top-text-container">
+          <h1>Mission French Africa</h1>
+          <span class="subheading">December 2019</span>
         </div>
-        <hr class="rule" />
-        <!--  Website Audit -->
-        <div class="section section-a">
-          <div class="rectangle-container">
-            <div class="rectangle-background"></div>
+        <div class="flexbox top-item-list">
+          <div>
+            <h3>Problem</h3>
+            <p>Mission French Africa’s website is outdated, and needs better usability. The goal is to update and
+              increase functionality for visitors.</p>
           </div>
-          <h2 class="section-header" style="font-size: 36px;">Website Audit</h2>
-
-          <h3 class="odd-h3s">Home</h3>
-          <p class="mfa-section-a-text">A lot is happening on the home page. Keeping design simple is always a great
-            bet. I
-            sought to decrease the clutter and highlight the important parts to the page.</p>
-          <h3 class="odd-h3s-2">New</h3>
-          <div id="images-container-offset" class="mfa-images-container">
-            <img class="mfa-image-1" src="Images/MFA/mfa-desktop-old.png" alt="Mission French Africa Old Home Screen" />
-            <div class="mfa-image-with-text-container mfa-images-section-a">
-              <div class="mfa-image-text-overlay image-text-overlay-section-a">
-                <div>I wanted to highlight the most important elements in the home page. I have a call to action to
-                  donate at the top instead of the bottom. The most engaging piece of content is the video from the old
-                  website. This explains very well what Mission French Africa is, and a user doesn’t have to go a page
-                  deep in order to discover who they are.</div>
-              </div>
-              <img class="mfa-image-2" src="Images/MFA/tiger-background-a.png" alt="" />
-            </div>
+          <div>
+            <h3>Context</h3>
+            <p>Mission French Africa is a non profit organization that needed an update. The website had an old and
+              unorganized look. </p>
           </div>
-        </div>
-        <hr class="rule" />
-        <div class="section section-b">
-          <h3 class="odd-h3s">About</h3>
-          <p class="mfa-section-a-text">There is no need to have two pages for the about section. A better layout can
-            offer all the information without needing to toggle between both.</p>
-          <h3 class="odd-h3s-2">New</h3>
-          <div class="mfa-images-container">
-            <img class="mfa-image-1" src="Images/MFA/mfa-who-we-are.png" alt="Mission French Africa Old About Page" />
-            <div class="mfa-image-with-text-container mfa-images-section-b">
-              <div class="mfa-image-text-overlay image-text-overlay-section-b">
-                <div>I used more engaging imagery. Utilizing icons and a map to show the impacted areas in Africa. All
-                  of the about information is included in this one page providing an easier usability instead of
-                  toggling between three pages.</div>
-              </div>
-              <img class="mfa-image-2" src="Images/MFA/tiger-background-b.png" alt="" />
-            </div>
-          </div>
-        </div>
-        <hr class="rule" />
-        <div class="section section-c">
-          <h3 class="odd-h3s">Ministries</h3>
-          <p class="mfa-section-a-text">There is no need to have three pages for the Ministries section. Again, a user
-            will want to view all Ministries at once, and click into each for more information.</p>
-          <h3 class="odd-h3s-2">New</h3>
-          <div class="mfa-images-container">
-            <img class="mfa-image-1" src="Images/MFA/mfa-ministries.png"
-              alt="Mission French Africa Old Ministires Page" />
-            <div class="mfa-image-with-text-container mfa-images-section-c">
-              <div class="mfa-image-text-overlay image-text-overlay-section-c">
-                <div>I have all three ministry areas on one page. Each section shares a sneak peak into each ministry.
-                  The user can choose to learn more about each section if interested.</div>
-              </div>
-              <img class="mfa-image-2" src="Images/MFA/tiger-background-c.png" alt="" />
-            </div>
-          </div>
-        </div>
-        <hr class="rule" />
-        <div class="section section-d">
-          <h3 class="odd-h3s">Donate</h3>
-          <p class="mfa-section-a-text">The old website made my eyes bounce around, and I did not know where to focus my
-            attention. The Donate page needs an obvious call to action with a variety of payment options and a clear
-            process.</p>
-          <h3 class="odd-h3s-2">New</h3>
-          <div class="mfa-images-container">
-            <img class="mfa-image-1" src="Images/MFA/mfa-donate.png" alt="Mission French Africa Old Dontate Page" />
-            <div class="mfa-image-with-text-container mfa-images-section-d">
-              <div class="mfa-image-text-overlay image-text-overlay-section-d">
-                <div>Donate:<br />
-                  The call to action is very small for the page. I do like the descriptions of where the money will go.
-                </div>
-              </div>
-              <img class="mfa-image-2" src="Images/MFA/tiger-background-d.png" alt="" />
-            </div>
-          </div>
-        </div>
-        <hr class="rule" />
-        <div class="section section-e">
-          <h3 class="odd-h3s">Contact</h3>
-          <p class="mfa-section-a-text">The contact page is already well put togehter, but the new one follows some
-            basic UI design principles. I also added the address to this page to complete the contact info.</p>
-          <h3 class="odd-h3s-2">New</h3>
-          <div class="mfa-images-container">
-            <img class="mfa-image-1" src="Images/MFA/mfa-contact.png" alt="Mission French Africa Old Contact Page" />
-            <div class="mfa-image-with-text-container mfa-images-section-e">
-              <div class="mfa-image-text-overlay image-text-overlay-section-e">
-                <div>I utilized Material Design for the form fills, and I decreased the size of the fill boxes to
-                  reflect the amount of text that will be put into each form field.</div>
-              </div>
-              <img class="mfa-image-2" src="Images/MFA/tiger-background-e.png" alt="" />
-            </div>
+          <div>
+            <h3>Objective</h3>
+            <p>I was responsible for reorganizing and updating the UI of Mission French Africa’s website. The whole
+              process took 5 weeks.</p>
           </div>
         </div>
       </div>
-    </main>
-    <!-- Call To Action Button -->
+      <hr class="rule" />
+      <!--  Website Audit -->
 
-    <footer class="grid-footer">
-      <div class="bottom-button">
+      <div class="section section-a page-margin">
+        <h2 class="section-header">Freestyle UI</h2>
+      </div>
+      <div class="grid">
+        <div class="grid-top-text">
+          <h1>Home</h1>
+          A lot is happening on the home page. Keeping design simple is always a great bet. I sought to decrease the
+          clutter and highlight the important parts to the page.
+        </div>
+        <div class="img1">
+          <img class="left-image" src="./Images/MFA/mfa-img.png" />
+        </div>
+        <div class="people-on-top">
+          <img width="100%" src="./Images/MFA/mfa-people.png" />
+        </div>
+        <div class="right-descr">I wanted to highlight the most important elements in the home page.
+          <br />
+          I have a call to action to donate at the top instead of the bottom.
+          <br />
+          The most engaging piece of content is the video from the old website.
+          <br />
+          This explains very well what Mission French Africa is, and a user doesn’t have to go a page deep in order to
+          discover who they are.</div>
+        <div></div>
+        <div class="background-org"></div>
+      </div>
+  </div>
+
+  <hr class="rule" />
+  <div class="grid">
+    <div class="grid-top-text">
+      <h1>About</h1>
+      There is no need to have two pages for the about section. A better layout can offer all the information without
+      needing to toggle between both.
+    </div>
+    <div class="img1">
+      <img class="left-image" src="./Images/MFA/mfa-screen-2.png" />
+    </div>
+    <div class="people-on-top">
+      <img width="100%" src="./Images/MFA/mfa-img-2.png" />
+    </div>
+    <div class="right-descr">I used more engaging imagery.
+      <br /><br />
+      Utilizing icons and a map to show the impacted areas in Africa.
+      <br /><br />
+      All the about information is included in this one page providing an easier usability instead of toggling between
+      three pages.</div>
+    <div class="background-org"></div>
+    <div class="background-man"><img src="./Images/MFA/4.svg" /></div>
+  </div>
+
+
+
+  <hr class="rule" />
+
+  <div class="grid">
+    <div class="grid-top-text">
+      <h1>Ministries</h1>
+      There is no need to have three pages for the Ministries section. Again, a user will want to view all Ministries at
+      once, and click into each for more information.
+    </div>
+    <div class="img1">
+      <img class="left-image" src="./Images/MFA/mfa-screen-3.png" />
+    </div>
+    <div class="people-on-top">
+      <img width="100%" src="./Images/MFA/ill-3.svg" />
+    </div>
+    <div class="right-descr">I have all three ministry areas on one page.
+
+      Each section shares a sneak peek into each ministry.
+
+      The user can choose to learn more about each section if interested.
+    </div>
+    <div class="background-org"></div>
+    <div class="background-man" style="left: 10em"><img src="./Images/MFA/5.svg" /></div>
+  </div>
+  </div>
+
+  <hr class="rule" />
+
+  <div class="grid">
+    <div class="grid-top-text">
+      <h1>Donate</h1>
+      The old website made my eyes bounce around, and I did not know where to focus my attention. The Donate page needs
+      an obvious call to action with a variety of payment options and a clear process.
+    </div>
+    <div class="img1">
+      <img class="left-image" src="./Images/MFA/mfa-screen-4.png" />
+    </div>
+    <div class="people-on-top">
+      <img width="100%" src="./Images/MFA/on-top-4.svg" />
+    </div>
+    <div class="right-descr">
+      A more prominent call to action for a specific amount.
+      <br /><br />
+      The user can select where to send the money.
+      <br /><br /><br />
+      The primary red button indicates how the user submits their donation.
+    </div>
+    <div class="background-org"></div>
+
+  </div>
+  <hr class="rule" />
+
+
+  <div class="grid">
+    <div class="grid-top-text">
+      <h1>Contact</h1>
+      The contact page is already well put together, but the new one follows some basic UI design principles. I also
+      added the address to this page to complete the contact info.
+    </div>
+    <div class="img1">
+      <img class="left-image" src="./Images/MFA/mfa-screen-4.png" />
+    </div>
+    <div class="people-on-top">
+      <img width="100%" src="./Images/MFA/ill-5.svg" />
+    </div>
+    <div class="right-descr">
+      I utilized Material Design for the form fills.
+      <br /><br />
+      I decreased the size of the fill boxes to reflect the amount of text that will be put into each form field.
+    </div>
+    <div class="background-org" style="grid-row: 5/span 3; height: 60em">
+      <div class="bottom-button" style="position: relative; top: 14em">
         <a href="contact.html" class="contact-link">Get in Touch</a>
       </div>
-    </footer>
+    </div>
+
+  </div>
+  </main>
+
   </div>
 </body>
 

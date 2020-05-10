@@ -1,215 +1,196 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
-  <title>Coding My Portfolio</title>
+  <title>Coding My Portfolio - Ryan Brink</title>
   <!-- For Ryan: https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles/reset.css" />
   <link rel="stylesheet" href="styles/globals.css" />
-  <link rel="stylesheet" href="styles/CMP.css" />
+  <link rel="stylesheet" href="styles/grid.css" />
+  <link rel="stylesheet" href="styles/CMP-Shared.css" media='screen' />
+  <link rel="stylesheet" href="styles/CMP-Main.css" media='screen and (min-width: 901px)' />
+  <link rel="stylesheet" href="styles/MFA-Mobile.css" media='screen and (max-width: 900px)' />
+
 </head>
 
-<!-- Navigation -->
-
 <body>
-  <header class="header-thing">
-    <nav>
+  <!-- Navigation -->
+  <header class="header-thing grid-header">
+    <nav class="header-nav">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
+    <div class="mobile-bar">
+      <input type="checkbox" id="menu-icon" name="menu-icon"
+        style="visibility: hidden; position: absolute; top: -20px;" />
+      <span style="font-size: 24px; flex: 1;">Ryan Brink</span>
+      <label for="menu-icon" class="menu-icon" href="#">
+        <img
+          src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iMzJweCIgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMyIDMyOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMzIgMzIiIHdpZHRoPSIzMnB4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48cGF0aCBkPSJNNCwxMGgyNGMxLjEwNCwwLDItMC44OTYsMi0ycy0wLjg5Ni0yLTItMkg0QzIuODk2LDYsMiw2Ljg5NiwyLDhTMi44OTYsMTAsNCwxMHogTTI4LDE0SDRjLTEuMTA0LDAtMiwwLjg5Ni0yLDIgIHMwLjg5NiwyLDIsMmgyNGMxLjEwNCwwLDItMC44OTYsMi0yUzI5LjEwNCwxNCwyOCwxNHogTTI4LDIySDRjLTEuMTA0LDAtMiwwLjg5Ni0yLDJzMC44OTYsMiwyLDJoMjRjMS4xMDQsMCwyLTAuODk2LDItMiAgUzI5LjEwNCwyMiwyOCwyMnoiLz48L3N2Zz4="
+          width="30" />
+      </label>
+      <br style="clear: both;" />
+      <nav class="mobile-nav">
+        <a href="Home.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="Contact.html">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- Home Container -->
+  <!-- Main Container -->
 
-  <main>
-    <div class="RB">
-      <h1>Coding My Portfolio</h1>
-    </div>
-    <div>
-      <p>March-April 2020</p>
-    </div>
-
-    <!-- Problem -->
-
-    <div class="onetwothree">
-      <div>
-        <div class="topthree">
-          <h2>Problem</h2>
-        </div>
-        <div class="pthree">
-          <p>
-            Typical portfolios follow a stock build from a typical web builder. I did not want that, and I
-            sought to improve my coding abilities.
-          </p>
-        </div>
+  <main class="grid-main">
+    <div class="top-section section page-margin">
+      <div class="top-text-container">
+        <h1>Coding My Portfolio</h1>
+        <span class="subheading">Febuary 2020 - April 2020</span>
       </div>
-
-      <!--  Context -->
-      <div>
-        <div class="topthree">
-          <h2>Context</h2>
-        </div>
-        <div class="pthree">
-          <p>
-            I need to understand the building blocks behind my designs. Practicing coding will help my
-            designs become more friendly to developers.
-          </p>
-        </div>
-      </div>
-
-      <!--  Objective -->
-
-      <div>
-        <div class="topthree">
-          <h2>Objective</h2>
-        </div>
-        <div class="pthree">
-          <p>
-            To finish Coding the website in order to share my experience with employers.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Planning -->
-    <div class="planning-flex">
-      <div>
-        <h2>Planning</h2>
-        <p>I used Figma to iterate several ideas for my portfolio. My first iteration came about with free
-          reign, not considering the coding task in hand. I created wireframes that consisted of a complex
-          layout. Including pictures on top of pictures.</p>
-        <img class="coffee"
-          src="https://previews.dropbox.com/p/thumb/AAzMUnw0bnewAt6CG9L0c4C6TCV3FK_bDr-u_I10IUILtlSMbUIiATA0aS8djqb1autZBV-NDq-5Pa9bHM0BotQ8ftuux4WtbMDZ6CHdMChK1a0T_rkeKDiADiSxfpZnTfxKf2aLCEixqk-3aJ2RSgZqlxoHHIaq6ZPBeZ4nShiTG8kBLD3dO4p1ZEcZePJNx8n_exiYXumKvCfWJoS2RWZRvM-93gG0IuQscnDZyRbKkdwQB7yyjoBNmqw5W6BDfBdCh8-K-wgJVNZoshzWnSWViG6VVyJpooDm4DxXpgA7relAQ9edmg6hWlcBKlrSarZ6dkViEYOmkqX7svwhnJLD/p.png?fv_content=true&size_mode=5">
-      </div>
-      <div>
-        <img class="figma"
-          src="https://previews.dropbox.com/p/thumb/AAxRaBr__9gdf6SzmcMWpAuxaLOB2TQH9BJtz7PME-Opw7C8hK9Q7ZOZ6_7Ie8mj8B2U-zzQpIHCO7h0OADeXbThIR9f0XSfyaRNNGOf5K-CfEhxU__qSN3tXHNO4veM0P0La7fH2sAEJfELkpBW3YN9qXRlnLtk2JPnoCIdfJfoF3kS7zwZqh9Y2gw95Bm95sL2n0wKMQ3l46BPVhNQGhqMXL-r4Xe_t919XebrBNgd3EgNcfeqKgaVKEVc1v80SNHlkX70BhKxJjpeNgizv4dvr5ySomC1m27b33wfCTCOUC-xqSeQtcpA_iM048A6P9-o9YU0QHRA9lIsYqoI_o8q/p.png?fv_content=true&size_mode=5"
-          alt="picture of figma planning">
-      </div>
-    </div>
-
-    <!-- Coding -->
-    <div>
-      <h2>Coding</h2>
-      <img class="codepen"
-        src="https://previews.dropbox.com/p/thumb/AAxMV1CTDHE2XFhsl2m3vYxVCHcFTUrfqX4Cf4HQzOGZirP6BHROis1-E0S61HA_VTJZItEQQDlnU3bVaDXzW8toJf1SZKY8BEhTouEUdqvUeFoV0-9xTOBI53epP5gpwRrHbssd2Xnuv8NjnvL9NIq8zxo0Zktif4colgwQ9xxrBk0Wt_c_36d7l31vqMvZHZU1smi38pNg603w635yPAkhSU3bhL_KJjYFdnOViAPqwJWjZVlTTSKSfeyjRloyQKu_dDOcKORYGUPfECRQMyO1JnC9sqMlZi_AIF5dOP1Iv6BpjGgg_jnI2iYmrwxWDwiIETZbHXdFm9RhGvO9CFoi/p.png?size=2048x1536&size_mode=3"
-        alt="coding my portfolio in codepen">
-    </div>
-    <div class="coding-flex">
-      <div>
-        <img class="back-up-plan"
-          src="https://previews.dropbox.com/p/thumb/AAygv-e_2CjSOTuYzNRmFnT-uSj1jOP8USYL1--gh9RLTAlUza8OK5Q-hIkexakKUFhfgetACyiQSsq9wNkPZ7CVEsGjAWGIJQdZHLlT2ILOEGc7bmnHI67RLvAuH4ssrx2VHomJL5WDlZEpMSCyh8-A3kx7pQHAQN6TuGVNxamQx4eALhHhzS27d7hJMWT6gbiZxOqpcHEx1uIsl6cWY98ReoMKugpRIMgeXXgnc37wXygaKOPajbL-D4DhQoiaOMFjxjcOtp_tG9V-0jNTLYU-7WA-u0wM65EAYTV-GebtsmW6SmoqPPprhk6IRtkGtCsKnSiu8C3Sw93EaC3rSCp_/p.png?size=2048x1536&size_mode=3">
-      </div>
-      <div>
-        <p>Using code pen to start coding, I discovered it was extremely difficult to align all of the items
-          properly. Back to the drawing board. I got rid of the shapes and sought a simplier layout. I also
-          kept in mind the need for responsive design. I created mobile wireframes for the portfolio. I
-          intentionally created them in the easiest manner possible for the media queries I would have to
-          code.</p>
-      </div>
-    </div>
-
-    <!-- Problems -->
-    <div>
-      <div>
-        <h2>Problems</h2>
-        <div class="problems">
-          <div>
-            <p>The best way to describe my first attempt at coding the website is “hacky”. Items were willed
-              into
-              place using “relative” and “absolute” in CSS. Although this worked, it did not have
-              responsive
-              capabilitites. </p>
-            <p>The second time around was better. I got rid of the clutter, and became more consistent in
-              how I
-              aligned items. I used flexbox and proper margins to keep everything in the right alignment.
-              I
-              still
-              had three problems. What is the proper way to use margins? For example, do I give the margin
-              to
-              the
-              top piece of content, the bottom, or split on both? Needless to say, without planning ahead,
-              I
-              have
-              instances of each. The second problem is with responsive design. Instead of hard pixels, I
-              used
-              vh
-              or vw for pictures. At certain screen sizes it looks good, but it gets bad quickly as soon
-              as
-              you
-              decrease the size. I also do not want to implement several media queries to resize the
-              content
-              at
-              each problem point. The third problem, comes from the lack of standardized labeling for CSS.
-              For
-              example, I would give the research title a class of “researchtitle”, and style it in CSS.
-              However,
-              coming to the Ideation title, I realized that the same “researchtitle” class would work in
-              styling
-              the rest of the titles. Luckily, this weird inconsistency won’t confuse others since it
-              isn’t a
-              shared project among developers. </p>
-            <p>Lastly, I only know HTML and CSS (front end). In order to get a working website I will have
-              to
-              either
-              learn a lot more, or ask for help. </p>
-          </div>
-          <div>
-            <img class="throw"
-              src="https://previews.dropbox.com/p/thumb/AAzrnZfNmPMAVI5Q37SWmg_RvLnv2NALfL-TIoiI-YCbEXTbCEVR7O7TeSYQETvKZl-nEhqBdxuRGYqyHbR3rHCEe5yAkCFbguhPGYgEOjsdgLlLtPs47Wt7-tWaTHig1eQe9QeSLso1jzytuuinLWTJAEziGfCH4CiIbKTM_DM4PRgKZxtjPu-O7dXeT8VkVyoB0be8l88Lk2gFpp7v3XBSOMWyyAlCukKRDAnhKViL2RmlyvTCv-auK0k889G-INBRIYLqO5Zc-TIMvtmoKrzkTNrHZn1_ZbtGH9U1OvswZcC4EDnEPuk6RFXhp2Dz7aZ76hWKfWJQTKS5McBubd1G/p.png?size=2048x1536&size_mode=3">
-          </div>
-        </div>
-      </div>
-
-      <!-- Solutions -->
-      <div>
+      <div class="flexbox top-item-list">
         <div>
-          <h2>Solutions</h2>
-          <div class="solutions">
-            <div>
-              <img class="git"
-                src="https://previews.dropbox.com/p/thumb/AAx-ndND8oAHr80ZwFc_4AsZXO56Swrvt_2ErrYZkf1g1-xb3uMvGkEy70rPe4auMMSl1464CY9nHhy3rBJB-B6hkfFaK2Gti5ztTgUjABieeBo2rBYvD7hcLnhBnRqEj2quZ8ILG7_XE1fOwqfKj0jgwybJwUrEsN_c3rnnVWs7st0qBqL0JvxL5DU9CWl-SbcBQ4wz1jzZJMpmxN6Qhoaxua5buxDGVHPMqOtY_PshO8Q-8WeCS2eL2blSTtjuMF7V3E5TWtXlH85J1J197mbDMPiS0XSfv14LRXdcOVQUzNtq1GYqtc4QgsUbUnZmzZ9xClEiX8stnFWb0ys14DEW/p.png?fv_content=true&size_mode=5">
-            </div>
-            <div>
-              <p>Each iteration came with solutions from my brother. Showing me how to better implement
-                each design. furthermore, upon calculated the time it took to get two iterations done, I
-                decided to outsource the help even more. Using VS Code, and github, my brother was able
-                to help me with making the website functional and more professional. </p>
-              <p>We did not want to recreate a backend for the site, so we utilized a service for the form
-                fields to gather information. We also used amazon web services to host the site.</p>
-            </div>
-          </div>
+          <h3>Problem</h3>
+          <p>Typical portfolios follow a stock build from a typical web builder. I did not want that, and I sought to
+            improve my coding abilities.</p>
         </div>
-
-        <!-- Next Steps -->
-
         <div>
-          <h2>Next Steps</h2>
-          <div class="steps-flex">
-            <p>Creating my own website has given me a more holistic perspective of the development process.
-              I want to be more empathetic towards developers with my designs. I decided to get help with
-              this site so I could start applying to jobs sooner, but that does not hault my yearning for
-              more knowledge in web development. My dream is to continue learning and become a full stack
-              developer in order to implement better UX designs. </p>
-            <img class="superman"
-              src="https://previews.dropbox.com/p/thumb/AAzPe84Wf63fbBLoIiotnSjhzvd1xIokXNrV2xM-x3ElhddbVegrG4ZNVeWPLF3Rj5HYNDn8KG0wnpqrB7SdFBajjM_mJASFMrRvHG9RY7eFn-3ZYShSh8QxloLIYUNuTZmTvLtrTQ86bI1Or48VDerEzT7nCwJQuUjO1hstVsyCvIvsmwYtt6m7wJ2rni9mmXeylWrnHXfpbAESlfA5b9eDbdtBV3juNWNirqOsKnBwUR3akDpVT_PdAMY1cfYOLpvpE4OZwY_NfSUT_JrVUX6iwK32LyWN1j2X22pnszy5aK5ID82sxwarNKTddyl4ietAwIaaJ9xGyxGcueUDnCq0/p.png?size=2048x1536&size_mode=3">
-          </div>
+          <h3>Context</h3>
+          <p>I need to understand the building blocks behind my designs. Practicing coding will help my designs become
+            more friendly to developers.</p>
         </div>
-
-        <!-- Call To Action Button -->
-
-        <div class="bottom-button">
-          <button>Get in Touch</button>
+        <div>
+          <h3>Objective</h3>
+          <p>To finish Coding the website in order to share my experience with employers.</p>
         </div>
+      </div>
+    </div>
 
+    <div class="grid">
+      <div class="grid-top-text">
+        <h1>Planning</h1>
+        <span>I used Figma to iterate several ideas for my portfolio. My first iteration was a not thought out, not
+          considering the coding task in hand. I created wire frames that consisted of a complex layout. Including
+          pictures on top of pictures.</span>
+      </div>
+      <div class="img1">
+        <img class="left-image" src="./Images/CMP/coffee-ryan.png" />
+      </div>
+      <div class="people-on-top">
+        <img width="100%" src="./Images/CMP/cmp-screen-1.png" />
+      </div>
+      <div></div>
+      <div class="background-org" style="min-height: 400px"></div>
+    </div>
+
+
+    <div class="section-2-grid">
+      <div class="grid-top-text">
+        <h1>Coding</h1>
+        <span>Code Pen was useful in seeing iterations instantly to have a shorter feedback loop. As per my design, it
+          was difficult to align all the items properly.
+          <br /><br />
+          Back to the drawing board. I discarded the shapes and sought a simpler layout. I also kept in mind the need
+          for responsive design.
+          <br /><br />
+          I created mobile wire frames for the portfolio. I intentionally created them in the easiest manner possible
+          for the media queries I would have to code. </span>
+      </div>
+      <div class="img1 section-2-main-screen">
+        <img class="left-image" src="./Images/CMP/cmp-screen-2.png" />
+      </div>
+      <div class="people-on-top section-2-top-img">
+        <img width="80%" src="./Images/CMP/ryan-what.png" />
+      </div>
+      <div class="background-org section-2-background"></div>
+    </div>
+
+    <div class="grid-section-3">
+      <div class="section-3-item-a">
+        <h1>Problems</h1>
+        <span>
+          The best way to describe my first attempt at coding the website is “hacky”. Items were willed into place using
+          “relative” and “absolute” values in CSS. Although this worked, it did not have responsive capabilities.
+          <br /><br />
+          The second time around was better. I got rid of the clutter, and became more consistent in how I aligned
+          items. I used FlexBox and proper margins to keep everything in the right place. I still had three problems.
+          <br /><br />
+          What is the proper way to use margins? For example, do I give the margin to the top piece of content, the
+          bottom, or split on both? Needless to say, without planning ahead, I have instances of each.
+        </span>
+      </div>
+      <div class="section-3-item-b" style="display:flex;justify-content: flex-end;">
+        <img style="align-self: center; height: 30vw;" src="./Images/CMP/frustrated-ryan.png" />
       </div>
 
+      <div class="section-3-item-c" style="display: flex;justify-content: center; align-items: center;">
+        <img style="align-self: center; width: 20vw" class="left-image" src="./Images/CMP/cmp-screen-3.png" />
+      </div>
+      <div class="section-3-item-d">
+        <span>
+          The second problem is with responsive design. Instead of hard pixels, I used vh or vw for pictures. At certain
+          screen sizes it looks good, but it gets bad quickly as soon as you decrease the size. I also did not want to
+          implement several media queries to resize the content at each problem point.
+          <br /><br />
+          The third problem, comes from the lack of standardized labeling for CSS. For example, I would give the
+          research title a class of “research title”, and style it in CSS. However, coming into the Ideation section, I
+          realized that the same “research title” class would work in styling the rest of the titles. Fortunately the
+          only other person who worked on this project was my brother, and not a team of developers.
+          <br /><br />
+          Lastly, I only know HTML and CSS (front end). In order to get a working website I will have to either learn a
+          lot more, or ask for help.
+        </span>
+      </div>
+    </div>
 
 
+
+    <div class="grid">
+      <div class="grid-top-text">
+        <h1>Solution</h1>
+        Each iteration came with solutions from my brother. Showing me how to better implement each design. Furthermore, upon calculated the time it took to get two iterations done, I decided to give him more responsibility in coding the site. Using VS Code and GitHub, I committed the code so that my brother could work on the site.
+      </div>
+      <div class="img1 section-4-main-image">
+        <img class="left-image" style="align-self: center; width: 50%" src="./Images/CMP/cmp-screen-4.png" />
+      </div>
+      <div class="people-on-top section-4-people">
+        <img width="60%" src="./Images/CMP/go-green.png" />
+      </div>
+      
+      <div class="background-org section-4-background"></div>
+
+    </div>
+
+
+
+    <div class="grid">
+      <div class="grid-top-text">
+        <h1>Contact</h1>
+        The contact page is already well put together, but the new one follows some basic UI design principles. I also
+        added the address to this page to complete the contact info.
+      </div>
+      <div class="img1">
+        <img class="left-image" src="./Images/MFA/mfa-screen-4.png" />
+      </div>
+      <div class="people-on-top">
+        <img width="100%" src="./Images/MFA/ill-5.svg" />
+      </div>
+      <div class="right-descr">
+        I utilized Material Design for the form fills.
+        <br /><br />
+        I decreased the size of the fill boxes to reflect the amount of text that will be put into each form field.
+      </div>
+      <div class="background-org" style="grid-row: 5/span 3; height: 60em">
+        <div class="bottom-button" style="position: relative; top: 14em">
+          <a href="contact.html" class="contact-link">Get in Touch</a>
+        </div>
+      </div>
+
+    </div>
   </main>
+
+  </div>
 </body>
 
 </html>

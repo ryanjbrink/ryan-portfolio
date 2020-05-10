@@ -1,0 +1,337 @@
+/* File cloned from MFA-Main to get the project done. Refactor logically shared styles sometime. All the case study pages look similar, so
+a case-studies.css stylesheet would be appropriate.
+*/
+/* Helpers */
+.flexbox {
+  display: flex;
+}
+
+.section {
+  margin-bottom: 8em;
+}
+
+/* Generic Page Styles */
+h3 {
+  font-weight: lighter;
+  font-size: 1.6em;
+}
+
+.odd-h3s {
+  margin-top: 0.5em;
+  font-weight: bold;
+}
+
+.odd-h3s-2 {
+  font-weight: 200;
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+
+a {
+  text-decoration: none;
+  padding: 1em 2em 1em 2em;
+  color: #2d2d2d;
+  font-size: 24px;
+}
+
+a:hover {
+  color: #0084ff;
+}
+
+.rule {
+  margin-top: 2em;
+}
+
+.grid-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-margin {
+  width: 80%;
+}
+
+
+/***
+ * Top Section
+ ***/
+.top-section {
+
+ }
+
+.top-text-container {
+  margin-bottom: 3em;
+}
+
+.top-item-list div:nth-child(even) {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+/***
+ * Website Audit (Section A)
+ ***/
+/* .section-a {
+ } */
+
+#images-container-offset {
+  top: -12vw;
+  align-items: center;
+}
+
+
+/***
+ * Generic to All Sections
+ ***/
+ .section-header {
+  margin-top: 2em;
+  font-weight: 300;
+  font-size: 36px !important;
+}
+
+.rectangle-container {
+  position: relative;
+}
+.rectangle-background {
+  background: linear-gradient(
+    0.6turn,
+    rgba(240, 185, 66, 0.666),
+    rgba(239, 181, 65, 0.783)
+  );
+  border-radius: 50px;
+  width: 45vw;
+  height: 45vw;
+  max-height: 40em;
+  max-width: 40em;
+  position: absolute;
+  left: -6vw;
+  top: -25px;
+  z-index: -1;
+}
+
+.mfa-section-a-text {
+  width: 33vw;
+  max-width: 28em;
+}
+
+.mfa-images-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+
+.mfa-image-1 {
+  width: 46%;
+  min-width: 400px;
+  box-shadow: 0 4px 4px hsla(0, 0%, 0%, 0.25);
+}
+
+/* Right hand side image is different sizes given a each section */
+.mfa-images-section-a {
+  width: 46%;
+}
+
+.mfa-images-section-b, .mfa-images-section-c, .mfa-images-section-d {
+  width: 35%;
+}
+
+.mfa-images-section-e {
+  width: 50%;
+}
+
+.mfa-image-2 {
+  width: 100%;
+}
+
+.mfa-image-with-text-container {
+  position: relative;
+}
+
+.mfa-image-text-overlay {
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.image-text-overlay-section-a {
+  top: 34vw;
+}
+
+.image-text-overlay-section-b {
+  top: 35vw;
+}
+
+.image-text-overlay-section-c {
+  top: 27vw;
+}
+
+.image-text-overlay-section-d {
+  top: 13vw;
+}
+
+.image-text-overlay-section-e {
+  top: 8vw;
+}
+
+.mfa-image-text-overlay div {
+  text-align: center;
+  padding-left: 8vw;
+  padding-right: 8vw;
+  font-size: 1.05em;
+}
+
+@media screen and (min-width: 1200px) and (max-width: 2500px) {
+  .mfa-image-text-overlay div {
+    font-size: 1.3vw;
+  }
+
+  .image-text-overlay-section-c {
+    top: 28vw;
+  }
+
+  .image-text-overlay-section-b div {
+    padding-left: 6vw;
+    padding-right: 4vw;
+  }
+
+  .image-text-overlay-section-c div {
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+
+  
+}
+
+@media screen and (max-width: 1200px) {
+  .mfa-image-text-overlay { 
+    top: 30vw;
+  }
+
+  .mfa-image-text-overlay div {
+    font-size: 0.875em;
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+
+  .image-text-overlay-section-c div {
+    font-size: 0.7em;
+  }
+}
+
+/* I think this is Ryan's */
+
+.webauditflex {
+  display: flex;
+}
+
+.section {
+  margin: 10vh 0vh 1vh 0vh;
+}
+
+.sectiongroup {
+  margin: 0vh 20vh 1vh 0vh;
+}
+
+.new {
+  margin-top: 5vh;
+}
+
+.sectiongrouptwo {
+  width: 400px;
+  margin: 10vw 5vw 5vw 5vw;
+}
+
+/* about */
+/* ministries */
+
+/* Call To Action Button */
+
+.bottom-button {
+  display: flex;
+  justify-content: center;
+  margin: 25vh 0vh 25vh 0vh;
+}
+
+.contact-link, .contact-link:visited, .contact-link:hover {
+  padding: 15px 50px 15px 50px;
+  border-radius: 5px;
+  color: #f9f9f9;
+  background-color: #2d2d2d;
+  text-decoration: none;
+}
+
+
+/* Grid */
+/* Custom grid needed for section 2 */
+.section-2-grid {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.4fr 5fr 1fr 5fr 1.4fr;
+  grid-template-rows: auto 30px auto 60px;
+  margin-top: 8em;
+}
+
+.section-2-main-screen {
+  grid-row: 2/span 3;
+  grid-column: 2/span 3;
+}
+
+.section-2-top-img {
+  grid-row: 1/span 1;
+  grid-column: 4;
+}
+
+.section-2-background {
+  grid-row: 3/span 3;
+  grid-column: 1/-1
+}
+
+/* custom grid needed for section 3 (2 col) */
+.grid-section-3 {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.4fr 5.5fr 5.5fr 1.4fr;
+  grid-template-rows: auto auto;
+  margin-top: 8em;
+}
+
+.section-3-item-a {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.section-3-item-b {
+  grid-row: 1;
+  grid-column: 3;
+}
+
+.section-3-item-c {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.section-3-item-d {
+  grid-row: 2;
+  grid-column: 3
+}
+
+/* section 4 custom */
+.section-4-background {
+  grid-row: 2/span 5;
+}
+
+.section-4-people {
+  grid-row: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.section-4-main-image {
+  grid-column: 2/span 3;
+  grid-row: 3/6;
+  display: flex;
+  justify-content: center;
+}

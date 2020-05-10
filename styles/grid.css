@@ -9,9 +9,9 @@
 /* */
 .grid-top-text {
   grid-column: 2/ span 1;
-  grid-row: 1/span 1;
-  
+  grid-row: 1/span 1;  
 }
+
 .img1 {
   grid-row: 3/7;
   grid-column: 2;
@@ -28,8 +28,8 @@
   z-index: 5;
   position: relative;
   top: -6em;
-  
 }
+
 .right-descr {
   grid-row: 5/span 1;
   grid-column: 4;

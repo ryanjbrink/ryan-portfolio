@@ -1,3 +1,5 @@
+/* A shared grid used on both MFA and CMP--not used on BCO */
+
 .grid {
   height: 100%;
   display: grid;

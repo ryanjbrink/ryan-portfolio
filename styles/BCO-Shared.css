@@ -1,0 +1,6 @@
+.background-org {
+  grid-row: 5/span 1;
+  grid-column: 1/-1;
+  background: url('./../Images/CMP/bg-thing-2.png') #4DA360;
+  z-index: 1;
+}

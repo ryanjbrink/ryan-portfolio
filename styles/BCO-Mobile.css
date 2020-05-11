@@ -132,9 +132,39 @@ body {
 }
  
 .background-man {
-  display:none;
+  display: none;
 }
 
 .left-image {
   width: 80%;
+}
+
+.colored-mobile {
+  background: #1EA7FC;
+}
+
+.section-4 {
+  padding: 20px 0;
+}
+
+.section-4 img {
+  width: 21%;
+  margin-right: 1em;
+}
+
+.section-lr-right {
+  justify-content: flex-start;
+}
+
+.not-on-mobile, .high-fidel-text-con {
+  display: none;
+}
+
+.reiterations-inner {
+  background: #1ea7fc;
+  width: 100%;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  display: flex;
+  justify-content: flex-start;
 }

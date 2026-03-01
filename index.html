@@ -1,201 +1,186 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
-  <title>Ryan Brink Portfolio</title>
-  <!-- For Ryan: https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag -->
+  <title>Ryan Brink - Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles/reset.css" />
   <link rel="stylesheet" href="styles/globals.css" />
-  <link rel="stylesheet" href="styles/mobile.css" media='screen and (max-width: 900px)' />
-  <link rel="stylesheet" href="styles/index.css" />
+  <link rel="stylesheet" href="styles/home.css" />
+  <link rel="stylesheet" href="styles/lightbulb.css" />
 </head>
-
 <body>
-  <div class="grid-container">
-    <!-- Navigation -->
-    <div>
+  <!-- Light bulb toggle -->
+  <div class="light-bulb-container">
+    <div class="light-cord"></div>
+    <button class="light-bulb" aria-label="Toggle dark mode">
+      <svg class="bulb-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="bulb-glow" cx="50%" cy="50%">
+            <stop offset="0%" style="stop-color:#fff9e6;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#fff9e6;stop-opacity:0" />
+          </radialGradient>
+        </defs>
+        <!-- Bulb base (at top, connected to wire) -->
+        <rect class="bulb-base" x="44" y="10" width="12" height="3" fill="#a0a0a0" />
+        <rect class="bulb-base" x="45" y="13" width="10" height="8" fill="#b8b8b8" rx="1" />
+        <!-- Glow effect (only visible when on) -->
+        <circle class="bulb-glow" cx="50" cy="45" r="30" fill="url(#bulb-glow)" opacity="0" />
+        <!-- Bulb glass (hanging down) -->
+        <circle class="bulb-glass" cx="50" cy="45" r="20" fill="#fff9e6" stroke="#d4d4d4" stroke-width="1.5" />
+      </svg>
+    </button>
+  </div>
 
-      <header class="header-thing grid-header">
-        <nav class="header-nav">
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-        </nav>
-        <div class="mobile-bar">
-          <input type="checkbox" id="menu-icon" name="menu-icon"
-            style="visibility: hidden; position: absolute; top: -20px;" />
-          <label for="menu-icon" class="menu-icon" href="#">
-            <img
-              src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iMzJweCIgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMyIDMyOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMzIgMzIiIHdpZHRoPSIzMnB4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48cGF0aCBkPSJNNCwxMGgyNGMxLjEwNCwwLDItMC44OTYsMi0ycy0wLjg5Ni0yLTItMkg0QzIuODk2LDYsMiw2Ljg5NiwyLDhTMi44OTYsMTAsNCwxMHogTTI4LDE0SDRjLTEuMTA0LDAtMiwwLjg5Ni0yLDIgIHMwLjg5NiwyLDIsMmgyNGMxLjEwNCwwLDItMC44OTYsMi0yUzI5LjEwNCwxNCwyOCwxNHogTTI4LDIySDRjLTEuMTA0LDAtMiwwLjg5Ni0yLDJzMC44OTYsMiwyLDJoMjRjMS4xMDQsMCwyLTAuODk2LDItMiAgUzI5LjEwNCwyMiwyOCwyMnoiLz48L3N2Zz4="
-              width="30" />
-          </label>
-          <br style="clear: both;" />
-          <nav class="mobile-nav">
-            <a href="index.html">Home</a>
-            <a href="About.html">About</a>
-            <a href="Contact.html">Contact</a>
-          </nav>
+  <main class="home">
+    <header class="home-header">
+      <div class="home-header-card">
+        <div class="home-header-intro">
+          <img class="home-profile" src="Images/about-profile.png" alt="Ryan Brink" />
+          <div class="home-header-titles">
+            <h1 class="home-name">Ryan Brink</h1>
+            <p class="home-title">Staff Product Designer</p>
+          </div>
         </div>
-      </header>
+        <p class="home-tagline"><span>I</span> <span>design</span> <span>for</span> <span>humans,</span> <span>and</span> <span>think</span> <span>like</span> <span>a</span> <span>system.</span> <span>I</span> <span>specialize</span> <span>in</span> <span>product</span> <span>strategy,</span> <span>design</span> <span>systems,</span> <span>and</span> <span>utilizing</span> <span>AI</span> <span>for</span> <span>efficiency.</span></p>
+        <a href="#projects" class="home-projects-link">
+          Selected Projects
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M19 12l-7 7-7-7"/>
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <div class="projects-wrapper">
+    <section id="projects" class="projects-grid">
+      <div class="project-pair project-pair--connected">
+        <a href="landstarresearch.html" class="project-pair-link">
+          <article class="project-card">
+            <div class="project-card-link-wrapper">
+              <div class="project-card-image-frame">
+                <img class="project-card-image project-card-image--align-left" src="Images/ls1_cover.png" alt="Landstar Research" />
+                <img class="project-card-icon" src="Images/LS1Icon.svg" alt="" aria-hidden="true" />
+              </div>
+            </div>
+          </article>
+          <article class="project-card project-card--text-only">
+            <div class="project-card-content">
+              <h3 class="project-card-title">LandstarOne</h3>
+              <p class="project-card-subtitle">Unblocking Truck Drivers to Book New Loads: A $28.6 Million Problem</p>
+            </div>
+          </article>
+        </a>
+      </div>
+
+      <div class="project-pair project-pair--connected">
+        <a href="simplevariables.html" class="project-pair-link">
+          <article class="project-card">
+            <div class="project-card-link-wrapper">
+              <div class="project-card-image-frame">
+                <img class="project-card-image" src="Images/figma_workspace.png" alt="Simple Variables" />
+                <img class="project-card-icon" src="Images/Tokenicon.svg" alt="" aria-hidden="true" />
+              </div>
+            </div>
+          </article>
+          <article class="project-card project-card--text-only">
+            <div class="project-card-content">
+              <h3 class="project-card-title">Simple Variables</h3>
+              <p class="project-card-subtitle">Variables Built for Designers. Eliminating UX Debt.</p>
+            </div>
+          </article>
+        </a>
+      </div>
+
+      <div class="project-pair project-pair--connected">
+        <a href="phoney.html" class="project-pair-link">
+          <article class="project-card">
+            <div class="project-card-link-wrapper">
+              <div class="project-card-image-frame">
+                <img class="project-card-image" src="Images/phoney_cover.png" alt="Phoney" />
+                <img class="project-card-icon" src="Images/phoneyicon.svg" alt="" aria-hidden="true" />
+              </div>
+            </div>
+          </article>
+          <article class="project-card project-card--text-only">
+            <div class="project-card-content">
+              <h3 class="project-card-title">Phoney</h3>
+              <p class="project-card-subtitle">Shedding Light on Design Secrets</p>
+            </div>
+          </article>
+        </a>
+      </div>
+
+      <div class="project-pair project-pair--connected">
+        <a href="fordscan.html" class="project-pair-link">
+          <article class="project-card">
+            <div class="project-card-link-wrapper">
+              <div class="project-card-image-frame">
+                <img class="project-card-image project-card-image--ford" src="Images/ford_cover.png" alt="Ford Scan" />
+                <img class="project-card-icon" src="Images/ford-scan-icon.svg" alt="" aria-hidden="true" />
+              </div>
+            </div>
+          </article>
+          <article class="project-card project-card--text-only">
+            <div class="project-card-content">
+              <h3 class="project-card-title">Ford Scan</h3>
+              <p class="project-card-subtitle">Cut Friction, Reduced Errors, and Increased Usability by 87.5%</p>
+            </div>
+          </article>
+        </a>
+      </div>
+    </section>
     </div>
-    <!-- Home Container -->
-    <main>
-      <div class="above-fold">
-        <div class="section-inner">
-          <h1 class="above-fold-header-text" style="font-weight: 600;">Ryan Brink</h1>
-          <p class="above-fold-paragraph-text">I am a UX Designer. My 🧠 on the user, and my 💛 on creative solutions.
-          </p>
-          <p class="above-fold-paragraph-text-2" style="margin-bottom: 1em;">Current User Experience Designer | Former digital Marketer | Life Long
-            Learner |
-            Still an aspiring professional athlete.</p>
-          <a class="button button-primary" href="contact.html"><img src="Images/icons/email-icon.png"
-              style="width: 1em; margin-right: 0.4em;" />Hire Me</a>
-          <h1 class="above-fold-header-bottom">Case Studies</h1>
-        </div>
-      </div>
-      <!-- Case Studies -->
-      <!-- Tech Sorting Hat -->
-      <div style="width: 100%;">
-        <div class="section section-1">
-          <div class="section-inner section-1-inner colored-sections">
-            <div class="section-leftside section-1-leftside">
-              <h2 style="color: white">Tech Sorting Hat</h2>
-              <span style="color: white; font-size: 20px; display: block">Find the tech career for you</span>
-              <span href="" class="button-primary-outline">Coming Soon!</span>
-            </div>
-            <img class="colored-section-image" src="Images/home-page/tech-sorting-hat.png" />
-          </div>
-        </div>
-      </div>
-      <!-- Business Card Organizer -->
-      <div style="width: 100%;">
-        <div class="section section-2">
-          <div class="section-inner section-2-inner colored-sections">
-            <div class="section-leftside section-2-leftside">
-              <h2 style="color: white">Business Card Organizer</h2>
-              <span style="color: white; font-size: 20px; display: block">Find the tech career for you</span>
-              <a href="BCO.html" class="button-primary-outline">Learn More</a>
-            </div>
-            <img class="colored-section-image" src="Images/home-page/bco.png" />
-          </div>
-        </div>
-      </div>
-      <!-- Coding My Portfolio -->
-      <div style="width: 100%;">
-        <div class="section section-3">
-          <div class="section-inner section-3-inner colored-sections">
-            <div class="section-leftside section-3-leftside">
-              <h2 style="color: white">Coding My Portfolio</h2>
-              <span style="color: white; font-size: 20px; display: block">Empathizing with Developers</span>
-              <a href="CMP.html" class="button-primary-outline">Learn More</a>
-            </div>
-            <img style="height: 40vh" class="colored-section-image" src="Images/home-page/cmp.png" />
-          </div>
-        </div>
-      </div>
-      <!--   Mission French Africa -->
-      <div style="width: 100%;">
-        <div class="section section-4">
-          <div class="section-inner section-4-inner colored-sections">
-            <div class="section-leftside section-4-leftside">
-              <h2 style="color: white">Mission French Africa</h2>
-              <span style="color: white; font-size: 20px; display: block">Freestyle UI project</span>
-              <a href="MFA.html" class="button-primary-outline">Learn More</a>
-            </div>
-            <img class="colored-section-image" src="Images/home-page/mfa.png" />
-          </div>
-        </div>
-      </div>
 
-      <!-- <div>
-          <h1 class="dailyui"> Daily UI </h1>
-        </div>
-
-        <div>
-          <div class=UI1>
-            <img class="boarding-img"
-              src="https://previews.dropbox.com/p/thumb/AAsPzMbbSZahDBFf_E83EuMycXt-du7iYFWVtA_UgimamnszQoiMe9UNL7nxnc-N2AARJLi4rEyks17ig81exWYlqepDjgI31LMKc7fhyzuHrU3rdur0DOrIKNg0JwGEkWCXQjzmAMCRK_zHOVQTtBPLdaVKDL_LdDyYJQTH69fs_LNLcb5d2o2QA9AB501MM4srIUdKwqDEeYDSFTvHe8zwUJOdz0aU5AD-hpNuuv6rHHAS2Oe0Wsg4A575n6FTmvTVkH1uUrsRJjPP4w_Cdape4ef38xFZZpoD-WAYCNUsLnwololRt5JrLdHt7cE_4oqgnbn-CHOxBJ5hBl544Qr6/p.png?fv_content=true&size_mode=5"
-              alt="boarding pass mockup">
-            <div>
-              <h2 class="boarding-pass">Boarding Pass
-              </h2>
-              <h2 Class="boarding-pass-p">Barcode at the end for easy scanning. Personal welcoming touch. Key
-                information
-                highlighted with color, and visual heirarchy.</h2>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class=UI1>
-            <img class="boarding-img"
-              src="https://previews.dropbox.com/p/thumb/AAu7p8SQLN0QJtXpBhbg4VkH2TeavzPlI6yn3rP4928En-xp3thVbTkeOwYoPtwS-k0zY63gNP-BjB_lVwG5NoHw5Uao0kumKGFn8AKLxCcl4AjPlKiWgnLm-l2wFIenT1XV4F-mMID-dV7jlvxBRI3L2B604dnh9_MkjJY2RofVAUFUD_IsEdfQNUGryVyEp7x-yHhpjF3YxzCtuQ2zAbp6hE0hvwG8z3lgZh5vfFKYMSnV5WwKYvcoFaWaf34-Nu9p72WMu5tnYO4pt-mMc-B0UA5DUEkqHRUD4kb2KizWMRjaqHhBzGX5BAehTDhU41QBttZxaOh3BzQ6CmTHDj0x/p.png?fv_content=true&size_mode=5"
-              alt="Home Control mockup">
-            <div>
-              <h2 class="boarding-pass">Home Control
-              </h2>
-              <h2 Class="boarding-pass-p">Home vitals in one place. Easy to read dashboard with appropriate colors for
-                each
-                category.</h2>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class=UI1>
-            <img class="boarding-img"
-              src="https://previews.dropbox.com/p/thumb/AAuoHKNdNucCYIq8OccUbkhCSLuJdcFzU5cc5k2l_LRssOMxk5qgEdNpres3y66LRiy3-j5RbPZ9dDurIIUTOmgu9IwoLulUPhImqBa1us0EHmDcbR-WksZ06ucNP1eTaaiXFp6JAr4dHjtwAzwo3fnWRa5NBOE6VVv3KdUJamNnRVA9VPGckQiSoKQbVUngpswRkM9dpc5t3S9SlEUM42QElJRK5WQazcABM3TKJktXYyIE7geauShfvBL-TTzGR24yPpZTUDNQsEbtn4anAq1yrfRlYGWNRcv_DBOUgV0BX_d33OM-mgQt_zGJygzWeg1Gw-dpf_qpmoeZuQeifr_8/p.png?size=2048x1536&size_mode=3"
-              alt="TV app mockup">
-            <div>
-              <h2 class="boarding-pass">TV app
-              </h2>
-              <h2 Class="boarding-pass-p">Watch all games in any league. Avoid paying full cable package or sports
-                package
-                for one sport.</h2>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class=UI1>
-            <img class="boarding-img"
-              src="https://previews.dropbox.com/p/thumb/AAujxrG6AHfLovF1jkB9HLhnEnjVqa0JL0E5RfaZbvyls_JBZhTwBSkkKJKbMXbvUSPjpShj0QNLlqMEdJXFeDj1TwlHq6S3WcC7xniLJZDnKnubRPQ5vQyVQlI0IYlcyq54WVV_RvxtDGMSYNYBJgh4YsnlLW7Tr5zIBAbsq9ywgwtJVBKsIcq32NTZRKsQM9JjL76_mWiJJjvHgnO17MB-1OrGZAPTQiPj0fZFgy1FpFwnHrh1p42bOCqzZ65FkO7DOFpvVxaczMOMU8n1nazQNTjhCE7hkwRPSSo9JvCw5JNN13nHkA54v7tBL0xRPG6-3V3EYA-eVmbHKWcSHodx/p.png?fv_content=true&size_mode=5"
-              alt="shoe shop mockup">
-            <div>
-              <h2 class="boarding-pass">Shoe Shop
-              </h2>
-              <h2 Class="boarding-pass-p">Only the best kicks. Like a shoe or add it to your cart. Simple and fun look
-                for
-                the casual shopping experience.</h2>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class=UI1>
-            <img class="boarding-img"
-              src="https://previews.dropbox.com/p/thumb/AAuDkoQ4NS8s_Ajz2O0yKVui71cuEr1d6w977ihEb4XqLG2edrtj6urSS-kMQfxx5354dbZ5HIJtceK9TrZG1L3us21Ei4NNtCdvsvCRqemWHtGMwHEXClr2mkDYcxGykkBksWAm5ps2ZVuFHL-Zqphd3ZARbk5rfGB0zCQSgsnvDqBUAtJz7GaFd6TWEN9nEh8hXHLf8KMSbe1PQu2OuilARwgP2hT8BDg3TLnd85QD0LC3Wc-Kes9QnUvYjTy4PY-7vzvkRj5tIp5cXEYJaBPvnXqDNubm-0l56qoMU-V6sFmBpfY7jyoKx9PtDt6MQSEJcbWPHZp6DMacyJhL4n9Q/p.png?fv_content=true&size_mode=5"
-              alt="Blog Landing Page mockup">
-            <div>
-              <h2 class="boarding-pass">Blog Landing Page
-              </h2>
-              <h2 Class="boarding-pass-p">Talkie Hockey is a made up blog. Sharpie typography for the logo for a casual
-                feel, and a game-like typography for the playful nature of the blog. The subscripe button uses color and
-                an
-                outer ring to draw the eye in.</h2>
-            </div>
-          </div> -->
-      <div class="section-inner section-5">
-        <a class="button button-primary" href="button"><img src="Images/icons/email-icon.png"
-            style="width: 1em; margin-right: 0.4em;" />Hire Me</a>
+    <footer class="home-footer">
+      <span class="home-footer-text">Want to Chat?</span>
+      <div class="home-footer-wave-wrapper" aria-hidden="true">
+        <svg class="home-footer-wave" viewBox="0 0 722 43" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="wave-window">
+              <rect class="wave-window-rect" x="0" y="0" width="24" height="43" />
+            </clipPath>
+          </defs>
+          <path class="home-footer-wave-path" d="M0.419232 41.1267C-0.0303178 41.4475 -0.134677 42.072 0.18614 42.5216C0.506957 42.9711 1.13146 43.0755 1.58101 42.7547L1.00012 41.9407L0.419232 41.1267ZM649.421 18.9407V17.9407H649.353L649.287 17.9497L649.421 18.9407ZM722 18.9407L712 13.1672V24.7142L722 18.9407ZM570.235 27.4425L569.96 28.4039L570.235 27.4425ZM580.87 28.2107L581.004 29.2017L580.87 28.2107ZM438.834 33.2591L439.442 32.4652L438.834 33.2591ZM462.716 35.1231L462.238 34.2444L462.716 35.1231ZM381.826 8.51631L381.208 7.72972L381.826 8.51631ZM406.336 8.36977L405.728 9.16369L406.336 8.36977ZM328.418 34.7818L328.969 33.9476L328.418 34.7818ZM349.458 33.9248L348.841 33.1382L349.458 33.9248ZM284.509 5.75562L283.957 6.58983L284.509 5.75562ZM217.138 35.4242L217.719 34.6102L217.138 35.4242ZM234.62 34.4493L233.952 33.705L234.62 34.4493ZM158.907 4.81457L159.544 5.58545L158.907 4.81457ZM173.521 4.29727L172.94 5.11125L173.521 4.29727ZM1.00012 41.9407L1.58101 42.7547L56.8646 3.30208L56.2837 2.4881L55.7028 1.67412L0.419232 41.1267L1.00012 41.9407ZM65.9871 2.80043L65.3551 3.57537L106.983 37.527L107.616 36.7521L108.248 35.9771L66.6191 2.02549L65.9871 2.80043ZM120.306 36.7114L120.943 37.4823L159.544 5.58545L158.907 4.81457L158.27 4.0437L119.669 35.9405L120.306 36.7114ZM173.521 4.29727L172.94 5.11125L216.558 36.2382L217.138 35.4242L217.719 34.6102L174.102 3.48329L173.521 4.29727ZM234.62 34.4493L235.288 35.1937L265.669 7.93765L265.001 7.1933L264.333 6.44895L233.952 33.705L234.62 34.4493ZM284.509 5.75562L283.957 6.58983L327.866 35.616L328.418 34.7818L328.969 33.9476L285.06 4.92142L284.509 5.75562ZM349.458 33.9248L350.076 34.7113L382.443 9.3029L381.826 8.51631L381.208 7.72972L348.841 33.1382L349.458 33.9248ZM406.336 8.36977L405.728 9.16369L438.226 34.0531L438.834 33.2591L439.442 32.4652L406.944 7.57586L406.336 8.36977ZM462.716 35.1231L463.193 36.0017L500.909 15.5058L500.431 14.6272L499.954 13.7486L462.238 34.2444L462.716 35.1231ZM518.492 12.6402L518.217 13.6016L569.96 28.4039L570.235 27.4425L570.51 26.481L518.767 11.6788L518.492 12.6402ZM580.87 28.2107L581.004 29.2017L649.555 19.9317L649.421 18.9407L649.287 17.9497L580.736 27.2197L580.87 28.2107ZM649.421 18.9407V19.9407H713V18.9407V17.9407H649.421V18.9407ZM570.235 27.4425L569.96 28.4039C573.547 29.43 577.307 29.7016 581.004 29.2017L580.87 28.2107L580.736 27.2197C577.313 27.6826 573.831 27.4311 570.51 26.481L570.235 27.4425ZM500.431 14.6272L500.909 15.5058C506.206 12.6274 512.421 11.9436 518.217 13.6016L518.492 12.6402L518.767 11.6788C512.467 9.87654 505.711 10.6198 499.954 13.7486L500.431 14.6272ZM438.834 33.2591L438.226 34.0531C445.435 39.5735 455.216 40.3369 463.193 36.0017L462.716 35.1231L462.238 34.2444C454.954 38.2026 446.024 37.5056 439.442 32.4652L438.834 33.2591ZM381.826 8.51631L382.443 9.3029C389.264 3.9488 398.844 3.89153 405.728 9.16369L406.336 8.36977L406.944 7.57586C399.335 1.74873 388.747 1.81204 381.208 7.72972L381.826 8.51631ZM328.418 34.7818L327.866 35.616C334.692 40.1282 343.64 39.7637 350.076 34.7113L349.458 33.9248L348.841 33.1382C343.082 37.6587 335.076 37.9848 328.969 33.9476L328.418 34.7818ZM265.001 7.1933L265.669 7.93765C270.748 3.38031 278.264 2.82642 283.957 6.58983L284.509 5.75562L285.06 4.92142C278.608 0.656222 270.09 1.28397 264.333 6.44895L265.001 7.1933ZM217.138 35.4242L216.558 36.2382C222.275 40.3186 230.059 39.8846 235.288 35.1937L234.62 34.4493L233.952 33.705C229.421 37.7704 222.675 38.1466 217.719 34.6102L217.138 35.4242ZM158.907 4.81457L159.544 5.58545C163.386 2.41043 168.883 2.21585 172.94 5.11125L173.521 4.29727L174.102 3.48329C169.307 0.0614496 162.811 0.291403 158.27 4.0437L158.907 4.81457ZM107.616 36.7521L106.983 37.527C111.051 40.8446 116.896 40.8259 120.943 37.4823L120.306 36.7114L119.669 35.9405C116.358 38.6762 111.576 38.6915 108.248 35.9771L107.616 36.7521ZM56.2837 2.4881L56.8646 3.30208C59.4329 1.46924 62.91 1.58116 65.3551 3.57537L65.9871 2.80043L66.6191 2.02549C63.4754 -0.538494 59.0049 -0.682391 55.7028 1.67412L56.2837 2.4881Z" />
+          <path class="home-footer-wave-path-hover" clip-path="url(#wave-window)" d="M0.419232 41.1267C-0.0303178 41.4475 -0.134677 42.072 0.18614 42.5216C0.506957 42.9711 1.13146 43.0755 1.58101 42.7547L1.00012 41.9407L0.419232 41.1267ZM649.421 18.9407V17.9407H649.353L649.287 17.9497L649.421 18.9407ZM722 18.9407L712 13.1672V24.7142L722 18.9407ZM570.235 27.4425L569.96 28.4039L570.235 27.4425ZM580.87 28.2107L581.004 29.2017L580.87 28.2107ZM438.834 33.2591L439.442 32.4652L438.834 33.2591ZM462.716 35.1231L462.238 34.2444L462.716 35.1231ZM381.826 8.51631L381.208 7.72972L381.826 8.51631ZM406.336 8.36977L405.728 9.16369L406.336 8.36977ZM328.418 34.7818L328.969 33.9476L328.418 34.7818ZM349.458 33.9248L348.841 33.1382L349.458 33.9248ZM284.509 5.75562L283.957 6.58983L284.509 5.75562ZM217.138 35.4242L217.719 34.6102L217.138 35.4242ZM234.62 34.4493L233.952 33.705L234.62 34.4493ZM158.907 4.81457L159.544 5.58545L158.907 4.81457ZM173.521 4.29727L172.94 5.11125L173.521 4.29727ZM1.00012 41.9407L1.58101 42.7547L56.8646 3.30208L56.2837 2.4881L55.7028 1.67412L0.419232 41.1267L1.00012 41.9407ZM65.9871 2.80043L65.3551 3.57537L106.983 37.527L107.616 36.7521L108.248 35.9771L66.6191 2.02549L65.9871 2.80043ZM120.306 36.7114L120.943 37.4823L159.544 5.58545L158.907 4.81457L158.27 4.0437L119.669 35.9405L120.306 36.7114ZM173.521 4.29727L172.94 5.11125L216.558 36.2382L217.138 35.4242L217.719 34.6102L174.102 3.48329L173.521 4.29727ZM234.62 34.4493L235.288 35.1937L265.669 7.93765L265.001 7.1933L264.333 6.44895L233.952 33.705L234.62 34.4493ZM284.509 5.75562L283.957 6.58983L327.866 35.616L328.418 34.7818L328.969 33.9476L285.06 4.92142L284.509 5.75562ZM349.458 33.9248L350.076 34.7113L382.443 9.3029L381.826 8.51631L381.208 7.72972L348.841 33.1382L349.458 33.9248ZM406.336 8.36977L405.728 9.16369L438.226 34.0531L438.834 33.2591L439.442 32.4652L406.944 7.57586L406.336 8.36977ZM462.716 35.1231L463.193 36.0017L500.909 15.5058L500.431 14.6272L499.954 13.7486L462.238 34.2444L462.716 35.1231ZM518.492 12.6402L518.217 13.6016L569.96 28.4039L570.235 27.4425L570.51 26.481L518.767 11.6788L518.492 12.6402ZM580.87 28.2107L581.004 29.2017L649.555 19.9317L649.421 18.9407L649.287 17.9497L580.736 27.2197L580.87 28.2107ZM649.421 18.9407V19.9407H713V18.9407V17.9407H649.421V18.9407ZM570.235 27.4425L569.96 28.4039C573.547 29.43 577.307 29.7016 581.004 29.2017L580.87 28.2107L580.736 27.2197C577.313 27.6826 573.831 27.4311 570.51 26.481L570.235 27.4425ZM500.431 14.6272L500.909 15.5058C506.206 12.6274 512.421 11.9436 518.217 13.6016L518.492 12.6402L518.767 11.6788C512.467 9.87654 505.711 10.6198 499.954 13.7486L500.431 14.6272ZM438.834 33.2591L438.226 34.0531C445.435 39.5735 455.216 40.3369 463.193 36.0017L462.716 35.1231L462.238 34.2444C454.954 38.2026 446.024 37.5056 439.442 32.4652L438.834 33.2591ZM381.826 8.51631L382.443 9.3029C389.264 3.9488 398.844 3.89153 405.728 9.16369L406.336 8.36977L406.944 7.57586C399.335 1.74873 388.747 1.81204 381.208 7.72972L381.826 8.51631ZM328.418 34.7818L327.866 35.616C334.692 40.1282 343.64 39.7637 350.076 34.7113L349.458 33.9248L348.841 33.1382C343.082 37.6587 335.076 37.9848 328.969 33.9476L328.418 34.7818ZM265.001 7.1933L265.669 7.93765C270.748 3.38031 278.264 2.82642 283.957 6.58983L284.509 5.75562L285.06 4.92142C278.608 0.656222 270.09 1.28397 264.333 6.44895L265.001 7.1933ZM217.138 35.4242L216.558 36.2382C222.275 40.3186 230.059 39.8846 235.288 35.1937L234.62 34.4493L233.952 33.705C229.421 37.7704 222.675 38.1466 217.719 34.6102L217.138 35.4242ZM158.907 4.81457L159.544 5.58545C163.386 2.41043 168.883 2.21585 172.94 5.11125L173.521 4.29727L174.102 3.48329C169.307 0.0614496 162.811 0.291403 158.27 4.0437L158.907 4.81457ZM107.616 36.7521L106.983 37.527C111.051 40.8446 116.896 40.8259 120.943 37.4823L120.306 36.7114L119.669 35.9405C116.358 38.6762 111.576 38.6915 108.248 35.9771L107.616 36.7521ZM56.2837 2.4881L56.8646 3.30208C59.4329 1.46924 62.91 1.58116 65.3551 3.57537L65.9871 2.80043L66.6191 2.02549C63.4754 -0.538494 59.0049 -0.682391 55.7028 1.67412L56.2837 2.4881Z" />
+        </svg>
       </div>
-    </main>
-    <div></div>
-    <div></div>
-    <footer>
-      <!-- Empty -->
+      <div class="home-footer-icons">
+        <a href="https://www.linkedin.com/in/ryan-brink/" class="home-footer-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+            <path d="M35.5556 0C36.7343 0 37.8648 0.468252 38.6983 1.30175C39.5317 2.13524 40 3.2657 40 4.44444V35.5556C40 36.7343 39.5317 37.8648 38.6983 38.6983C37.8648 39.5317 36.7343 40 35.5556 40H4.44444C3.2657 40 2.13524 39.5317 1.30175 38.6983C0.468252 37.8648 0 36.7343 0 35.5556V4.44444C0 3.2657 0.468252 2.13524 1.30175 1.30175C2.13524 0.468252 3.2657 0 4.44444 0H35.5556ZM34.4444 34.4444V22.6667C34.4444 20.7453 33.6812 18.9027 32.3226 17.5441C30.964 16.1855 29.1213 15.4222 27.2 15.4222C25.3111 15.4222 23.1111 16.5778 22.0444 18.3111V15.8444H15.8444V34.4444H22.0444V23.4889C22.0444 21.7778 23.4222 20.3778 25.1333 20.3778C25.9585 20.3778 26.7498 20.7056 27.3332 21.289C27.9167 21.8724 28.2444 22.6638 28.2444 23.4889V34.4444H34.4444ZM8.62222 12.3556C9.61236 12.3556 10.562 11.9622 11.2621 11.2621C11.9622 10.562 12.3556 9.61236 12.3556 8.62222C12.3556 6.55556 10.6889 4.86667 8.62222 4.86667C7.62619 4.86667 6.67095 5.26234 5.96664 5.96664C5.26234 6.67095 4.86667 7.62619 4.86667 8.62222C4.86667 10.6889 6.55556 12.3556 8.62222 12.3556ZM11.7111 34.4444V15.8444H5.55556V34.4444H11.7111Z" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="mailto:ryanjbrink17@gmail.com" class="home-footer-icon" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+            <path d="M34.5449 0C37.5573 0 39.9998 2.44179 40 5.4541V34.5459C39.9998 37.5582 37.5573 40 34.5449 40H5.4541C2.44181 39.9999 0.000216842 37.5582 0 34.5459V5.4541C0.000198997 2.44183 2.44179 5.19078e-05 5.4541 0H34.5449ZM35.2598 8.92676C35.0261 8.87652 34.7845 8.87605 34.5508 8.92578C34.3171 8.97553 34.0955 9.07418 33.8994 9.21582L20 18.2832L6.10059 9.21582C5.90452 9.07418 5.68289 8.97553 5.44922 8.92578C5.21548 8.87605 4.97388 8.87652 4.74023 8.92676C4.50683 8.97701 4.28551 9.07583 4.08984 9.21777C3.89408 9.35981 3.72798 9.54202 3.60156 9.75293C3.47519 9.96385 3.39115 10.1995 3.35449 10.4453C3.31787 10.6912 3.32958 10.9425 3.38867 11.1836C3.44777 11.4247 3.55296 11.6513 3.69824 11.8486C3.84347 12.0458 4.02552 12.2103 4.2334 12.332L18.9004 21.8975C19.5642 22.3303 20.4358 22.3303 21.0996 21.8975L35.7666 12.332C35.9745 12.2103 36.1565 12.0458 36.3018 11.8486C36.447 11.6513 36.5522 11.4247 36.6113 11.1836C36.6704 10.9425 36.6821 10.6912 36.6455 10.4453C36.6089 10.1995 36.5248 9.96385 36.3984 9.75293C36.272 9.54202 36.1059 9.35981 35.9102 9.21777C35.7145 9.07583 35.4932 8.97701 35.2598 8.92676Z" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
     </footer>
-</body>
+  </main>
 
+  <script>
+    // Dark mode toggle
+    const lightBulb = document.querySelector('.light-bulb');
+    const body = document.body;
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      body.classList.add('dark-mode');
+    }
+    
+    lightBulb.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      
+      // Save preference
+      if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  </script>
+</body>
 </html>

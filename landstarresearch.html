@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Landstar Research - Ryan Brink</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles/reset.css" />
+  <link rel="stylesheet" href="styles/globals.css" />
+  <link rel="stylesheet" href="styles/case-study.css" />
+  <link rel="stylesheet" href="styles/lightbulb.css" />
+</head>
+<body>
+  <!-- Light bulb toggle -->
+  <div class="light-bulb-container">
+    <div class="light-cord"></div>
+    <button class="light-bulb" aria-label="Toggle dark mode">
+      <svg class="bulb-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="bulb-glow" cx="50%" cy="50%">
+            <stop offset="0%" style="stop-color:#fff9e6;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#fff9e6;stop-opacity:0" />
+          </radialGradient>
+        </defs>
+        <!-- Bulb base (at top, connected to wire) -->
+        <rect class="bulb-base" x="44" y="10" width="12" height="3" fill="#a0a0a0" />
+        <rect class="bulb-base" x="45" y="13" width="10" height="8" fill="#b8b8b8" rx="1" />
+        <!-- Glow effect (only visible when on) -->
+        <circle class="bulb-glow" cx="50" cy="45" r="30" fill="url(#bulb-glow)" opacity="0" />
+        <!-- Bulb glass (hanging down) -->
+        <circle class="bulb-glass" cx="50" cy="45" r="20" fill="#fff9e6" stroke="#d4d4d4" stroke-width="1.5" />
+      </svg>
+    </button>
+  </div>
+
+  <article class="case-study">
+    <header class="case-header">
+      <span class="case-header-name">Ryan Brink</span>
+      <a href="index.html" class="case-header-home">Return Home</a>
+    </header>
+
+    <section class="case-hero">
+      <h1 class="case-hero-title">LandstarOne</h1>
+      <p class="case-hero-subtitle">Unblocking Truck Drivers to Book New Loads: A $28.6 Million Problem</p>
+      <div class="case-meta">
+        <span><strong>Role:</strong> UX Designer</span>
+        <span><strong>Duration:</strong> 6 Months</span>
+        <span><strong>Showcasing:</strong> 0 - 1 product feature design process and iterations</span>
+      </div>
+    </section>
+
+
+    <section class="case-section">
+      <h2>Problem</h2>
+      <p>LandstarOne is a mobile app designed for 11,000+ truck driver (BCOs) for mission-critical operations including booking loads, finding fuel, and staying up to date on safety and compliance regulations.</p>
+      <p>The Agents, who connect drivers with loads, often failed to update which tractor was attached after a delivery, leaving shipments marked as active. As a result, BCOs couldn't book new loads because it appeared they were still connected to a previous one—even after it had been completed.</p>
+      <p>If every BCO had this problem once, the net result would be a $28.6 million deficit. 65% BCO loss, and 35% Landstar loss. I was tasked with enabling BCOs to indicate which trailer they were attached to.</p>
+      <img class="case-image" src="Images/ls1_problem.svg" alt="Problem overview" />
+    </section>
+
+    <section class="case-section">
+      <h2>How might we...</h2>
+      <img class="case-image" src="Images/ls1_howmightwe.svg" alt="How might we empower BCOs to better manage their trailer hooks" />
+    </section>
+
+    <section class="case-section">
+      <h2>The User</h2>
+      <p>In order to make informed design decisions, I needed to understand how BCOs hook and unhook their trailers. I visited a trailer pool in Ohio to better understand this process. The hook and unhook feature concept was correct, but my hypothesis on how the feature should be interacted with was wrong.</p>
+      <img class="case-image" src="Images/ls1_onsite.svg" alt="Onsite research" />
+    </section>
+
+    <section class="case-section">
+      <h2>Wrong Hypothesis</h2>
+      <p>BCOs preferred to type, not scan. There was low confidence that the scan would work well, and BCOs would wear gloves to protect against dirt and grease. Critically, the BCO would be able and ready to type in a trailer number from the drivers seat after the trailer was hooked. The side mirror provided a perfect view of the trailer number.</p>
+      <img class="case-image" src="Images/ls1_insights.svg" alt="Research insights" />
+    </section>
+
+    <section class="case-section">
+      <h2>Competitive Analysis</h2>
+      <p>I intentionally introduced friction into the hook process to reduce errors. By analyzing patterns in other applications, I identified ways to prevent accidental or unwanted hooks — ensuring the solution solved the problem without creating new ones.</p>
+      <img class="case-image" src="https://framerusercontent.com/images/Mr9WhOf0kfQZL08l5lcAUmEZAK8.png?width=4076&height=1640" alt="Competitive analysis" />
+    </section>
+
+    <section class="case-section">
+      <h2>The Prototype</h2>
+      <p>I brought my feature concept to Atlanta to validate it with users, using Figma Mirror to simulate the experience with three BCOs. It helped surface pain points and strengthen my user empathy.</p>
+      <img class="case-image" src="Images/ls1_figmamirror.svg" alt="Figma Mirror prototype testing" />
+    </section>
+
+    <section class="case-section">
+      <h2>Redundancy</h2>
+      <p>During testing, I uncovered a redundancy in the flow: requiring users to manually unhook before hooking a new trailer. By automating the drop of the previous trailer when a new one is hooked, we simplified the process and reduced the chance of human error.</p>
+      <div class="before-after-slider" id="redundancy-slider">
+        <!-- Before: static base layer -->
+        <div class="ba-before">
+          <img src="https://framerusercontent.com/images/AkgIvI2DnXc96qnUaNGSD1lHZnc.svg?width=800&height=475" alt="Before redundancy" />
+        </div>
+        <!-- After: revealed on top as slider moves right -->
+        <div class="ba-after">
+          <img src="https://framerusercontent.com/images/hFC8hw42ahYzXGgRJuN00HjOuU.svg?width=800&height=475" alt="After redundancy" />
+        </div>
+        <div class="ba-divider">
+          <div class="ba-handle">
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 5L2 10L7 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M13 5L18 10L13 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="ba-labels">
+          <span>Before</span>
+          <span>After</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2>Design Iterations</h2>
+      <p>The visual of the tractor connecting to the trailer helped users understand what the hook action represented in real life. Initially, the trailer was shown to scale, which made it difficult to fit on screen. By trimming the trailer, we preserved clarity while improving usability.</p>
+      <img class="case-image" src="Images/ls1_designcrit.svg" alt="Design critique" />
+    </section>
+
+    <section class="case-section">
+      <h2>Accurate Logging</h2>
+      <p>To ensure accurate logging, we added a field for drivers to enter when a hook or unhook occurred. While most use the feature immediately after the action, it was important to provide flexibility—letting drivers log it on their terms, not the app's.</p>
+      <img class="case-image" src="Images/LS1date&time.svg" alt="Date and time logging" />
+    </section>
+
+    <section class="case-section">
+      <h2>Partnering with developers</h2>
+      <p>While working with developers, we uncovered three key edge cases to address. We designed helpful error messages to guide users when: the same trailer was entered twice, a future time or date was input, or the system couldn't sync with the server.</p>
+      <img class="case-image" src="Images/LS1EdgeCases.svg" alt="Edge cases error messages" />
+    </section>
+
+    <section class="case-section">
+      <h2>Legal Language</h2>
+      <p>One requirement was to alert drivers when a trailer was owned by Landstar versus a third party—critical for liability reasons. By identifying ownership from the trailer number, we dynamically displayed a disclaimer message to ensure drivers acknowledged the trailer type.</p>
+      <img class="case-image" src="Images/LS1Legal.svg" alt="Legal disclaimer for trailer ownership" />
+    </section>
+
+    <section class="case-section">
+      <h2>Interactions</h2>
+      <p>The card interaction was crafted to balance intentional friction with satisfying momentum. Initially, BCOs can review trailer details. As they swipe up, the card follows with slight resistance. At the midpoint—where the tractor and trailer visually connect—a pause and haptic tap signal confirmation. From there, the card animates upward automatically, transitioning to a success screen that reinforces task completion.</p>
+      <img class="case-image" src="Images/LS1Interaction.svg" alt="Card interaction animation" />
+    </section>
+
+    <section class="case-section">
+      <h2>Final Design</h2>
+      <div class="final-design-frame">
+        <img class="final-design-bg" src="Images/LS-37.svg" alt="Final design device frame" />
+        <video class="final-design-video" autoplay loop muted playsinline>
+          <source src="Images/Ls1vid.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2>Parting Thoughts</h2>
+      <p>Speaking directly with BCOs gave me a deeper understanding of their day-to-day needs and strengthened my empathy. Many smaller insights—beyond the feature itself—informed future design decisions.</p>
+      <p>Using a tool like Maze for remote usability testing would have helped us validate ideas earlier and at scale. We later used Maze to test the LCAPP Tire Discount feature—an approach I would now apply more proactively.</p>
+      <p>This served as a temporary solution, with a more intuitive, beacon-powered connection experience currently in development.</p>
+    </section>
+
+    <a href="index.html" class="case-return">Return Home</a>
+  </article>
+
+  <script>
+    // Before/After slider
+    (function() {
+      const slider = document.getElementById('redundancy-slider');
+      if (!slider) return;
+
+      const baAfter   = slider.querySelector('.ba-after');
+      const baAfterImg = slider.querySelector('.ba-after img');
+      const baDivider = slider.querySelector('.ba-divider');
+
+      let pct = 50;
+      let dragging = false;
+      let autoDir = 1;
+      let autoRaf = null;
+      let autoDelay = null;
+
+      let fullWidth = 0;
+
+      function setSlider(fraction) {
+        pct = Math.max(0, Math.min(100, fraction));
+        baAfter.style.width  = pct + '%';
+        baDivider.style.left = pct + '%';
+      }
+
+      // Initialise after layout so image dimensions are known
+      function init() {
+        fullWidth = slider.getBoundingClientRect().width;
+        // Lock after-image to the full container pixel width so it never shifts
+        baAfterImg.style.width = fullWidth + 'px';
+        setSlider(50);
+        startAuto();
+      }
+
+      // Auto-animate: sweep left<->right
+      function startAuto() {
+        if (autoRaf) return;
+        autoRaf = requestAnimationFrame(autoStep);
+      }
+
+      function stopAuto() {
+        if (autoRaf) { cancelAnimationFrame(autoRaf); autoRaf = null; }
+        if (autoDelay) { clearTimeout(autoDelay); autoDelay = null; }
+      }
+
+      function autoStep() {
+        pct += autoDir * 0.4;
+        if (pct >= 100) { pct = 100; autoDir = -1; }
+        if (pct <= 0)   { pct = 0;   autoDir =  1; }
+        setSlider(pct);
+        autoRaf = requestAnimationFrame(autoStep);
+      }
+
+      function posFromEvent(e) {
+        const rect = slider.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        return ((clientX - rect.left) / rect.width) * 100;
+      }
+
+      slider.addEventListener('mousedown', e => {
+        dragging = true;
+        stopAuto();
+        setSlider(posFromEvent(e));
+        e.preventDefault();
+      });
+
+      window.addEventListener('mousemove', e => {
+        if (!dragging) return;
+        setSlider(posFromEvent(e));
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (!dragging) return;
+        dragging = false;
+        autoDelay = setTimeout(startAuto, 1500);
+      });
+
+      slider.addEventListener('touchstart', e => {
+        dragging = true;
+        stopAuto();
+        setSlider(posFromEvent(e));
+      }, { passive: true });
+
+      slider.addEventListener('touchmove', e => {
+        if (!dragging) return;
+        setSlider(posFromEvent(e));
+      }, { passive: true });
+
+      slider.addEventListener('touchend', () => {
+        dragging = false;
+        autoDelay = setTimeout(startAuto, 1500);
+      });
+
+      // Wait for images to load so dimensions are correct
+      const imgs = slider.querySelectorAll('img');
+      let loaded = 0;
+      function onLoad() { if (++loaded === imgs.length) init(); }
+      imgs.forEach(img => {
+        if (img.complete) onLoad();
+        else img.addEventListener('load', onLoad);
+      });
+    })();
+  </script>
+
+  <script>
+    // Dark mode toggle
+    const lightBulb = document.querySelector('.light-bulb');
+    const body = document.body;
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      body.classList.add('dark-mode');
+    }
+    
+    lightBulb.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      
+      // Save preference
+      if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  </script>
+
+</body>
+</html>

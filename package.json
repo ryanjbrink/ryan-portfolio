@@ -1,0 +1,9 @@
+{
+  "name": "ryan-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio website",
+  "private": true,
+  "devDependencies": {
+    "sharp": "^0.34.5"
+  }
+}

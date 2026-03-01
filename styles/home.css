@@ -1,0 +1,396 @@
+/* Homepage layout - matches Figma design */
+
+.home {
+  max-width: 1456px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+/* Header section */
+.home-header {
+  margin-bottom: 3rem;
+}
+
+.home-header-card {
+  background: rgba(204, 213, 219, 0.4);
+  border-radius: 58px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.home-header-intro {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.home-profile {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background-color: white;
+}
+
+.home-header-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.home-name {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 100%;
+  color: var(--text-primary);
+}
+
+.home-title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 100%;
+  color: var(--text-secondary);
+}
+
+.home-tagline {
+  font-size: 72px;
+  line-height: 130%;
+  color: #808080;
+  margin: 0;
+}
+
+.home-tagline span {
+  transition: color 0.2s ease;
+}
+
+.home-tagline span:hover {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+/* Selected Projects anchor */
+.home-projects-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 24px;
+  height: 88px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  margin: 0;
+}
+
+.home-projects-link:hover {
+  color: var(--profile-blue);
+}
+
+.home-projects-link svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Project grid */
+.projects-wrapper {
+  background: rgba(204, 213, 219, 0.4);
+  border-radius: 58px;
+  padding: 2rem 2rem calc(2rem + 4px);
+  margin-bottom: 4rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+}
+
+.project-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+#projects > div:nth-child(1),
+#projects > div:nth-child(2),
+#projects > div:nth-child(3),
+#projects > div:nth-child(4) {
+  gap: 8px;
+}
+
+/* Connected project pair - all elements linked together */
+.project-pair-link {
+  display: flex;
+  flex-direction: column;
+  gap: inherit;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.project-pair-link:hover {
+  text-decoration: none;
+}
+
+/* Override individual link behaviors for connected pairs */
+.project-pair--connected .project-card a {
+  pointer-events: none;
+}
+
+/* Unified hover effects for connected pair - matches original behavior */
+.project-pair-link:hover .project-card-image-frame {
+  box-shadow: none;
+  transform: scale(0.98);
+}
+
+.project-pair-link:hover .project-card-title {
+  color: var(--profile-blue);
+}
+
+.project-card {
+  background: var(--card-bg);
+  border-radius: 34px;
+  overflow: hidden;
+}
+
+.project-card:not(.project-card--text-only) {
+  background: #FAFAF9;
+  width: 100%;
+  overflow: visible;
+}
+
+#projects > div:nth-child(1) > a > article:nth-child(1),
+#projects > div:nth-child(2) > a > article:nth-child(1),
+#projects > div:nth-child(3) > a > article:nth-child(1),
+#projects > div:nth-child(4) > a > article:nth-child(1) {
+  background: linear-gradient(240deg, rgba(255, 255, 255, 0.5), transparent) !important;
+}
+
+.project-card:not(.project-card--text-only) a {
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Wrapper for connected pairs to match original structure styling */
+.project-card-link-wrapper {
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-card:hover .project-card-image-frame {
+  box-shadow: none;
+  transform: scale(0.98);
+}
+
+.project-card--text-only {
+  align-self: start;
+  border-radius: 0;
+  background: transparent;
+}
+
+.project-card--text-only .project-card-content {
+  flex: none;
+  padding: 0 4px;
+}
+
+.project-card a {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-card a:hover {
+  text-decoration: none;
+}
+
+.project-card-image-frame {
+  position: relative;
+  width: min(314px, 80%);
+  aspect-ratio: 393 / 854;
+  max-width: 314px;
+  border-radius: 34px;
+  overflow: hidden;
+  margin: 0 auto;
+  box-shadow: -2px 13px 96px 13px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.project-card-icon {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 10;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+}
+
+.project-card-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+}
+
+.project-card-image--align-left {
+  object-position: left center;
+}
+
+.project-card-image--ford {
+  object-fit: cover;
+  object-position: center bottom;
+  filter: grayscale(100%);
+}
+
+.project-card-content {
+  padding: 1.25rem 1.25rem 1.5rem;
+  flex: 1;
+}
+
+.project-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+  transition: color 0.2s ease;
+}
+
+.project-card a:hover .project-card-title {
+  color: var(--profile-blue);
+}
+
+.project-card-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+/* Footer */
+.home-footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  background: rgba(204, 213, 219, 0.4);
+  border-radius: 58px;
+  padding: 2rem;
+  overflow: visible;
+}
+
+.home-footer-text {
+  font-size: 72px;
+  line-height: 130%;
+  font-weight: 500;
+  color: #808080;
+}
+
+.home-footer-wave-wrapper {
+  flex: 1;
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+  padding: 2rem 1rem;
+  cursor: default;
+  overflow: visible;
+}
+
+.home-footer-wave {
+  width: 100%;
+  max-width: 722px;
+  height: auto;
+  max-height: 43px;
+  display: block;
+  overflow: visible;
+}
+
+.home-footer-wave-path {
+  fill: #808080;
+  stroke: #808080;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.home-footer-wave-path-hover {
+  fill: rgba(0, 0, 0, 0.9);
+  stroke: rgba(0, 0, 0, 0.9);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.home-footer-wave-wrapper:hover .home-footer-wave-path-hover {
+  opacity: 1;
+}
+
+.home-footer-wave-wrapper:hover .wave-window-rect {
+  animation: wave-window-move 2s linear infinite;
+}
+
+@keyframes wave-window-move {
+  from {
+    x: 0;
+  }
+  to {
+    x: 698;
+  }
+}
+
+.home-footer-icons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.home-footer-icon {
+  width: 88px;
+  height: 88px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  transition: color 0.2s ease;
+}
+
+.home-footer-icon:hover {
+  color: var(--profile-blue);
+}
+
+.home-footer-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .home {
+    padding: 2rem 1rem;
+  }
+
+  .home-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .home-footer-wave-wrapper {
+    display: none;
+  }
+}

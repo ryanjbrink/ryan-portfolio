@@ -1,0 +1,107 @@
+/* Light bulb toggle styles */
+
+.light-bulb-container {
+  position: fixed;
+  top: 0;
+  right: 30px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.light-cord {
+  width: 2px;
+  height: 60px;
+  background: linear-gradient(to bottom, #666, #888);
+  margin: 0 auto;
+  transform-origin: top center;
+  animation: cord-swing 3s ease-in-out infinite;
+}
+
+.light-bulb {
+  display: block;
+  width: 80px;
+  height: 80px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  pointer-events: auto;
+  transform-origin: top center;
+  animation: bulb-swing 3s ease-in-out infinite;
+  transition: transform 0.1s ease;
+}
+
+.light-bulb:hover {
+  transform: scale(1.05);
+}
+
+.light-bulb:active {
+  transform: scale(0.95);
+}
+
+.bulb-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.bulb-glow {
+  transition: opacity 0.3s ease;
+}
+
+.bulb-glass {
+  transition: fill 0.3s ease;
+}
+
+/* Light mode (bulb on) */
+body:not(.dark-mode) .bulb-glow {
+  opacity: 0.8;
+}
+
+body:not(.dark-mode) .bulb-glass {
+  fill: #fff9e6;
+}
+
+/* Dark mode (bulb off) */
+body.dark-mode .bulb-glow {
+  opacity: 0;
+}
+
+body.dark-mode .bulb-glass {
+  fill: #4a4a4a;
+}
+
+/* Swinging animation */
+@keyframes cord-swing {
+  0%, 100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes bulb-swing {
+  0%, 100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+/* Responsive - hide on mobile */
+@media (max-width: 768px) {
+  .light-bulb-container {
+    right: 15px;
+  }
+  
+  .light-bulb {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .light-cord {
+    height: 40px;
+  }
+}

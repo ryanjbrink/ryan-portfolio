@@ -440,19 +440,27 @@ html.role-snap .role-practice {
 
 .role-focus-head .role-block-title {
   margin: 0;
+  flex: 1 1 100%;
+}
+
+@media (min-width: 960px) {
+  .role-focus-head .role-block-title {
+    flex: 0 1 auto;
+  }
 }
 
 .role-focus-tabs {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-  padding: 0.28rem;
-  width: fit-content;
+  flex-wrap: nowrap;
+  gap: 0.2rem;
+  padding: 0.22rem;
+  width: 100%;
   max-width: 100%;
   margin-left: 0;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--role-line);
+  box-sizing: border-box;
 }
 
 @media (min-width: 960px) {
@@ -461,23 +469,38 @@ html.role-snap .role-practice {
   }
 
   .role-focus-tabs {
+    width: fit-content;
     margin-left: auto;
+    gap: 0.3rem;
+    padding: 0.28rem;
   }
 }
 
 .role-tab {
   appearance: none;
+  flex: 1 1 0;
+  min-width: 0;
   border: 0;
   background: transparent;
   color: var(--role-dim);
   font: inherit;
-  font-size: 0.9rem;
+  font-size: clamp(0.68rem, 2.9vw, 0.9rem);
   font-weight: 700;
   letter-spacing: -0.01em;
-  padding: 0.65rem 1.05rem;
+  padding: 0.55rem 0.35rem;
   border-radius: 999px;
   cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
   transition: background 0.25s var(--role-ease), color 0.25s var(--role-ease);
+}
+
+@media (min-width: 960px) {
+  .role-tab {
+    flex: 0 0 auto;
+    font-size: 0.9rem;
+    padding: 0.65rem 1.05rem;
+  }
 }
 
 .role-tab:hover {

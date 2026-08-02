@@ -4,137 +4,64 @@
   <meta charset="utf-8" />
   <title>Phoney - Ryan Brink</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="js/site-theme.js"></script>
   <link rel="stylesheet" href="styles/reset.css" />
   <link rel="stylesheet" href="styles/globals.css" />
   <link rel="stylesheet" href="styles/case-study.css" />
-  <link rel="stylesheet" href="styles/lightbulb.css" />
+  <link rel="stylesheet" href="js/case-study-page.css?v=38" />
 </head>
-<body>
-  <!-- Light bulb toggle -->
-  <div class="light-bulb-container">
-    <div class="light-cord"></div>
-    <button class="light-bulb" aria-label="Toggle dark mode">
-      <svg class="bulb-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="bulb-glow" cx="50%" cy="50%">
-            <stop offset="0%" style="stop-color:#fff9e6;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#fff9e6;stop-opacity:0" />
-          </radialGradient>
-        </defs>
-        <!-- Bulb base (at top, connected to wire) -->
-        <rect class="bulb-base" x="44" y="10" width="12" height="3" fill="#a0a0a0" />
-        <rect class="bulb-base" x="45" y="13" width="10" height="8" fill="#b8b8b8" rx="1" />
-        <!-- Glow effect (only visible when on) -->
-        <circle class="bulb-glow" cx="50" cy="45" r="30" fill="url(#bulb-glow)" opacity="0" />
-        <!-- Bulb glass (hanging down) -->
-        <circle class="bulb-glass" cx="50" cy="45" r="20" fill="#fff9e6" stroke="#d4d4d4" stroke-width="1.5" />
+<body class="case-study-page">
+  <article class="case-study" data-card-name="Phoney" data-card-tag="design fraud">
+    <a href="index.html" class="case-back" aria-label="Back to home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
-    </button>
-  </div>
+    </a>
 
-  <article class="case-study">
-    <header class="case-header">
-      <span class="case-header-name">Ryan Brink</span>
-      <a href="index.html" class="case-header-home">Return Home</a>
+    <header class="case-hero">
+      <img class="case-hero-media case-hero-media--fit" src="Images/Component%20Fraud.svg?v=1" alt="Phoney" />
+      <div class="case-study-content case-hero-inner">
+        <h1 class="case-hero-title">Phoney</h1>
+        <p class="case-hero-tagline">A designer finally admits what we all know is true.</p>
+      </div>
     </header>
 
-    <section class="case-hero">
-      <h1 class="case-hero-title">Phoney</h1>
-      <p class="case-hero-subtitle">Shedding Light on Design Secrets</p>
-      <div class="case-meta">
-        <span><strong>Role:</strong> Graphic Designer</span>
-        <span><strong>Duration:</strong> 1 Month</span>
-        <span><strong>Showcasing:</strong> Print design that highlights funny UX design examples</span>
+    <main class="case-body">
+      <div class="case-study-content">
+        <section
+          class="case-section"
+          data-media="Images/Phoney/1.aPhoney.svg"
+          data-media-cycle="Images/Phoney/1.aPhoney.svg,Images/Phoney/1.bPhoney.svg,Images/Phoney/1.cPhoney.svg,Images/Phoney/1.dPhoney.svg,Images/Phoney/1.ePhoney.svg,Images/Phoney/1.fPhoney.svg,Images/Phoney/1.gPhoney.svg,Images/Phoney/1.hPhoney.svg"
+          data-mobile-summary="We preach empathy — then cut corners when deadlines hit. Phoney asks if we mean it."
+        >
+          <h2>Best Intentions</h2>
+          <p>UX design is built on empathy. Designers are supposed to be advocates for the user — obsessively testing, iterating, and questioning every assumption. But in practice, deadlines get tight, stakeholders push back, and even the most principled designers cut corners, make excuses, or design for edge cases that happen to match their own preferences.</p>
+          <p>The field talks a good game about user-centered design. Phoney asks: are we actually living it?</p>
+        </section>
+
+        <section
+          class="case-section"
+          data-media="Images/Phoney/Phoney2.a.svg"
+          data-media-cycle="Images/Phoney/Phoney2.a.svg,Images/Phoney/Phoney2.b.svg"
+          data-mobile-summary="From a RISD cover assignment to a bound book via Figma, InDesign, and Lulu."
+        >
+          <h2>The Book</h2>
+          <p>Built in Figma, finished in InDesign, and printed through Lulu Press, Phoney went from a book cover class assignment at the Rhode Island School of Design to a fully bound, shelf-ready book.</p>
+        </section>
+
+        <section
+          class="case-section"
+          data-media="Images/Phoney/Phoney3.a.svg"
+          data-media-cycle="Images/Phoney/Phoney3.a.svg,Images/Phoney/Phoney3.b.svg,Images/Phoney/Phoney3.c.svg"
+          data-mobile-summary="Designer Confessions: the gap between polished screens and messy artboards."
+        >
+          <h2>The Humor</h2>
+          <p><em>Designer Confessions</em> taps into the humor of design by spotlighting the gap between polished outcomes and the messy, awkward reality behind them — like cluttered art boards behind pixel-perfect screens, or designing a blue delete button since the customer is always right.</p>
+        </section>
       </div>
-    </section>
-
-    <img class="case-image case-image-shrink" src="https://framerusercontent.com/images/I7IDBWdvaKXIbDtNU2isd7XrI.png?width=2522&height=2315" alt="Phoney hero" />
-
-    <section class="case-section">
-      <h2>Context</h2>
-      <p>This project was created in conjunction with my Graphic Design course at the Rhode Island School of Design. What began as a simple book cover assignment evolved into a personal project featuring "Confessions of a Designer," drawing inspiration from my experience in UX.</p>
-      <p>It shed light on the different tropes experienced in the UX profession. It highlights examples where designers may not be as empathetic with users, cut corners, or fall short in our everyday work.</p>
-      <p>Hope you find this relatable and brightens your day.</p>
-    </section>
-
-    <section class="case-section">
-      <h2>Sketches</h2>
-      <p>I drew 50 variations of phones for the book cover. I scanned and vectorized the illustrations so that they could be recolored and scaled.</p>
-      <div class="case-image-grid case-image-grid-two">
-        <img class="case-image" src="https://framerusercontent.com/images/7Fj6lHPOar4MRYIlMkdWrprZEc.png?width=1424&height=1864" alt="Phone sketches" />
-        <img class="case-image" src="https://framerusercontent.com/images/8ZJyHdYjJfKlmpIfsA8G1n0x2k.png?width=1396&height=1864" alt="Phone variations" />
-      </div>
-    </section>
-
-    <section class="case-section">
-      <h2>Book Cover</h2>
-      <p>Using InDesign, I designed the book cover with careful attention to bleeds, alignment, and overall precision.</p>
-      <img class="case-image" src="https://framerusercontent.com/images/CegLuNS4NwZ2v2ItaB3jtXl5o8.png?width=3454&height=2158" alt="Book cover" />
-    </section>
-
-    <section class="case-section">
-      <h2>Book Idea</h2>
-      <p>I decided to take the book cover project to the next level by adding in content. Although this wasn't part of the original assignment, it became a fun and valuable opportunity to learn the full process of creating and producing a real, tangible book.</p>
-    </section>
-
-    <section class="case-section">
-      <h2>Figma</h2>
-      <p>I used Figma to create the content, since it's the primary tool I use daily and where all my design assets were already organized. However, because Figma is a digital-first platform, it doesn't handle print production particularly well—especially when it comes to PDF spreads.</p>
-    </section>
-
-    <section class="case-section">
-      <h2>Back to Indesign</h2>
-      <p>I transferred all of the content into InDesign to prepare the book for print. If I were to do it again, I'd make sure to preview the final designs in CMYK while still working in Figma. Although Figma doesn't natively support CMYK, using a plugin to simulate print colors would have helped me catch potential color shifts earlier—before transitioning everything to InDesign.</p>
-      <img class="case-image" src="https://framerusercontent.com/images/tGzLmEj6yjUFhc0gM1lEpq7kdY.png?width=3456&height=2156" alt="Indesign page spreads" />
-    </section>
-
-    <section class="case-section">
-      <h2>Lulu Press</h2>
-      <p>I partnered with Lulu Press to print my book. They made it extremely easy to upload my Indesign document and order the book! Overall happy with the result and learning process.</p>
-      <img class="case-image" src="https://framerusercontent.com/images/47BWq4VD0vtTITZRTL0BLtC4BM.png?width=3584&height=1788" alt="Lulu Press" />
-    </section>
-
-    <section class="case-section">
-      <h2>Final Product</h2>
-      <div class="case-image-grid case-image-grid-three">
-        <img class="case-image" src="https://framerusercontent.com/images/3hrEmE64iBcVb23emBTtzDNc8U.png?width=940&height=1252" alt="Final product" />
-        <img class="case-image" src="https://framerusercontent.com/images/9k08gu85jrPE15toUrnrJoBN60.png?width=940&height=1252" alt="Final product" />
-        <img class="case-image" src="https://framerusercontent.com/images/71E4hTGhwij4SCOPeTRqs5yj0Y.png?width=940&height=1252" alt="Final product" />
-      </div>
-    </section>
-
-    <section class="case-section">
-      <h2>Sneak Peek…</h2>
-      <img class="case-image" src="https://framerusercontent.com/images/gIdYE19etMIJ1jWXTVbt0yLhAs.png?width=2816&height=1133" alt="Sneak peek" />
-      <img class="case-image" src="https://framerusercontent.com/images/c71bQHkCTBuhnE6mjUO38gTKCbE.png?width=2816&height=1133" alt="Sneak peek" />
-      <img class="case-image" src="https://framerusercontent.com/images/tsXRcwJxpd9nAJnphm9dRXbRVxc.png?width=2816&height=1133" alt="Sneak peek" />
-      <img class="case-image" src="https://framerusercontent.com/images/hOscNqwAcwYKYbOM0ekOFjUDU.png?width=2816&height=1133" alt="Sneak peek" />
-    </section>
-
-    <a href="index.html" class="case-return">Return Home</a>
+    </main>
   </article>
-
-  <script>
-    // Dark mode toggle
-    const lightBulb = document.querySelector('.light-bulb');
-    const body = document.body;
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      body.classList.add('dark-mode');
-    }
-    
-    lightBulb.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      
-      // Save preference
-      if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-      } else {
-        localStorage.setItem('theme', 'light');
-      }
-    });
-  </script>
+  <div id="case-study-root"></div>
+  <script src="js/case-study-page.js?v=38" defer></script>
 </body>
 </html>

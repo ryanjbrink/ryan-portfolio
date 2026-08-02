@@ -6,6 +6,12 @@
   right: 30px;
   z-index: 1000;
   pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+body.case-study-open .light-bulb-container {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .light-cord {

@@ -1,2 +1,12 @@
 .DS_Store
 .cursor/
+
+# Dependencies — never publish these
+node_modules/
+case-study-reader/node_modules/
+
+# Local build/tooling noise
+case-study-reader/dist/
+*.log
+.env
+.ENV

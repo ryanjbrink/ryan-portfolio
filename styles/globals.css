@@ -1,9 +1,9 @@
 /* Design tokens */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&family=Caveat:wght@500&display=swap');
 
 :root {
   /* Light mode colors */
-  --bg: #ECEEF1;
+  --bg: #f3f3f0;
   --text-primary: #000c14;
   --text-secondary: #525252;
   --card-bg: #ffffff;

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" class="role-snap">
+<head>
+  <meta charset="utf-8" />
+  <title>Current role — Ryan Brink</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles/reset.css" />
+  <link rel="stylesheet" href="styles/globals.css" />
+  <link rel="stylesheet" href="styles/current-role.css?v=67" />
+</head>
+<body class="role-page">
+  <a class="role-skip" href="#role-main">Skip to content</a>
+  <canvas class="role-cursor-fx" aria-hidden="true"></canvas>
+  <div class="role-grain" aria-hidden="true"></div>
+
+  <header class="role-top">
+    <a class="role-back" href="index.html" aria-label="Back to home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </a>
+    <p class="role-top-meta">Current role</p>
+  </header>
+
+  <main id="role-main">
+    <!-- Intro -->
+    <section class="role-intro" aria-label="Current role">
+      <p class="role-brand" data-rise>HCA Healthcare</p>
+      <h1 class="role-intro-title">
+        <span data-rise>Staff Product</span>
+        <span data-rise>Designer</span>
+      </h1>
+      <p class="role-intro-lede" data-rise>
+        Designing digital care experiences for clinicians and patients across one of the nation’s largest health systems.
+      </p>
+    </section>
+
+    <!-- Core working ethos -->
+    <section class="role-focus" data-reveal id="ethos" aria-label="Core working ethos">
+      <div class="role-focus-stage" data-role-tabs>
+        <div class="role-focus-head">
+          <h2 class="role-block-title">Core working ethos</h2>
+          <div class="role-focus-tabs" role="tablist" aria-label="Working ethos">
+            <button type="button" class="role-tab is-active" role="tab" aria-selected="true" aria-controls="panel-ethno" id="tab-ethno" data-tab="ethno">
+              <span class="role-tab-full">Ethnographic research</span>
+              <span class="role-tab-short">Ethnography</span>
+            </button>
+            <button type="button" class="role-tab" role="tab" aria-selected="false" aria-controls="panel-service" id="tab-service" data-tab="service">
+              <span class="role-tab-full">Service design</span>
+              <span class="role-tab-short">Service</span>
+            </button>
+            <button type="button" class="role-tab" role="tab" aria-selected="false" aria-controls="panel-forward" id="tab-forward" data-tab="forward">
+              <span class="role-tab-full">Forward-deployed design</span>
+              <span class="role-tab-short">Forward-deployed</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="role-focus-frame">
+          <button type="button" class="role-ethos-nav role-ethos-nav--prev" data-ethos-prev aria-label="Previous ethos">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true">
+              <path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <div class="role-focus-panels">
+            <article class="role-focus-panel is-active" role="tabpanel" id="panel-ethno" aria-labelledby="tab-ethno" data-panel="ethno">
+              <div class="role-focus-visual">
+                <img src="Images/hca-ethos-service.png" alt="Digital Transformation & Innovation teammates on site" />
+              </div>
+              <div class="role-focus-copy">
+                <p class="role-meta">01 / Method</p>
+                <h3>Ethnographic research</h3>
+                <p>
+                  Observing real shifts, interruptions, and workarounds — uncovering the insights clinicians won’t (or can’t) put in a survey.
+                </p>
+                <ul>
+                  <li>Floor time with care teams and patients</li>
+                  <li>Context that explains the “why” behind behavior</li>
+                  <li>Insights that humanize technology at scale</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="role-focus-panel" role="tabpanel" id="panel-service" aria-labelledby="tab-service" data-panel="service" hidden>
+              <div class="role-focus-visual">
+                <img src="Images/hca-ethos-forward.png" alt="Team observing operations on the warehouse floor" />
+              </div>
+              <div class="role-focus-copy">
+                <p class="role-meta">02 / Method</p>
+                <h3>Service design</h3>
+                <p>
+                  Mapping the full care journey — people, tools, handoffs, and friction — so product work improves the service, not just a single screen.
+                </p>
+                <ul>
+                  <li>End-to-end journeys across roles and settings</li>
+                  <li>Blueprinting where digital and physical care meet</li>
+                  <li>Prioritizing moments that change outcomes</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="role-focus-panel" role="tabpanel" id="panel-forward" aria-labelledby="tab-forward" data-panel="forward" hidden>
+              <div class="role-focus-visual">
+                <img src="Images/hca-ethos-ethno.png" alt="Field conversation with a care team member" />
+              </div>
+              <div class="role-focus-copy">
+                <p class="role-meta">03 / Method</p>
+                <h3>Forward-deployed design</h3>
+                <p>
+                  Designing beside the people who will live in the product — embedding with partners so solutions stay honest under real constraints.
+                </p>
+                <ul>
+                  <li>Co-creation with clinical and operational partners</li>
+                  <li>Prototypes tested where the work happens</li>
+                  <li>Decisions grounded in live feedback, not assumptions</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+
+          <button type="button" class="role-ethos-nav role-ethos-nav--next" data-ethos-next aria-label="Next ethos">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true">
+              <path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="role-projects" data-reveal id="projects" aria-label="Projects at HCA">
+      <div class="role-projects-inner">
+        <p class="role-meta">Domains</p>
+        <h2 class="role-block-title">Projects at HCA</h2>
+        <p class="role-projects-lead">
+          Transforming — Supply Chain, Patient Safety, Cardiogenic Shock, PSI-90, CMS Star Rating, and Physician Notes
+        </p>
+        <p class="role-projects-note">Details Confidential to HCA</p>
+      </div>
+    </section>
+
+    <!-- Senses -->
+    <section class="role-practice" data-reveal id="senses" aria-label="More than our AI tools">
+      <div class="role-practice-head">
+        <div>
+          <p class="role-meta">Signal</p>
+          <h2 class="role-block-title">More than our AI tools</h2>
+        </div>
+      </div>
+
+      <div class="role-rail" data-practice-rail tabindex="0" aria-label="Five senses">
+        <article class="role-vcard role-vcard--intuition">
+          <header class="role-vcard-top">
+            <span class="role-vcard-label">Intuition</span>
+            <span class="role-vcard-badge">01</span>
+          </header>
+          <div class="role-vcard-visual" aria-hidden="true">
+            <div class="role-mock">
+              <div class="role-mock-signal">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+          <div class="role-vcard-copy">
+            <h3>Know what matters early</h3>
+            <p>Sensing what matters before the data makes it obvious.</p>
+          </div>
+        </article>
+
+        <article class="role-vcard role-vcard--taste">
+          <header class="role-vcard-top">
+            <span class="role-vcard-label">Taste</span>
+            <span class="role-vcard-badge">02</span>
+          </header>
+          <div class="role-vcard-visual" aria-hidden="true">
+            <div class="role-mock">
+              <div class="role-mock-compare">
+                <i></i><i class="is-strong"></i>
+              </div>
+            </div>
+          </div>
+          <div class="role-vcard-copy">
+            <h3>Recognize excellence</h3>
+            <p>Recognizing excellence — and refusing mediocrity.</p>
+          </div>
+        </article>
+
+        <article class="role-vcard role-vcard--empathy">
+          <header class="role-vcard-top">
+            <span class="role-vcard-label">Empathy</span>
+            <span class="role-vcard-badge">03</span>
+          </header>
+          <div class="role-vcard-visual" aria-hidden="true">
+            <div class="role-mock">
+              <div class="role-mock-faces"><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="role-vcard-copy">
+            <h3>Understand the person</h3>
+            <p>Understanding people beyond what they express.</p>
+          </div>
+        </article>
+
+        <article class="role-vcard role-vcard--perspective">
+          <header class="role-vcard-top">
+            <span class="role-vcard-label">Perspective</span>
+            <span class="role-vcard-badge">04</span>
+          </header>
+          <div class="role-vcard-visual" aria-hidden="true">
+            <div class="role-mock">
+              <div class="role-mock-layers"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+          <div class="role-vcard-copy">
+            <h3>Hold both scales</h3>
+            <p>Holding the details and the bigger picture at once.</p>
+          </div>
+        </article>
+
+        <article class="role-vcard role-vcard--vision">
+          <header class="role-vcard-top">
+            <span class="role-vcard-label">Vision</span>
+            <span class="role-vcard-badge">05</span>
+          </header>
+          <div class="role-vcard-visual" aria-hidden="true">
+            <div class="role-mock">
+              <div class="role-mock-constellation"><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="role-vcard-copy">
+            <h3>See the forest</h3>
+            <p>Connecting signals to see where opportunity lives.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Close -->
+    <section class="role-close" data-reveal aria-label="Explore past projects">
+      <div class="role-close-inner">
+        <p class="role-meta">Next</p>
+        <h2 class="role-close-title">Explore past projects…</h2>
+        <div class="role-hero-actions">
+          <a href="index.html#work" class="home-hero-btn home-hero-btn--primary">
+            <span>View work</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/current-role.js?v=16" defer></script>
+</body>
+</html>

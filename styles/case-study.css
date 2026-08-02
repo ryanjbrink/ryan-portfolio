@@ -1,458 +1,275 @@
-/* Case study layout - shared across all case study pages */
+/* ──────────────────────────────────────────────────────────────────────── *
+ * Case study — cinematic full-page view (direct navigation).
+ *
+ * The same HTML is parsed by the overlay reader on the home page; these
+ * styles only apply when the user opens a .html file directly.
+ * ──────────────────────────────────────────────────────────────────────── */
+
+body.case-study-page {
+  background: #f3f3f0;
+  color: #0a0a0a;
+  min-height: 100vh;
+}
+
+html.dark body.case-study-page,
+body.case-study-page.dark {
+  background: #0f0f0f;
+  color: #e8e8e8;
+}
 
 .case-study {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 3rem 2rem 5rem;
-}
-
-/* Header - sticky */
-.case-header {
-  position: sticky;
-  top: 0;
-  background: var(--bg);
-  padding: 1.5rem 0;
+  min-height: 100vh;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+}
+
+/* Back control — circular chevron, floating top-left */
+.case-back {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 20;
+  display: inline-flex;
   align-items: center;
-  z-index: 100;
-  border-bottom: 1px solid rgba(0, 12, 20, 0.08);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #0a0a0a;
+  text-decoration: none;
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  box-shadow: 0 6px 18px rgba(0, 12, 20, 0.08);
+  transition: background 0.25s ease, transform 0.25s ease;
 }
 
-.case-header-name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-primary);
+.case-back:hover {
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+  transform: translateY(-1px);
 }
 
-.case-header-home {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  transition: color 0.2s ease;
+html.dark .case-back,
+body.dark .case-back {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #f4f4f5;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 
-.case-header-home:hover {
-  color: var(--profile-blue);
+html.dark .case-back:hover,
+body.dark .case-back:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
 }
 
-/* Hero section */
+.case-back svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+/* Hero */
 .case-hero {
-  margin: 4rem 0 3rem;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 78vh;
+  min-height: 460px;
+  max-height: 820px;
+  overflow: hidden;
+}
+
+.case-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.case-hero-media--fit {
+  object-fit: contain;
+  background: #eceef1;
+}
+
+.case-hero::before,
+.case-hero::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  z-index: -5;
+  pointer-events: none;
+}
+
+/* Top-down scrim so the back link reads */
+.case-hero::before {
+  top: 0;
+  height: 160px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent);
+}
+
+/* Bottom-up scrim that fades into the page background */
+.case-hero::after {
+  bottom: 0;
+  height: 70%;
+  background: linear-gradient(to top, #0a0a0a 0%, rgba(10, 10, 10, 0.7) 40%, transparent 100%);
+}
+
+.case-study-content {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-inline: 40px;
+}
+
+.case-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 56px;
 }
 
 .case-hero-title {
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 6vw, 4.75rem);
   font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 1rem;
-  line-height: 1.1;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  max-width: 20ch;
+  text-wrap: balance;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+  margin: 0;
 }
 
-.case-hero-subtitle {
-  font-size: 1.5rem;
-  color: var(--text-primary);
-  font-weight: 400;
-  margin-bottom: 2rem;
-  line-height: 1.4;
+.case-hero-tagline {
+  margin-top: 16px;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  line-height: 1.55;
+  color: rgba(228, 228, 231, 0.9);
+  max-width: 60ch;
+  text-wrap: balance;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 }
 
-.case-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  font-size: 0.95rem;
-  color: var(--text-secondary);
+/* Body */
+.case-body {
+  background: #0a0a0a;
+  padding-block: 64px 96px;
 }
 
-.case-meta strong {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-/* Sections */
 .case-section {
-  margin: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.case-section + .case-section {
+  margin-top: 64px;
 }
 
 .case-section h2 {
-  font-size: 1.5rem;
+  font-size: clamp(1.5rem, 2vw, 1.9rem);
   font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 1.5rem;
-}
-
-/* h2 that follows other content within the same section */
-.case-section :not(h2) + h2 {
-  margin-top: 4rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #fafafa;
+  margin: 0;
 }
 
 .case-section h3 {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: var(--text-primary);
-  margin: 2rem 0 1rem;
+  color: #fafafa;
+  margin: 0;
 }
 
 .case-section p {
   font-size: 1.0625rem;
-  line-height: 1.8;
-  color: var(--text-primary);
-  margin-bottom: 1.5rem;
-  font-weight: 400;
-}
-
-.case-section ul {
-  margin: 1.5rem 0;
-  padding-left: 1.5rem;
-}
-
-.case-section li {
-  margin-bottom: 0.75rem;
-  line-height: 1.8;
-  font-size: 1.0625rem;
-}
-
-/* Images */
-.case-image {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 2rem 0;
-  border-radius: 8px;
-}
-
-/* Half-size image (50% width/height) */
-.case-image-half-height {
-  width: 50%;
-  max-width: 50%;
-}
-
-/* Slightly smaller image (~65% width) */
-.case-image-shrink {
-  width: 65%;
-  max-width: 65%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Match Tv1Result dimensions (847 × 380) */
-.case-image-v1-result-size {
-  height: auto;
-  width: 100%;
-  max-width: 100%;
-  object-fit: contain;
-  margin: 0 auto;
-}
-
-/* Light background for images that need it (e.g., screenshots with transparency) */
-.case-image-light-bg {
-  background-color: #ffffff;
-  padding: 1rem;
-}
-
-.case-image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
-
-.case-image-grid-two {
-  grid-template-columns: 1fr 1fr;
-}
-
-.case-image-grid-three {
-  grid-template-columns: 1fr 1fr 1fr;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.case-image-grid img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;
-}
-
-/* Return home link */
-.case-return {
-  display: inline-block;
-  margin-top: 4rem;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  transition: color 0.2s ease;
-}
-
-.case-return:hover {
-  color: var(--profile-blue);
-}
-
-/* Dark mode support */
-body.dark-mode .case-header {
-  border-bottom-color: rgba(255, 255, 255, 0.1);
-}
-
-body.dark-mode .case-image {
-  opacity: 0.95;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .case-hero-title {
-    font-size: 2rem;
-  }
-
-  .case-hero-subtitle {
-    font-size: 1.125rem;
-  }
-
-  .case-study {
-    padding: 2rem 1.5rem 4rem;
-  }
-  
-  .case-section {
-    margin: 3rem 0;
-  }
-
-  .case-image-grid-two,
-  .case-image-grid-three {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Before/After slider */
-.before-after-slider {
-  position: relative;
-  width: 100%;
-  margin: 2rem 0;
-  border-radius: 8px;
-  overflow: hidden;
-  cursor: col-resize;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-/* Before: static base, always full width */
-.ba-before {
-  display: block;
-  width: 100%;
-}
-
-.ba-before img {
-  width: 100%;
-  height: auto;
-  display: block;
+  line-height: 1.7;
+  color: rgba(228, 228, 231, 0.9);
   margin: 0;
-  border-radius: 0;
 }
 
-/* After: absolutely on top, clipped to reveal width */
-.ba-after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%; /* driven by JS */
-  height: 100%;
-  overflow: hidden;
-  background-color: var(--bg);
-}
-
-.ba-after img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  /* width is set in JS to match the full container width */
-  height: auto;
-  margin: 0;
-  border-radius: 0;
-}
-
-/* Divider line */
-.ba-divider {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 2px;
-  background: white;
-  transform: translateX(-50%);
-  pointer-events: none;
-}
-
-.ba-handle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
-  background: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.ba-handle svg {
-  width: 20px;
-  height: 20px;
-  color: #333;
-}
-
-/* Labels */
-.ba-labels {
-  position: absolute;
-  top: 12px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 14px;
-  pointer-events: none;
-}
-
-.ba-labels span {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: white;
-  background: rgba(0, 0, 0, 0.45);
-  padding: 3px 8px;
-  border-radius: 4px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-/* Process columns */
-.process-columns {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin: 1.5rem 0;
-}
-
-.process-column strong {
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 0.4rem;
-  color: var(--text-primary);
-}
-
-.process-column p {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  margin: 0;
-  line-height: 1.5;
-}
-
-.process-column--with-image {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.process-column-text {
-  flex: 1;
-  min-width: 0;
-}
-
-.process-column img {
-  width: 50%;
-  height: auto;
-  display: block;
-  border-radius: 8px;
-  flex-shrink: 0;
-}
-
-@media (max-width: 600px) {
-  .process-columns {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Token step sequence */
-.token-steps {
-  position: relative;
-  width: 100%;
-  margin: 2rem 0 0;
-}
-
-.token-step {
-  display: none;
-  width: 100%;
-}
-
-.token-step.active {
-  display: block;
-}
-
-.token-step img {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0;
-  border-radius: 8px;
-}
-
-.token-step-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
+.case-section p + p {
   margin-top: 16px;
 }
 
-.token-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: none;
-  background: #ccc;
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.2s ease, transform 0.2s ease;
+.case-section ul,
+.case-section ol {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: rgba(228, 228, 231, 0.9);
+  padding-left: 20px;
 }
 
-.token-dot.active {
-  background: var(--text-primary);
-  transform: scale(1.25);
+.case-section ul li,
+.case-section ol li {
+  margin-top: 8px;
 }
 
-body.dark-mode .token-dot {
-  background: #555;
+.case-section ul li::marker,
+.case-section ol li::marker {
+  color: rgba(161, 161, 170, 0.65);
 }
 
-body.dark-mode .token-dot.active {
-  background: var(--text-primary);
+.case-section a {
+  color: #38bdf8;
+  text-underline-offset: 2px;
 }
 
-/* Final Design video-over-SVG frame */
-.final-design-frame {
-  position: relative;
-  width: 100%;
-  margin: 2rem 0;
-  border-radius: 12px;
-  overflow: hidden;
+.case-section a:hover {
+  color: #7dd3fc;
 }
 
-.final-design-bg {
+.case-section blockquote {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  border-left: 3px solid rgba(255, 255, 255, 0.2);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: rgba(228, 228, 231, 0.85);
+  font-style: italic;
+}
+
+.case-section blockquote p {
+  margin: 0;
+}
+
+.case-section img {
   display: block;
   width: 100%;
   height: auto;
-  margin: 0;
-  border-radius: 0;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.3);
+  margin-top: 8px;
 }
 
-.final-design-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 90%;
-  width: auto;
-  border-radius: 8px;
+@media (max-width: 640px) {
+  .case-back {
+    top: 16px;
+    left: 16px;
+  }
+
+  .case-study-content {
+    padding-inline: 24px;
+  }
+
+  .case-hero-inner {
+    padding-bottom: 40px;
+  }
+
+  .case-body {
+    padding-block: 48px 80px;
+  }
+
+  .case-section + .case-section {
+    margin-top: 48px;
+  }
 }

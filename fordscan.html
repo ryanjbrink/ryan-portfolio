@@ -2,161 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Ford Scan - Ryan Brink</title>
+  <title>Ford - Ryan Brink</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="js/site-theme.js"></script>
   <link rel="stylesheet" href="styles/reset.css" />
   <link rel="stylesheet" href="styles/globals.css" />
   <link rel="stylesheet" href="styles/case-study.css" />
-  <link rel="stylesheet" href="styles/lightbulb.css" />
+  <link rel="stylesheet" href="js/case-study-page.css?v=38" />
 </head>
-<body>
-  <!-- Light bulb toggle -->
-  <div class="light-bulb-container">
-    <div class="light-cord"></div>
-    <button class="light-bulb" aria-label="Toggle dark mode">
-      <svg class="bulb-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="bulb-glow" cx="50%" cy="50%">
-            <stop offset="0%" style="stop-color:#fff9e6;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#fff9e6;stop-opacity:0" />
-          </radialGradient>
-        </defs>
-        <!-- Bulb base (at top, connected to wire) -->
-        <rect class="bulb-base" x="44" y="10" width="12" height="3" fill="#a0a0a0" />
-        <rect class="bulb-base" x="45" y="13" width="10" height="8" fill="#b8b8b8" rx="1" />
-        <!-- Glow effect (only visible when on) -->
-        <circle class="bulb-glow" cx="50" cy="45" r="30" fill="url(#bulb-glow)" opacity="0" />
-        <!-- Bulb glass (hanging down) -->
-        <circle class="bulb-glass" cx="50" cy="45" r="20" fill="#fff9e6" stroke="#d4d4d4" stroke-width="1.5" />
+<body class="case-study-page">
+  <article class="case-study" data-card-name="Ford" data-card-tag="Zebra Killer">
+    <a href="index.html" class="case-back" aria-label="Back to home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
-    </button>
-  </div>
+    </a>
 
-  <article class="case-study">
-    <header class="case-header">
-      <span class="case-header-name">Ryan Brink</span>
-      <a href="index.html" class="case-header-home">Return Home</a>
+    <header class="case-hero">
+      <video
+        class="case-hero-media"
+        src="Images/fordscan-hero.mp4?v=3"
+        poster="Images/fordscan-hero-poster.jpg?v=3"
+        autoplay
+        muted
+        loop
+        playsinline
+      ></video>
+      <div class="case-study-content case-hero-inner">
+        <h1 class="case-hero-title">Ford</h1>
+        <p class="case-hero-tagline">The app that replaced the scanner — and actually works.</p>
+      </div>
     </header>
 
-    <img class="case-image" src="https://framerusercontent.com/images/sCFvGlcrhYZhoErEvX626tM8wo.svg?width=456&height=430" alt="Ford Scan hero" />
+    <main class="case-body">
+      <div class="case-study-content">
+        <section
+          class="case-section"
+          data-media="Images/fordscan-hero.mp4?v=3"
+          data-media-kind="video"
+          data-media-poster="Images/fordscan-hero-poster.jpg?v=3"
+          data-mobile-summary="Zebra scanners kept failing the plant — missing, dead, or someone else’s problem."
+        >
+          <h2>The Bottleneck</h2>
+          <p>Ford's Livonia transmission plant runs components through rigorous testing stages: dynamometer evaluation, calibration, quality checks — all before anything goes into a vehicle. Tracking every part through every step is critical, but the tool workers depended on kept failing them.</p>
+          <p>Zebra scanners went missing, died mid-shift, and created bottlenecks, while the app meant to replace them was half-built, unreliable, and so poorly conceived it had been named "Songbird." Workers couldn't scan with confidence, couldn't undo mistakes, and had no way to know if their actions had even registered. This isn't just a frustration — it's a quality problem.</p>
+        </section>
 
-    <section class="case-hero">
-      <h1 class="case-hero-title">Ford Scan</h1>
-      <p class="case-hero-subtitle">Cut Friction, Reduced Errors, and Increased Usability by 87.5%</p>
-      <div class="case-meta">
-        <span><strong>Role:</strong> Sr. Product Designer</span>
-        <span><strong>Duration:</strong> 3 Months</span>
-        <span><strong>Showcasing:</strong> Championing more than function: delightful design</span>
+        <section class="case-section" data-media="Images/ford2.svg" data-mobile-summary="Every iPhone becomes a scanner — 87.5% more usable than Songbird.">
+          <h2>New App</h2>
+          <p>A purpose-built iPhone app that lets Ford factory workers scan, track, and process parts without hunting for a Zebra scanner that's dead, missing, or someone else's problem. Ford Scan gives factory workers everything they need to move parts through intake, assembly, calibration, and testing — right from the phone already in their pocket.</p>
+          <p>Ford Scan is 87.5% more usable than the previous Songbird app it replaced. Ford Scan turns every employee's iPhone into a fully capable factory scanner. A purpose-designed bottom sheet lets workers scan barcodes instantly using the phone's camera — no hardware required. If the camera won't cooperate, they can type the location manually.</p>
+          <p>Haptic feedback confirms every successful scan so workers know it worked without looking away from the part. The interface follows iOS design standards workers already know, so the learning curve is nearly zero. Clear printer labeling prevents misrouted jobs. A simplified navigation structure means fewer taps to get anything done. And the name — Ford Scan — tells you exactly what it is on the first day and the thousandth.</p>
+        </section>
+
+        <section class="case-section" data-media="Images/ford.svg" data-mobile-summary="A name and logo that finally felt finished: “Ford Scan is brilliant.”">
+          <h2>Being Memorable</h2>
+          <p>“Ford Scan is brilliant.” — The Product Owner. The name and logo change felt like a breath of fresh air — a clear sign that the unfinished app had been replaced with something polished, useful, and genuinely delightful.</p>
+        </section>
       </div>
-    </section>
-
-    <section class="case-section">
-      <h2>Problem</h2>
-      <p>Ford's contracted iOS app was behind schedule, so they brought us in to get things back on track. Since all employees already used iPhones, it was more cost-effective to shift away from Zebra scanners. This change also empowered employees to use their own devices—eliminating issues with misplaced or uncharged scanners. Because the transition wasn't immediate, we designed the app as a multiplatform solution to bridge the gap.</p>
-      <p>The immediate problem was a lack in completion, but upon looking at the current state of the app, key usability issues were immediately noticed.</p>
-      <img class="case-image" src="https://framerusercontent.com/images/iT5flCcrI8T21Xss8J8X4Qv90c.png?width=1344&height=2992" alt="Current app state" />
-      <img class="case-image" src="https://framerusercontent.com/images/XjA8UK8xstCzck9lc8AVr2MXNnc.png?width=922&height=2044" alt="App screens" />
-      <img class="case-image" src="https://framerusercontent.com/images/f4TlN5ZFk3cQSl6fwoCDWrgMfE.png?width=918&height=1994" alt="App screens" />
-      <img class="case-image" src="https://framerusercontent.com/images/HoPDYSrbB60TATe4yhmBlGXiSM8.png?width=970&height=2104" alt="App screens" />
-      <img class="case-image" src="https://framerusercontent.com/images/8vRi58bJwFUWmIYXQJ7ZcLfdrnc.png?width=970&height=2100" alt="App screens" />
-    </section>
-
-    <section class="case-section">
-      <h2>Site Visit</h2>
-      <p>After visiting the testing center in Livonia, we gained a clear view of the full operation—spanning part intake, assembly, calibration, and testing. Each step was technical and potentially time-sensitive depending on the number of parts, making speed and scanning accuracy absolutely critical to avoid costly errors.</p>
-    </section>
-
-    <section class="case-section">
-      <h2>How might we…</h2>
-      <p>How might we design the experience to better support user needs like fast scanning and minimizing errors?</p>
-    </section>
-
-    <section class="case-section">
-      <h2>Team Dynamics</h2>
-      <p>Ford's priority was speed—just getting the functionality in place. Expectations around design were minimal. Still, I saw an opportunity to add value. Working within tight constraints, I developed a focused design plan that prioritized high-impact features based on effort and user value. The result exceeded expectations and opened the door to future collaboration.</p>
-      <p><strong>Product Owner:</strong> "I need a working app yesterday!" — <strong>Dev Team:</strong> "We can do that" — <strong>End User:</strong> "Yes, but let's make a better experience as well." — <strong>Result:</strong> Overdeliver & delight! Future engagements!</p>
-    </section>
-
-    <section class="case-section">
-      <h2>Design Plan</h2>
-      <p>The progress level at the beginning of our engagement was low. Utilizing a hierarchy of user needs showcased areas that needed attention and helped create developer buy-in to go beyond basic functionality.</p>
-      <p><em>Helped create buy-in with devs to be more UX conscience.</em></p>
-      <p>Delight 0/6, Usable 4/10, Reliable 0/1, Functional 4/7</p>
-    </section>
-
-    <section class="case-section">
-      <h2>OST</h2>
-      <p>I utilized an Opportunity Solution Tree (OST) to identify the best ways to increase usability and delight—advocating for the end user.</p>
-    </section>
-
-    <section class="case-section">
-      <h2>Solution Matrix</h2>
-      <p>Plotting various solutions on a matrix of user value versus implementation time clarified priorities and helped align with the product owner's expectations on time and budget.</p>
-      <p><em>Prioritizing solutions with easier implementation and higher user value.</em></p>
-    </section>
-
-    <section class="case-section">
-      <h2>Functionality</h2>
-      <p>I enabled the dev team to focus on core functionality while I explored higher-level design opportunities for the next phase. Together, we delivered all 7 functional features, including print, calibration, and change disposition. This improved functionality by 75% and boosting overall app completion by 43%</p>
-      <img class="case-image" src="https://framerusercontent.com/images/GCj0WNNx1S0sEqIdivkoHfKgNw.png?width=876&height=1700" alt="Functionality" />
-      <img class="case-image" src="https://framerusercontent.com/images/jZdvAgVLm1uQlIzaZkVQDzcWmA.png?width=920&height=1700" alt="Functionality" />
-      <img class="case-image" src="https://framerusercontent.com/images/37DOhYdIhX5qLx7GoLgpuuno.png?width=793&height=1600" alt="Functionality" />
-      <img class="case-image" src="https://framerusercontent.com/images/fqHk9rYHs5u4hntsg1bnXzCibtc.png?width=793&height=1600" alt="Functionality" />
-    </section>
-
-    <section class="case-section">
-      <h2>Reliable</h2>
-      <p>To bridge the gap between Zebra scanners and iPhones, I introduced a bottom-sheet, for fast and intuitive scanning on iOS. This eliminated friction and boosted reliability, making scanning consistent across both platforms which provided a 100% increase for reliability.</p>
-      <img class="case-image" src="https://framerusercontent.com/images/tCeTBPdnWAxv7JXmvXZEnOS3Wg.png?width=793&height=1600" alt="Scan to Location" />
-      <img class="case-image" src="https://framerusercontent.com/images/gdvAqBZbc2Hac8V7hFmbKLw0.png?width=1500&height=2780" alt="Scan flow" />
-      <img class="case-image" src="https://framerusercontent.com/images/5fh3JFbnH5EzzNiuWJo5bxHc798.png?width=926&height=2038" alt="Type Location" />
-    </section>
-
-    <section class="case-section">
-      <h2>Usable</h2>
-      <p>I improved user control and freedom by ensuring users could always cancel or back out of unintended actions. To enhance aesthetic and minimalist design, we applied core Gestalt principles and adhered to the iOS design system, resulting in a cleaner, more intuitive interface. We also reduced potential errors by clearly indicating which printers would be used for each task. These changes raised our heuristic compliance from 4/10 to 7/10, improving usability by 75%.</p>
-      <img class="case-image" src="https://framerusercontent.com/images/SGaDismP0VrRKTcw24wqP2AVtEs.png?width=3096&height=1824" alt="Usable design" />
-    </section>
-
-    <section class="case-section">
-      <h2>Delight</h2>
-      <p>Of the 6 key opportunities I identified for increasing user delight, renaming and rebranding the app delivered the greatest impact with the least difficulty, resulting in a 100% improvement for delight.</p>
-      <p><strong>Opportunities:</strong> Refreshing the UI, Introducing Haptics, Adding Shortcuts, Simplifying IA, Ensuring Consistency, and Updating Name and Icon.</p>
-      <p>I renamed the app from the arbitrary "Songbird" to "Ford Scan," a simple, clear name aligned with its core functionality. The product owner's response, "Ford Scan is brilliant", reflected the positive shift away from the unfinished legacy app. The new logo incorporates the 3D barcode element central to the app's use, paired with Ford's Antenna typeface in line with brand guidelines.</p>
-      <img class="case-image" src="https://framerusercontent.com/images/jS7NDuCs6lmJLzmQvhsOky9Cg.png?width=3096&height=1824" alt="Ford Scan branding" />
-    </section>
-
-    <section class="case-section">
-      <h2>Result</h2>
-      <p>From our starting point, inheriting an unfinished app, and a tight deadline, we managed to finish functionality and create multiplatform reliability. Beyond this, significant improvements in making the app more usable and delightful made this a successful project. The app, on average was 87.5% more usable.</p>
-      <p>The team delivered more than a functioning app. By advocating for the end user, we elevated the success of the project. Ford now plans to roll out the app beyond Livonia and continue working with us on future initiatives.</p>
-      <p>The hierarchy improved: Delight 0/6 → 1/6 (100%), Usable 4/10 → 7/10 (75%), Reliable 0/1 → 1/1 (100%), Functional 4/7 → 7/7 (75%). 43% overall app completion. 87.5% more usable.</p>
-    </section>
-
-    <a href="index.html" class="case-return">Return Home</a>
+    </main>
   </article>
-
-  <script>
-    // Dark mode toggle
-    const lightBulb = document.querySelector('.light-bulb');
-    const body = document.body;
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      body.classList.add('dark-mode');
-    }
-    
-    lightBulb.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      
-      // Save preference
-      if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-      } else {
-        localStorage.setItem('theme', 'light');
-      }
-    });
-  </script>
+  <div id="case-study-root"></div>
+  <script src="js/case-study-page.js?v=38" defer></script>
 </body>
 </html>

@@ -1,0 +1,1054 @@
+/* Current role — original layout + Beat That visual system */
+
+.role-page {
+  --role-bg: #050505;
+  --role-ink: #f2f2f0;
+  --role-muted: rgba(242, 242, 240, 0.55);
+  --role-dim: rgba(242, 242, 240, 0.3);
+  --role-line: rgba(242, 242, 240, 0.12);
+  --role-panel: #101010;
+  --role-surface: #161616;
+  --role-accent: #e05929;
+  --role-blue: #7ec8ea;
+  --role-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --role-radius: clamp(20px, 2.5vw, 32px);
+  --role-pad-x: clamp(1.25rem, 4vw, 4rem);
+  --role-max: 1180px;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-duration-ui: 0.24s;
+  --role-glass-bg: color-mix(in srgb, #ffffff 8%, transparent);
+  --role-glass-bg-hover: color-mix(in srgb, #ffffff 13%, transparent);
+  --role-glass-border: color-mix(in srgb, #ffffff 22%, transparent);
+  --role-glass-border-soft: color-mix(in srgb, #ffffff 8%, transparent);
+  --role-glass-spec: color-mix(in srgb, #ffffff 16%, transparent);
+  --role-glass-fill:
+    linear-gradient(
+      155deg,
+      color-mix(in srgb, #ffffff 14%, transparent) 0%,
+      color-mix(in srgb, #ffffff 2%, transparent) 50%,
+      color-mix(in srgb, #ffffff 6%, transparent) 100%
+    ),
+    var(--role-glass-bg);
+  --role-glass-shadow:
+    0 1px 0 var(--role-glass-spec) inset,
+    0 -1px 0 color-mix(in srgb, #000 28%, transparent) inset,
+    0 0 0 1px var(--role-glass-border-soft) inset,
+    0 16px 40px color-mix(in srgb, #000 42%, transparent),
+    0 2px 8px color-mix(in srgb, #000 24%, transparent);
+  background: var(--role-bg);
+  color: var(--role-ink);
+  font-family: "Inter", sans-serif;
+  /* clip avoids creating a second scrollport that breaks document snap */
+  overflow-x: clip;
+}
+
+/* Case-study-style section snap */
+html.role-snap {
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: 0;
+}
+
+html.role-snap #role-main > section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  box-sizing: border-box;
+  min-height: 100dvh;
+}
+
+html.role-snap .role-projects,
+html.role-snap .role-close {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+html.role-snap .role-focus {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(1.25rem, 3.5vh, 2.25rem);
+}
+
+html.role-snap .role-focus-stage {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+html.role-snap .role-practice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.role-snap {
+    scroll-snap-type: y proximity;
+  }
+}
+
+.role-cursor-fx {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  width: 100%;
+  height: 100%;
+}
+
+.role-page.has-cursor-fx,
+.role-page.has-cursor-fx * {
+  cursor: none !important;
+}
+
+.role-grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  opacity: 0.12;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.role-skip {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  color: #000;
+}
+
+.role-skip:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* ── Top ─────────────────────────────────────────────────────────────────── */
+
+.role-top {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  pointer-events: none;
+}
+
+.role-top > * { pointer-events: auto; }
+
+.role-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  color: var(--role-ink);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--role-line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: background 0.25s var(--role-ease), transform 0.25s var(--role-ease);
+}
+
+.role-back:hover {
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.role-back svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.role-top-meta {
+  margin: 0;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--role-line);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--role-muted);
+}
+
+/* ── Shared ──────────────────────────────────────────────────────────────── */
+
+.role-meta {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--role-accent);
+}
+
+.role-block-title {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.role-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.75rem;
+}
+
+/* Match home hero glass buttons (dark) */
+.home-hero-btn {
+  --btn-lift: 0px;
+  --btn-press: 1;
+  --glass-bg: color-mix(in srgb, #ffffff 11%, transparent);
+  --glass-bg-hover: color-mix(in srgb, #ffffff 17%, transparent);
+  --glass-border: color-mix(in srgb, #ffffff 28%, transparent);
+  --glass-border-soft: color-mix(in srgb, #ffffff 8%, transparent);
+  --glass-spec: color-mix(in srgb, #ffffff 16%, transparent);
+  --glass-ink: #ffffff;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 26px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--glass-ink);
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid var(--glass-border);
+  background:
+    linear-gradient(
+      155deg,
+      color-mix(in srgb, #ffffff 14%, transparent) 0%,
+      color-mix(in srgb, #ffffff 2%, transparent) 50%,
+      color-mix(in srgb, #ffffff 6%, transparent) 100%
+    ),
+    var(--glass-bg);
+  backdrop-filter: blur(22px) saturate(1.65);
+  -webkit-backdrop-filter: blur(22px) saturate(1.65);
+  box-shadow:
+    0 1px 0 var(--glass-spec) inset,
+    0 -1px 0 color-mix(in srgb, #000 28%, transparent) inset,
+    0 0 0 1px var(--glass-border-soft) inset,
+    0 12px 32px color-mix(in srgb, #000 40%, transparent),
+    0 2px 8px color-mix(in srgb, #000 24%, transparent);
+  transform: translateY(var(--btn-lift)) scale(var(--btn-press));
+  transition:
+    background var(--motion-duration-ui) var(--motion-ease),
+    border-color var(--motion-duration-ui) var(--motion-ease),
+    box-shadow var(--motion-duration-ui) var(--motion-ease),
+    transform var(--motion-duration-ui) var(--motion-ease),
+    color var(--motion-duration-ui) var(--motion-ease);
+}
+
+.home-hero-btn::before {
+  content: "";
+  position: absolute;
+  inset: -40% -20%;
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    color-mix(in srgb, #ffffff 55%, transparent) 48%,
+    color-mix(in srgb, #ffffff 18%, transparent) 52%,
+    transparent 65%
+  );
+  transform: translateX(-28%) rotate(8deg);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 0.55s var(--motion-ease), opacity 0.35s ease;
+}
+
+.home-hero-btn > * {
+  position: relative;
+  z-index: 1;
+}
+
+.home-hero-btn:hover {
+  text-decoration: none;
+  --btn-lift: -2px;
+  background:
+    linear-gradient(
+      155deg,
+      color-mix(in srgb, #ffffff 48%, transparent) 0%,
+      color-mix(in srgb, #ffffff 8%, transparent) 42%,
+      color-mix(in srgb, #ffffff 18%, transparent) 100%
+    ),
+    var(--glass-bg-hover);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #ffffff 90%, transparent) inset,
+    0 -1px 0 color-mix(in srgb, #000 8%, transparent) inset,
+    0 0 0 1px color-mix(in srgb, #ffffff 40%, transparent) inset,
+    0 16px 36px color-mix(in srgb, #000 14%, transparent),
+    0 4px 10px color-mix(in srgb, #000 8%, transparent);
+}
+
+.home-hero-btn:hover::before {
+  transform: translateX(34%) rotate(8deg);
+  opacity: 0.85;
+}
+
+.home-hero-btn:active {
+  --btn-lift: 0px;
+  --btn-press: 0.98;
+}
+
+/* ── Reveal ──────────────────────────────────────────────────────────────── */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s var(--role-ease), transform 0.9s var(--role-ease);
+}
+
+[data-reveal].is-inview {
+  opacity: 1;
+  transform: none;
+}
+
+[data-rise] {
+  display: block;
+  opacity: 0;
+  transform: translateY(1em);
+  transition: opacity 0.95s var(--role-ease), transform 0.95s var(--role-ease);
+}
+
+.role-intro.is-ready [data-rise] {
+  opacity: 1;
+  transform: none;
+}
+
+.role-intro.is-ready .role-brand { transition-delay: 0.12s; }
+.role-intro.is-ready .role-intro-title [data-rise]:nth-child(1) { transition-delay: 0.28s; }
+.role-intro.is-ready .role-intro-title [data-rise]:nth-child(2) { transition-delay: 0.4s; }
+.role-intro.is-ready .role-intro-lede { transition-delay: 0.58s; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal], [data-rise] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ── Continuous page atmosphere ──────────────────────────────────────────── *
+ * Sections share one base background; each keeps a soft wash that fades out
+ * instead of a hard band / border between regions.
+ */
+
+#role-main {
+  position: relative;
+  background: transparent;
+}
+
+/* ── Intro ───────────────────────────────────────────────────────────────── */
+
+.role-intro {
+  position: relative;
+  isolation: isolate;
+  min-height: min(88vh, 820px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(6rem, 14vh, 9rem) clamp(1.4rem, 5vw, 4rem) clamp(4rem, 10vh, 6rem);
+  background: transparent;
+}
+
+.role-intro::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -25% 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 12%, rgba(224, 89, 41, 0.16), transparent 58%),
+    radial-gradient(ellipse 50% 40% at 80% 75%, rgba(80, 80, 80, 0.22), transparent 55%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
+}
+
+.role-intro > * {
+  position: relative;
+  z-index: 1;
+}
+
+.role-brand {
+  margin: 0 0 0.85rem;
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--role-accent);
+}
+
+.role-intro-title {
+  margin: 0;
+  max-width: 12em;
+  font-size: clamp(3rem, 8vw, 5.8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+}
+
+.role-intro-lede {
+  margin: 1.5rem 0 0;
+  max-width: 34rem;
+  font-size: clamp(1.02rem, 1.5vw, 1.15rem);
+  line-height: 1.55;
+  color: var(--role-muted);
+}
+
+/* ── Ethos / tabs ────────────────────────────────────────────────────────── */
+
+.role-focus {
+  position: relative;
+  padding: clamp(2rem, 5vh, 3.5rem) var(--role-pad-x);
+  background: transparent;
+}
+
+.role-focus-stage {
+  display: grid;
+  gap: 1.25rem;
+  max-width: var(--role-max);
+  margin-inline: auto;
+}
+
+.role-focus-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.85rem 1.25rem;
+}
+
+.role-focus-head .role-block-title {
+  margin: 0;
+}
+
+.role-focus-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  padding: 0.28rem;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--role-line);
+}
+
+@media (min-width: 960px) {
+  .role-focus-head {
+    justify-content: space-between;
+  }
+
+  .role-focus-tabs {
+    margin-left: auto;
+  }
+}
+
+.role-tab {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--role-dim);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  padding: 0.65rem 1.05rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.25s var(--role-ease), color 0.25s var(--role-ease);
+}
+
+.role-tab:hover {
+  color: var(--role-ink);
+}
+
+.role-tab.is-active {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--role-ink);
+}
+
+.role-tab-short {
+  display: inline;
+}
+
+.role-tab-full {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .role-tab-short {
+    display: none;
+  }
+
+  .role-tab-full {
+    display: inline;
+  }
+}
+
+.role-focus-frame {
+  position: relative;
+}
+
+.role-focus-panels {
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--role-radius);
+  overflow: hidden;
+  min-height: 0;
+  border: 1px solid var(--role-glass-border);
+  background: var(--role-glass-fill);
+  backdrop-filter: blur(22px) saturate(1.65);
+  -webkit-backdrop-filter: blur(22px) saturate(1.65);
+  box-shadow: var(--role-glass-shadow);
+}
+
+.role-focus-panel {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100%;
+  min-height: inherit;
+}
+
+.role-focus-panel[hidden] {
+  display: none;
+}
+
+.role-focus-panels[data-height-locked] .role-focus-panel {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.45s var(--role-ease), visibility 0.45s var(--role-ease);
+}
+
+.role-focus-panels[data-height-locked] .role-focus-panel[hidden] {
+  display: grid;
+}
+
+.role-focus-panels[data-height-locked] .role-focus-panel.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.role-focus-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 6 / 5;
+  min-height: 0;
+  background: #111;
+  overflow: hidden;
+}
+
+.role-focus-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.role-focus-panel[data-panel="ethno"] .role-focus-visual img {
+  object-position: center 42%;
+}
+
+.role-focus-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: clamp(0.7rem, 1.6vh, 1.05rem);
+  height: 100%;
+  min-height: 0;
+  padding: clamp(1.5rem, 3.5vw, 2.75rem);
+  background: color-mix(in srgb, #ffffff 3%, transparent);
+}
+
+@media (min-width: 960px) {
+  .role-focus-copy {
+    padding: clamp(1.75rem, 4.5vw, 3rem) clamp(1.75rem, 3.5vw, 2.75rem);
+  }
+}
+
+.role-focus-copy .role-meta {
+  margin: 0;
+}
+
+.role-focus-copy h3 {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.4vw, 2.15rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+}
+
+.role-focus-copy > p {
+  margin: 0;
+  max-width: 34em;
+  font-size: clamp(0.98rem, 1.35vw, 1.1rem);
+  line-height: 1.5;
+  color: var(--role-muted);
+}
+
+.role-focus-copy ul {
+  margin: 0.1rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.role-focus-copy li {
+  position: relative;
+  padding-left: 1.15rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--role-ink);
+}
+
+.role-focus-copy li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: var(--role-accent);
+}
+
+.role-ethos-nav {
+  display: none;
+  appearance: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 3.1rem;
+  height: 3.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--role-line);
+  background: rgba(20, 20, 20, 0.85);
+  color: var(--role-ink);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: background 0.2s var(--role-ease), transform 0.2s var(--role-ease);
+}
+
+.role-ethos-nav svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.role-ethos-nav:hover {
+  background: rgba(40, 40, 40, 0.95);
+  transform: translateY(-50%) scale(1.03);
+}
+
+.role-ethos-nav--prev { left: -0.65rem; }
+.role-ethos-nav--next { right: -0.65rem; }
+
+@media (min-width: 960px) {
+  .role-focus-panel {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .role-focus-visual {
+    aspect-ratio: 6 / 5;
+    height: auto;
+    min-height: 100%;
+    align-self: stretch;
+  }
+
+  .role-ethos-nav { display: inline-flex; }
+  .role-ethos-nav--prev { left: -1.1rem; }
+  .role-ethos-nav--next { right: -1.1rem; }
+}
+
+/* ── Projects ────────────────────────────────────────────────────────────── */
+
+.role-projects {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  padding: clamp(4.5rem, 12vh, 8rem) var(--role-pad-x);
+  background: transparent;
+}
+
+.role-projects::before {
+  content: "";
+  position: absolute;
+  inset: -22% 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 85% 28%, rgba(0, 133, 202, 0.2), transparent 58%),
+    radial-gradient(ellipse 55% 45% at 12% 78%, rgba(224, 89, 41, 0.12), transparent 55%),
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(7, 11, 18, 0.55) 22%,
+      rgba(7, 11, 18, 0.72) 50%,
+      rgba(7, 11, 18, 0.55) 78%,
+      transparent 100%
+    );
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    #000 16%,
+    #000 84%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    #000 16%,
+    #000 84%,
+    transparent 100%
+  );
+}
+
+.role-projects-inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--role-max);
+  margin-inline: auto;
+}
+
+.role-projects .role-block-title {
+  margin: 0 0 1.5rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.role-projects-lead {
+  margin: 0;
+  max-width: 12em;
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--role-blue);
+}
+
+.role-projects-note {
+  margin: 1.25rem 0 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.35);
+  white-space: nowrap;
+}
+
+/* ── Sense cards ─────────────────────────────────────────────────────────── */
+
+.role-practice {
+  position: relative;
+  box-sizing: border-box;
+  padding: clamp(3.5rem, 9vh, 6rem) var(--role-pad-x) clamp(4.5rem, 11vh, 7rem);
+  background: transparent;
+}
+
+.role-practice-head {
+  max-width: var(--role-max);
+  margin: 0 0 1.5rem;
+  padding-inline: 0;
+}
+
+.role-rail {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.4rem, 0.8vw, 0.75rem);
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+  outline: none;
+  min-width: 0;
+}
+
+.role-vcard {
+  --vcard-tint: transparent;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100%;
+  isolation: isolate;
+  border-radius: calc(var(--role-radius) - 6px);
+  border: 1px solid var(--role-glass-border);
+  background:
+    linear-gradient(
+      155deg,
+      color-mix(in srgb, #ffffff 14%, transparent) 0%,
+      color-mix(in srgb, #ffffff 2%, transparent) 50%,
+      color-mix(in srgb, #ffffff 6%, transparent) 100%
+    ),
+    linear-gradient(165deg, var(--vcard-tint), transparent 72%),
+    var(--role-glass-bg);
+  backdrop-filter: blur(22px) saturate(1.65);
+  -webkit-backdrop-filter: blur(22px) saturate(1.65);
+  box-shadow: var(--role-glass-shadow);
+  overflow: hidden;
+  transition:
+    transform 0.4s var(--role-ease),
+    border-color 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.role-vcard:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, #e05929 55%, var(--role-glass-border));
+  background:
+    linear-gradient(
+      155deg,
+      color-mix(in srgb, #ffffff 20%, transparent) 0%,
+      color-mix(in srgb, #ffffff 4%, transparent) 50%,
+      color-mix(in srgb, #ffffff 9%, transparent) 100%
+    ),
+    linear-gradient(165deg, var(--vcard-tint), transparent 72%),
+    var(--role-glass-bg-hover);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #ffffff 22%, transparent) inset,
+    0 -1px 0 color-mix(in srgb, #000 28%, transparent) inset,
+    0 0 0 1px color-mix(in srgb, #ffffff 12%, transparent) inset,
+    0 20px 48px color-mix(in srgb, #000 48%, transparent),
+    0 4px 12px color-mix(in srgb, #000 28%, transparent);
+}
+
+.role-vcard-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.95rem 1rem 0.35rem;
+}
+
+.role-vcard-label,
+.role-vcard-badge {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.role-vcard-label { color: var(--role-ink); }
+.role-vcard-badge { color: var(--role-accent); }
+
+.role-vcard-visual {
+  flex: 1;
+  min-height: clamp(180px, 20vw, 260px);
+  padding: 0.85rem 1.1rem;
+}
+
+.role-mock {
+  height: 100%;
+  min-height: clamp(160px, 18vw, 240px);
+  background: transparent;
+  border: none;
+  display: grid;
+  place-content: center;
+  gap: 0.85rem;
+  padding: 0.5rem 0;
+}
+
+.role-mock-signal {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.45rem;
+  height: 3.6rem;
+}
+
+.role-mock-signal span {
+  width: 0.5rem;
+  border-radius: 999px;
+  background: var(--role-accent);
+  opacity: 0.75;
+}
+
+.role-mock-signal span:nth-child(1) { height: 45%; }
+.role-mock-signal span:nth-child(2) { height: 80%; }
+.role-mock-signal span:nth-child(3) { height: 60%; }
+
+.role-mock-compare {
+  display: flex;
+  gap: 0.65rem;
+  justify-content: center;
+}
+
+.role-mock-compare i {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.role-mock-compare i.is-strong {
+  background: var(--role-accent);
+}
+
+.role-mock-faces {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.role-mock-faces i {
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.role-mock-layers {
+  display: grid;
+  gap: 0.45rem;
+  width: 6.5rem;
+  margin-inline: auto;
+}
+
+.role-mock-layers span {
+  display: block;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.role-mock-layers span:nth-child(1) { width: 100%; }
+.role-mock-layers span:nth-child(2) { width: 78%; }
+.role-mock-layers span:nth-child(3) { width: 56%; background: var(--role-accent); }
+
+.role-mock-constellation {
+  position: relative;
+  width: 5.25rem;
+  height: 3.3rem;
+  margin-inline: auto;
+}
+
+.role-mock-constellation i {
+  position: absolute;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.role-mock-constellation i:nth-child(1) { left: 10%; top: 60%; }
+.role-mock-constellation i:nth-child(2) { left: 40%; top: 20%; background: var(--role-accent); }
+.role-mock-constellation i:nth-child(3) { left: 70%; top: 55%; }
+.role-mock-constellation i:nth-child(4) { left: 85%; top: 15%; }
+
+.role-vcard-copy {
+  padding: 0.45rem 1.1rem 1.25rem;
+}
+
+.role-vcard-copy h3 {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.02rem, 1.15vw, 1.15rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.role-vcard-copy p {
+  margin: 0;
+  font-size: clamp(0.88rem, 1vw, 0.98rem);
+  line-height: 1.4;
+  color: var(--role-muted);
+}
+
+.role-vcard--intuition { --vcard-tint: color-mix(in srgb, #4f7cff 22%, transparent); }
+.role-vcard--taste { --vcard-tint: color-mix(in srgb, #e05929 24%, transparent); }
+.role-vcard--empathy { --vcard-tint: color-mix(in srgb, #8aa0c8 20%, transparent); }
+.role-vcard--perspective { --vcard-tint: color-mix(in srgb, #2f8fbf 22%, transparent); }
+.role-vcard--vision { --vcard-tint: color-mix(in srgb, #9aa3b8 18%, transparent); }
+
+@media (max-width: 1100px) {
+  .role-rail {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .role-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .role-rail {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Close ───────────────────────────────────────────────────────────────── */
+
+.role-close {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(4.5rem, 12vh, 8rem) var(--role-pad-x);
+  background: transparent;
+}
+
+.role-close::before {
+  content: "";
+  position: absolute;
+  inset: -28% 0 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 88%, rgba(224, 89, 41, 0.16), transparent 58%),
+    radial-gradient(ellipse 40% 35% at 50% 70%, rgba(80, 80, 80, 0.18), transparent 55%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 28%, #000 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 28%, #000 100%);
+}
+
+.role-close-inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--role-max);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.role-close-inner .role-hero-actions {
+  justify-content: center;
+}
+
+.role-close-title {
+  margin: 0 auto;
+  max-width: 9em;
+  font-size: clamp(2.6rem, 7vw, 4.8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+  color: var(--role-accent);
+}

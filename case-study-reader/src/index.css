@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-[#f3f3f0] text-[#0a0a0a];
+  }
+
+  html.dark {
+    @apply bg-[#0f0f0f] text-[#e8e8e8];
+  }
+}
+
+@layer components {
+  .case-study-content {
+    @apply mx-auto w-full max-w-[1100px] px-10;
+  }
+}

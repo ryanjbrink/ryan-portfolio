@@ -2,239 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Simple Variables - Ryan Brink</title>
+  <title>Variables - Ryan Brink</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="js/site-theme.js"></script>
   <link rel="stylesheet" href="styles/reset.css" />
   <link rel="stylesheet" href="styles/globals.css" />
   <link rel="stylesheet" href="styles/case-study.css" />
-  <link rel="stylesheet" href="styles/lightbulb.css" />
+  <link rel="stylesheet" href="js/case-study-page.css?v=38" />
 </head>
-<body>
-  <!-- Light bulb toggle -->
-  <div class="light-bulb-container">
-    <div class="light-cord"></div>
-    <button class="light-bulb" aria-label="Toggle dark mode">
-      <svg class="bulb-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="bulb-glow" cx="50%" cy="50%">
-            <stop offset="0%" style="stop-color:#fff9e6;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#fff9e6;stop-opacity:0" />
-          </radialGradient>
-        </defs>
-        <!-- Bulb base (at top, connected to wire) -->
-        <rect class="bulb-base" x="44" y="10" width="12" height="3" fill="#a0a0a0" />
-        <rect class="bulb-base" x="45" y="13" width="10" height="8" fill="#b8b8b8" rx="1" />
-        <!-- Glow effect (only visible when on) -->
-        <circle class="bulb-glow" cx="50" cy="45" r="30" fill="url(#bulb-glow)" opacity="0" />
-        <!-- Bulb glass (hanging down) -->
-        <circle class="bulb-glass" cx="50" cy="45" r="20" fill="#fff9e6" stroke="#d4d4d4" stroke-width="1.5" />
+<body class="case-study-page">
+  <article class="case-study" data-card-name="Variables" data-card-tag="inconsistency" data-card-tag-strike>
+    <a href="index.html" class="case-back" aria-label="Back to home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
-    </button>
-  </div>
+    </a>
 
-  <article class="case-study">
-    <header class="case-header">
-      <span class="case-header-name">Ryan Brink</span>
-      <a href="index.html" class="case-header-home">Return Home</a>
+    <header class="case-hero">
+      <img class="case-hero-media" src="Images/figma_workspace.png" alt="Variables" />
+      <div class="case-study-content case-hero-inner">
+        <h1 class="case-hero-title">Variables</h1>
+        <p class="case-hero-tagline">Eliminates 100% visual inconsistency across design and development.</p>
+      </div>
     </header>
 
-    <section class="case-hero">
-      <h1 class="case-hero-title">Simple Variables</h1>
-      <p class="case-hero-subtitle">Variables Built for Designers. Eliminating UX Debt.</p>
-      <div class="case-meta">
-        <span><strong>Role:</strong> Sr. Product Designer</span>
-        <span><strong>Duration:</strong> 1 Month</span>
-        <span><strong>Showcasing:</strong> An iterative process for design system variables.</span>
+    <main class="case-body">
+      <div class="case-study-content">
+        <section class="case-section" data-media="Images/tokens1.svg" data-mobile-summary="A framework designers choose — NPS +70 → +90, developers stayed at +100.">
+          <h2>The Framework</h2>
+          <p>A framework that eliminates visual inconsistency across products while remaining approachable enough that designers reach for it by choice, not obligation. Designer NPS jumped from +70 to +90. Developer NPS held at a perfect +100.</p>
+        </section>
+
+        <section class="case-section" data-media="Images/Tokens2.svg" data-mobile-summary="Without a shared language, products quietly accumulate 30+ button variants no one can explain.">
+          <h2>The Cost of Visual Drift</h2>
+          <p>Design teams working on large, long-running products accumulate debt quietly. A button style gets overridden here. A color outside the guide gets used there. By the time anyone notices, the codebase has 30+ button variants and no one can explain why.</p>
+          <p>Existing tools like component libraries and color styles helped at the margins, but broke down the moment a designer needed something custom — which was constantly. Without a deeper layer of structure, visual drift was inevitable. The inconsistency wasn't laziness; it was a system gap. Designers lacked a reliable, flexible shared language with developers, and the gap kept widening with every sprint.</p>
+        </section>
+
+        <section
+          class="case-section"
+          data-media="Images/tokensa.svg"
+          data-media-cycle="Images/tokensa.svg,Images/tokensb.svg,Images/tokensc.svg"
+          data-mobile-summary="Two-tier tokens: raw globals, meaningful aliases — and modes that don’t break themes."
+        >
+          <h2>Granular Control at Scale</h2>
+          <p>Simple Variables introduces a two-tier token architecture — global tokens that define raw values, and alias tokens that apply meaning to them — giving designers intuitive handles like "primary background" instead of hex codes, and giving developers a clean JSON file they can implement directly.</p>
+          <p>In V2, surfaces, borders, and text are treated as distinct entities with their own contrast needs rather than forced into a rigid shared scale. Text hierarchy is expressed through opacity rather than separate token sets, cutting cognitive load dramatically. State changes — hover, pressed, disabled — are applied as universal layer modifiers instead of requiring designers to decode and swap entire token names.</p>
+          <p>Light and dark mode logic moves to the alias level, freeing global tokens for true multi-theme support, so a team can switch brand palettes and modes independently without breaking anything.</p>
+        </section>
+
+        <section class="case-section" data-media="Images/tokens4.svg" data-mobile-summary="V2 keeps the consistency, removes the friction — tokens as a design choice.">
+          <h2>Design Autonomy</h2>
+          <p>The goal was a system that designers would actually adopt, not just tolerate. V1 solved the consistency problem but created a new one: complexity. V2 keeps everything V1 got right and removes the friction that was slowing designers down — enabling them to use the right tokens as a design choice, not the other way around.</p>
+        </section>
       </div>
-    </section>
-
-    <img class="case-image" src="Images/Tokensbanner.svg" alt="Tokens banner" />
-
-    <section class="case-section">
-      <h2>Problem</h2>
-      <p>I inherited design files burdened with years of UX debt—over 30 button styles and countless inconsistencies in color and component usage. While components and color styles helped to some extent, they often broke when designers needed a more custom component. Designers would override components or apply colors not used in the style guide, leading to subtle but widespread visual drift. What we needed was a more robust, systematic approach—one that would eliminate guesswork, enforce consistency, and scale effortlessly across platforms while preventing old habits from resurfacing.</p>
-      <img class="case-image" src="Images/Tbuttons.svg" alt="Button inconsistencies" />
-    </section>
-
-    <section class="case-section">
-      <h2>Concept</h2>
-      <p>A Design Token is a source of truth for designers and developers. It represents design values, and can be used to take granular control of UI at scale. Known within Figma as variants.</p>
-      <div class="token-steps" id="token-steps">
-        <div class="token-step active"><img src="Images/TE1.svg" alt="Token step 1" /></div>
-        <div class="token-step"><img src="Images/TE2.svg" alt="Token step 2" /></div>
-        <div class="token-step"><img src="Images/TE3.svg" alt="Token step 3" /></div>
-        <div class="token-step-dots">
-          <button class="token-dot active" data-index="0" aria-label="Step 1"></button>
-          <button class="token-dot" data-index="1" aria-label="Step 2"></button>
-          <button class="token-dot" data-index="2" aria-label="Step 3"></button>
-        </div>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <h2>Process</h2>
-      <p>After researching, testing, and making sure colors would be WCAG compliant, I created a key for what each token would be responsible for, and how they would interact with each other.</p>
-      <img class="case-image" src="Images/TCFT.svg" alt="Process color framework testing" />
-    </section>
-
-    <section class="case-section">
-      <h2>Solution</h2>
-      <p>I Introduced design tokens as a shared language between design and development—a unified source of truth easily implemented with a JSON file.</p>
-      <img class="case-image" src="https://framerusercontent.com/images/Ob49OjvKMTYXdu2XHxg1PIiI8ok.svg?width=1016&height=452" alt="Create Variable" />
-    </section>
-
-    <section class="case-section">
-      <h2>V1 Results</h2>
-      <p><strong>Good:</strong> Reduced inconsistency, solving UX debt. Reduced guesswork and enforced consistency. Scaled to other platforms and projects. Created a cohesive language between design and development.</p>
-      <p><strong>Bad:</strong> Steep learning curve for designers to adopt. High cognitive load due to naming complexity. Inefficiencies in system that needed to be reduced.</p>
-      <img class="case-image" src="Images/Tv1Result.svg" alt="V1 Result" />
-    </section>
-
-    <section class="case-section">
-      <h2>Net Promotor Score (NPS) of V1</h2>
-      <p>Designers: +70 | Developers: +100</p>
-      <h2>How might we...</h2>
-      <img class="case-image" src="Images/Thowcanwe.svg" alt="How might we" />
-    </section>
-
-    <section class="case-section">
-      <h2>V1 to V2</h2>
-      <p>I set out to create a variable system that puts design first—one that lets designers focus on visual decisions without getting bogged down in technical complexity.</p>
-    </section>
-
-    <section class="case-section">
-      <h3>1st Key Difference - Color Scale</h3>
-      <p>V1 was built with the color scale as the foundation—surfaces, borders, and text were then fit into that system based on predefined ranges. In contrast, V2 started with the unique needs of each element. Surfaces, borders, and text were treated as distinct entities, each requiring different levels of contrast and expression. This shift led to a more dynamic and purpose-driven color scale, rather than a rigid, incremental one.</p>
-      <img class="case-image" src="https://framerusercontent.com/images/QhQQCLAPpcq7eSEsNDu6W7JKIk.svg?width=704&height=410" alt="V1 color scale" />
-      <p><strong>V1:</strong> Predefined surfaces, borders, and content scales. Represented in light mode and without inverse tokens for simplicity.</p>
-      <img class="case-image" src="https://framerusercontent.com/images/48v0jlFbmQwtLjObybI7W7dj8.svg?width=704&height=677" alt="V2 color scale" />
-      <p><strong>V2:</strong> Dynamic surfaces, borders, and content ranges.</p>
-    </section>
-
-    <section class="case-section">
-      <h3>2nd Key Difference - Surfaces & Text</h3>
-      <p>In V1, content and surfaces followed a strict one-to-one relationship. In V2, I broke that dependency. Surfaces were designed with more subtle differences in light stops. Content hierarchy was decoupled from the surface it sat on, and instead expressed through opacity. The result: a cleaner, more flexible system that still met accessibility standards while significantly reducing cognitive load for designers.</p>
-      <img class="case-image" src="https://framerusercontent.com/images/jVjPnIEgmSBc1ZjkTNRGTYMvdNM.svg?width=704&height=391" alt="V1 surfaces" />
-      <p><strong>V1:</strong> Surfaces and content linked together for consistent contrast. Plus creating hierarchy.</p>
-      <img class="case-image" src="https://framerusercontent.com/images/rlA8nDliNmtifHMJTyKnhzPqlDM.svg?width=704&height=276" alt="V2 surfaces" />
-      <p><strong>V2:</strong> Text can be mixed and matched with surfaces.</p>
-    </section>
-
-    <section class="case-section">
-      <h3>3rd Key Difference - State Layers</h3>
-      <p>In V1, changing a component's state required swapping the entire token. In V2, I introduced state tokens that could be layered on top of the base token. Designers simply applied a universal modifier like state-pressed, state-hover, or state-disabled to the fill. This dramatically improved clarity and speed.</p>
-      <img class="case-image" src="https://framerusercontent.com/images/EX2lJFNjy2NEL9tOr602OBMgXrE.svg?width=704&height=326" alt="State layers" />
-      <p><strong>V1:</strong> States move up or down the scale.</p>
-      <img class="case-image" src="Images/layers.svg" alt="State layers V1" />
-      <p><strong>V2:</strong> States layers added to the default fill.</p>
-    </section>
-
-    <section class="case-section">
-      <h3>4th Key Difference - Edge Cases</h3>
-      <p>In V1, I introduced "inverse" tokens to handle surfaces requiring stronger contrast—typically darker surfaces in light mode or lighter ones in dark mode. This approach worked well for standout elements like call-to-action buttons but came with added complexity.</p>
-      <p>With V2, I streamlined the system. The need for inverse-like surfaces still existed, but I created a clearer distinction between regular surface colors and semantic colors. Only semantic values—those tied to meaning, like alerts or primary actions—require both light and dark variants for each theme. All other surfaces now align directly with the active theme, either light or dark.</p>
-      <img class="case-image" src="Images/inversetoken.svg" alt="Inverse token" />
-      <p><strong>V1:</strong> Inverse options allow dark surfaces and light content while in light mode.</p>
-      <img class="case-image" src="Images/weak+strong.svg" alt="Weak and strong tokens" />
-      <p><strong>V2:</strong> Semantic values provide weak and strong options to replace the need for inverse complexity.</p>
-    </section>
-
-    <section class="case-section">
-      <h3>Theme Switching</h3>
-      <p>For cases where a designer wants a neutral surface to behave like an inverse (e.g., a dark side panel in light mode), the system allows that panel layer to render in dark mode independently of the global theme. When switching themes, the panel remains dark—preserving visual continuity.</p>
-      <img class="case-image case-image-v1-result-size" src="Images/themes.svg" alt="Themes" />
-    </section>
-
-    <section class="case-section">
-      <h3>5th Key Difference - Powerful Theming</h3>
-      <p>In V1, light and dark mode logic was handled at the global token level. In V2, I shifted to a single unified palette. Light and dark mode behavior was now managed at the alias level—where each alias could reference different global tokens depending on the mode. This freed up the global palette, allowing full color swaps to be reserved for entirely different themes rather than just light/dark modes.</p>
-      <img class="case-image case-image-v1-result-size" src="Images/v1-light-and-dark.svg" alt="V1 light and dark" />
-      <p><strong>V1:</strong> Results from swapping global values.</p>
-      <img class="case-image case-image-v1-result-size" src="Images/v2-themed.svg" alt="V2 themed" />
-      <p><strong>V2:</strong> Results from swapping alias and global values. Can change both theme and mode independently.</p>
-    </section>
-
-    <section class="case-section">
-      <h2>But what about developers</h2>
-      <p>Although the new system was designed to be simpler for designers, I was careful not to disrupt what was already working well for developers. I collaborated closely with our staff engineer to validate this approach. He confirmed it was not only feasible, but that the structural changes on his end were minimal. The update was considered trivial to implement—but delivered a high impact across design and development workflows.</p>
-    </section>
-
-    <section class="case-section">
-      <h2>V2</h2>
-      <p><strong>Good:</strong> Kept the reduction of UX debt from V1. Maintained cross-platform scalability while preserving a unified design and development language. Smaller learning curve for designers to adopt. Token naming conventions were simplified. System inefficiencies were reduced.</p>
-      <p><strong>Bad:</strong> More complexity behind the curtain making it more difficult to architecturally update by other designers if needed.</p>
-    </section>
-
-    <section class="case-section">
-      <h2>Net Promotor Score (NPS) of V2</h2>
-      <p>Designers: +90 (+20 from V1) | Developers: +100 (no change)</p>
-      <p>Designers shifted from passive supporters in V1 to active promoters in V2. Developers maintained their strong support and continued to find the system reliable and intuitive.</p>
-      <p>Next, we applied tokens to typography, spacing, borders, and elevation for a holistic and robust design system.</p>
-    </section>
-
-    <a href="index.html" class="case-return">Return Home</a>
+    </main>
   </article>
-
-  <script>
-    // Token step sequence
-    (function() {
-      const container = document.getElementById('token-steps');
-      if (!container) return;
-      const steps = container.querySelectorAll('.token-step');
-      const dots  = container.querySelectorAll('.token-dot');
-      let current = 0;
-      let timer = null;
-
-      function goTo(index) {
-        steps[current].classList.remove('active');
-        dots[current].classList.remove('active');
-        current = index % steps.length;
-        steps[current].classList.add('active');
-        dots[current].classList.add('active');
-      }
-
-      function startAuto() {
-        timer = setInterval(() => goTo(current + 1), 2500);
-      }
-
-      function stopAuto() {
-        clearInterval(timer);
-        timer = null;
-      }
-
-      dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-          stopAuto();
-          goTo(parseInt(dot.dataset.index));
-          startAuto();
-        });
-      });
-
-      startAuto();
-    })();
-  </script>
-
-  <script>
-    // Dark mode toggle
-    const lightBulb = document.querySelector('.light-bulb');
-    const body = document.body;
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      body.classList.add('dark-mode');
-    }
-    
-    lightBulb.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      
-      // Save preference
-      if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-      } else {
-        localStorage.setItem('theme', 'light');
-      }
-    });
-  </script>
+  <div id="case-study-root"></div>
+  <script src="js/case-study-page.js?v=38" defer></script>
 </body>
 </html>

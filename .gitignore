@@ -10,3 +10,10 @@ case-study-reader/dist/
 *.log
 .env
 .ENV
+.wrangler/
+analytics-worker/.wrangler/
+analytics-worker/node_modules/
+
+# Local agent tooling (Cloudflare skills, etc.)
+.agents/
+skills-lock.json

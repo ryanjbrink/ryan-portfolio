@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Stats — Ryan Brink</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="Images/favicon.svg" type="image/svg+xml" />
+  <script src="js/site-theme.js"></script>
+  <link rel="stylesheet" href="styles/reset.css" />
+  <link rel="stylesheet" href="styles/globals.css" />
+  <link rel="stylesheet" href="styles/stats.css?v=34" />
+  <script src="js/analytics-config.js"></script>
+</head>
+<body class="stats-page">
+  <header class="stats-top">
+    <div class="stats-brand">
+      <a class="stats-back" href="index.html" aria-label="Back to home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+      <div>
+        <h1>Site journeys</h1>
+        <p class="stats-brand-meta" data-stats-meta>Last 30 days</p>
+      </div>
+    </div>
+    <div class="stats-top-meta">
+      <div class="stats-range" data-stats-range>
+        <div class="stats-range-presets" role="tablist" aria-label="Time range">
+          <button type="button" data-preset="7">7D</button>
+          <button type="button" data-preset="14">14D</button>
+          <button type="button" class="is-active" data-preset="30">30D</button>
+          <button type="button" data-preset="90">90D</button>
+          <button type="button" data-preset="custom" data-range-toggle aria-expanded="false">Custom</button>
+        </div>
+        <div class="stats-range-panel" data-range-panel hidden>
+          <label class="stats-range-field">
+            <span>From</span>
+            <input type="date" data-range-from />
+          </label>
+          <label class="stats-range-field">
+            <span>To</span>
+            <input type="date" data-range-to />
+          </label>
+          <div class="stats-range-actions">
+            <button type="button" class="stats-range-apply" data-range-apply>Apply</button>
+          </div>
+        </div>
+      </div>
+      <span class="stats-pill" data-stats-status>Loading</span>
+    </div>
+  </header>
+
+  <div class="stats-locked" data-stats-locked hidden>
+    <div class="stats-locked-card stats-glass">
+      <h2>Protected</h2>
+      <p>Open with <strong>⌘E</strong> / <strong>Ctrl+E</strong>, or long-press the bottom-left corner on touch.</p>
+      <button type="button" class="stats-btn stats-glass" data-stats-unlock>Unlock</button>
+    </div>
+  </div>
+
+  <main class="stats-main" data-stats-app hidden>
+    <section class="stats-hero-kpis" data-stats-kpis aria-label="Key metrics"></section>
+
+    <section class="stats-panel stats-panel--flow" data-flow-panel aria-label="Journey flow">
+      <div class="flow-view" data-flow-view>
+        <div class="stats-panel-head">
+          <div>
+            <h2>Journey flow</h2>
+          </div>
+        </div>
+        <div class="flow-scroller" data-flow-scroller>
+          <div class="flow-stage" data-flow-stage>
+            <svg class="flow-ribbons" data-flow-ribbons></svg>
+            <div class="flow-columns" data-flow-columns></div>
+          </div>
+        </div>
+        <p class="flow-hint">Click a step to see matching sessions</p>
+      </div>
+
+      <div class="flow-detail" data-flow-detail hidden>
+        <div class="flow-detail-head">
+          <button type="button" class="stats-back" data-flow-back aria-label="Back to journey flow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="flow-detail-titles">
+            <p class="flow-detail-kicker" data-detail-kicker>Sessions</p>
+            <h2 data-detail-title>Matching visits</h2>
+          </div>
+        </div>
+        <div class="flow-detail-body">
+          <div class="session-rail" data-stats-sessions></div>
+          <div class="session-detail is-empty" data-stats-detail>
+            <p>Select a session</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats-grid-2">
+      <section class="stats-panel stats-glass" aria-label="Pages">
+        <div class="stats-panel-head">
+          <div>
+            <h2>Pages</h2>
+          </div>
+        </div>
+        <div class="bar-chart" data-stats-pages></div>
+      </section>
+      <section class="stats-panel stats-glass" aria-label="Sources">
+        <div class="stats-panel-head">
+          <div>
+            <h2>Sources</h2>
+          </div>
+        </div>
+        <div class="bar-chart" data-stats-referrers></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/stats-visuals.js?v=4"></script>
+  <script src="js/stats-demo.js?v=2"></script>
+  <script src="js/stats-app.js?v=14"></script>
+  <script src="js/stats-gate.js"></script>
+</body>
+</html>

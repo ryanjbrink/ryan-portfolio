@@ -52,6 +52,10 @@
   }
 
   syncFromStorage();
+  // Head scripts run before <body> exists — re-apply so body gets dark/dark-mode.
+  if (!document.body) {
+    document.addEventListener("DOMContentLoaded", syncFromStorage);
+  }
 
   // If still on auto, re-check when returning to the tab (e.g. across sunset).
   document.addEventListener("visibilitychange", function () {

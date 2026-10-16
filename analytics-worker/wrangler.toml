@@ -1,0 +1,20 @@
+name = "ryan-portfolio-analytics"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+workers_dev = true
+
+# Free tier: Cloudflare Workers + D1
+# 1. npm install
+# 2. npm run db:create  → paste the database_id below
+# 3. npm run db:migrate
+# 4. npx wrangler secret put ADMIN_PASSWORD
+# 5. npm run deploy  → copy the workers.dev URL into js/analytics-config.js
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ryan-portfolio-analytics"
+database_id = "f6ee5201-8c1e-4455-a37c-2cc3908ca9a1"
+
+[vars]
+# Comma-separated. localhost / 127.0.0.1 any port are always allowed in code.
+ALLOWED_ORIGINS = "https://ryanjbrink.com,https://www.ryanjbrink.com,http://localhost:5500,http://127.0.0.1:5500,http://localhost:8000,http://127.0.0.1:8000"

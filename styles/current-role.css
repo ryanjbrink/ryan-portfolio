@@ -840,31 +840,6 @@ html.role-snap .role-practice {
   -webkit-backdrop-filter: blur(22px) saturate(1.65);
   box-shadow: var(--role-glass-shadow);
   overflow: hidden;
-  transition:
-    transform 0.4s var(--role-ease),
-    border-color 0.35s ease,
-    background 0.35s ease,
-    box-shadow 0.35s ease;
-}
-
-.role-vcard:hover {
-  transform: translateY(-4px);
-  border-color: color-mix(in srgb, #e05929 55%, var(--role-glass-border));
-  background:
-    linear-gradient(
-      155deg,
-      color-mix(in srgb, #ffffff 20%, transparent) 0%,
-      color-mix(in srgb, #ffffff 4%, transparent) 50%,
-      color-mix(in srgb, #ffffff 9%, transparent) 100%
-    ),
-    linear-gradient(165deg, var(--vcard-tint), transparent 72%),
-    var(--role-glass-bg-hover);
-  box-shadow:
-    0 1px 0 color-mix(in srgb, #ffffff 22%, transparent) inset,
-    0 -1px 0 color-mix(in srgb, #000 28%, transparent) inset,
-    0 0 0 1px color-mix(in srgb, #ffffff 12%, transparent) inset,
-    0 20px 48px color-mix(in srgb, #000 48%, transparent),
-    0 4px 12px color-mix(in srgb, #000 28%, transparent);
 }
 
 .role-vcard-top {
@@ -915,6 +890,19 @@ html.role-snap .role-practice {
   border-radius: 999px;
   background: var(--role-accent);
   opacity: 0.75;
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+
+.role-mock-compare i,
+.role-mock-faces i,
+.role-mock-layers span,
+.role-mock-constellation i {
+  will-change: transform, opacity;
+}
+
+.role-mock-layers span {
+  transform-origin: 0% 50%;
 }
 
 .role-mock-signal span:nth-child(1) { height: 45%; }

@@ -12,7 +12,10 @@
   --profile-blue: #2563eb;
 }
 
-/* Dark mode colors */
+/* Dark mode colors — html.dark set in <head> by site-theme.js before body exists */
+html.dark,
+html.dark-mode,
+body.dark,
 body.dark-mode {
   --bg: #0f0f0f;
   --text-primary: #e8e8e8;

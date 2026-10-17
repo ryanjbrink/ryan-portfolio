@@ -20,6 +20,7 @@
     detail: document.querySelector("[data-stats-detail]"),
     pages: document.querySelector("[data-stats-pages]"),
     referrers: document.querySelector("[data-stats-referrers]"),
+    ips: document.querySelector("[data-stats-ips]"),
     locked: document.querySelector("[data-stats-locked]"),
     app: document.querySelector("[data-stats-app]"),
     range: document.querySelector("[data-stats-range]"),
@@ -964,6 +965,36 @@
       .map(([host, value]) => ({ label: host, host, value, extra: "" }))
       .sort((a, b) => b.value - a.value);
     renderBars(els.referrers, sourceRows, "source");
+    renderIpLog(overview.ipLog || []);
+  }
+
+  function renderIpLog(rows) {
+    if (!els.ips) return;
+    const inRange = rows.filter((r) => r.ts >= rangeStart && r.ts <= rangeEnd);
+    if (!inRange.length) {
+      els.ips.innerHTML = `<p class="stats-empty">No IP visits in this range.</p>`;
+      return;
+    }
+    els.ips.innerHTML =
+      `<div class="ip-log-head"><span>IP</span><span>When</span><span>Visits</span></div>` +
+      inRange
+        .map((r) => {
+          const n = r.visitN != null ? r.visitN : r.visit_n;
+          return `<div class="ip-log-row">
+            <code class="ip-log-ip">${escapeHtml(r.ip || "")}</code>
+            <span class="ip-log-when">${fmtTime(r.ts)}</span>
+            <span class="ip-log-n">${n}</span>
+          </div>`;
+        })
+        .join("");
+  }
+
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
   }
 
   function showLocked() {

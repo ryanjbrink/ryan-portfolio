@@ -10,30 +10,23 @@
 
   const root = document.querySelector("[data-role-tabs]");
   if (root) {
-    const tabs = [...root.querySelectorAll("[data-tab]")];
     const panels = [...root.querySelectorAll("[data-panel]")];
     const panelWrap = root.querySelector(".role-focus-panels");
     const prevBtn = root.querySelector("[data-ethos-prev]");
     const nextBtn = root.querySelector("[data-ethos-next]");
     let activeKey =
-      tabs.find((tab) => tab.classList.contains("is-active"))?.dataset.tab ||
-      tabs[0]?.dataset.tab;
+      panels.find((panel) => panel.classList.contains("is-active"))?.dataset.panel ||
+      panels[0]?.dataset.panel;
 
     function activeIndex() {
       return Math.max(
         0,
-        tabs.findIndex((tab) => tab.classList.contains("is-active"))
+        panels.findIndex((panel) => panel.dataset.panel === activeKey)
       );
     }
 
     function activate(key) {
       activeKey = key;
-      tabs.forEach((tab) => {
-        const on = tab.dataset.tab === key;
-        tab.classList.toggle("is-active", on);
-        tab.setAttribute("aria-selected", on ? "true" : "false");
-        tab.tabIndex = on ? 0 : -1;
-      });
       panels.forEach((panel) => {
         const on = panel.dataset.panel === key;
         panel.classList.toggle("is-active", on);
@@ -68,24 +61,20 @@
     }
 
     function step(dir) {
-      const next = tabs[(activeIndex() + dir + tabs.length) % tabs.length];
-      activate(next.dataset.tab);
+      const next = panels[(activeIndex() + dir + panels.length) % panels.length];
+      activate(next.dataset.panel);
     }
-
-    tabs.forEach((tab, index) => {
-      tab.addEventListener("click", () => activate(tab.dataset.tab));
-      tab.addEventListener("keydown", (e) => {
-        if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
-        e.preventDefault();
-        const dir = e.key === "ArrowRight" ? 1 : -1;
-        const next = tabs[(index + dir + tabs.length) % tabs.length];
-        next.focus();
-        activate(next.dataset.tab);
-      });
-    });
 
     prevBtn?.addEventListener("click", () => step(-1));
     nextBtn?.addEventListener("click", () => step(1));
+
+    root.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      const tag = (e.target && e.target.tagName) || "";
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
+      e.preventDefault();
+      step(e.key === "ArrowRight" ? 1 : -1);
+    });
 
     const scheduleLock = () => window.requestAnimationFrame(lockPanelHeight);
     window.addEventListener("resize", scheduleLock);

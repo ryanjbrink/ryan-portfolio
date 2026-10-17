@@ -1091,6 +1091,60 @@ body.dark-mode .flow-node--page.is-active {
   text-overflow: ellipsis;
 }
 
+.ip-log {
+  display: grid;
+  gap: 0.15rem;
+  max-height: 22rem;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ip-log-head,
+.ip-log-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) 4.5rem;
+  gap: 0.65rem;
+  align-items: center;
+  padding: 0.45rem 0.35rem;
+}
+
+.ip-log-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--surface-solid);
+  border-bottom: 1px solid var(--line);
+}
+
+.ip-log-row {
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+  font-size: 0.78rem;
+}
+
+.ip-log-ip {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ip-log-when {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.ip-log-n {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
 @media (max-width: 960px) {
   .stats-hero-kpis {
     grid-template-columns: 1fr 1fr;

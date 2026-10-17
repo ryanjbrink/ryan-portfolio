@@ -9,7 +9,7 @@
   <script src="js/site-theme.js"></script>
   <link rel="stylesheet" href="styles/reset.css" />
   <link rel="stylesheet" href="styles/globals.css" />
-  <link rel="stylesheet" href="styles/stats.css?v=34" />
+  <link rel="stylesheet" href="styles/stats.css?v=35" />
   <script src="js/analytics-config.js"></script>
 </head>
 <body class="stats-page">
@@ -118,11 +118,21 @@
         <div class="bar-chart" data-stats-referrers></div>
       </section>
     </div>
+
+    <section class="stats-panel stats-glass" aria-label="IP visits">
+      <div class="stats-panel-head">
+        <div>
+          <h2>IP visits</h2>
+          <p>Each new session — timestamp and running visit count for that IP</p>
+        </div>
+      </div>
+      <div class="ip-log" data-stats-ips></div>
+    </section>
   </main>
 
   <script src="js/stats-visuals.js?v=4"></script>
-  <script src="js/stats-demo.js?v=2"></script>
-  <script src="js/stats-app.js?v=14"></script>
+  <script src="js/stats-demo.js?v=3"></script>
+  <script src="js/stats-app.js?v=15"></script>
   <script src="js/stats-gate.js"></script>
 </body>
 </html>

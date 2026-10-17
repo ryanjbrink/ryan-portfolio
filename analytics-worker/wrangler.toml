@@ -18,3 +18,5 @@ database_id = "f6ee5201-8c1e-4455-a37c-2cc3908ca9a1"
 [vars]
 # Comma-separated. localhost / 127.0.0.1 any port are always allowed in code.
 ALLOWED_ORIGINS = "https://ryanjbrink.com,https://www.ryanjbrink.com,http://localhost:5500,http://127.0.0.1:5500,http://localhost:8000,http://127.0.0.1:8000"
+# Comma-separated public IPs that should not create sessions (laptop / phone / home).
+EXCLUDED_IPS = "52.124.43.161,2605:ad80:23:6055:896d:ceb7:b0ce:f6c5,2605:ad80:23:6055:15bd:c318:2998:f298"

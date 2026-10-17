@@ -91,6 +91,53 @@ function parseMeta(raw) {
   }
 }
 
+function clientIp(request) {
+  const cf = request.headers.get("CF-Connecting-IP");
+  if (cf) return cf.trim();
+  const trueClient = request.headers.get("True-Client-IP");
+  if (trueClient) return trueClient.trim();
+  const xff = request.headers.get("X-Forwarded-For");
+  if (xff) return xff.split(",")[0].trim();
+  return "";
+}
+
+function isExcludedIp(request, env) {
+  const ip = clientIp(request).toLowerCase();
+  if (!ip) return false;
+  const list = String(env.EXCLUDED_IPS || "")
+    .split(",")
+    .map((s) => s.trim().toLowerCase())
+    .filter(Boolean);
+  return list.includes(ip);
+}
+
+async function recordIpVisit(env, ip, sessionId, ts) {
+  const safeIp = String(ip || "").slice(0, 64);
+  if (!safeIp) return;
+  try {
+    await env.DB.prepare(
+      `INSERT INTO ip_visitors (ip, first_seen, last_seen, visits)
+       VALUES (?, ?, ?, 1)
+       ON CONFLICT(ip) DO UPDATE SET
+         last_seen = excluded.last_seen,
+         visits = ip_visitors.visits + 1`
+    )
+      .bind(safeIp, ts, ts)
+      .run();
+    const row = await env.DB.prepare(`SELECT visits FROM ip_visitors WHERE ip = ?`)
+      .bind(safeIp)
+      .first();
+    const visitN = Number(row && row.visits) || 1;
+    await env.DB.prepare(
+      `INSERT INTO ip_visit_log (ip, ts, visit_n, session_id) VALUES (?, ?, ?, ?)`
+    )
+      .bind(safeIp, ts, visitN, sessionId)
+      .run();
+  } catch (_) {
+    // Table may not exist yet on older deploys — ignore until migrated
+  }
+}
+
 export default {
   async fetch(request, env) {
     const cors = corsHeaders(request.headers.get("Origin"), env.ALLOWED_ORIGINS);
@@ -131,6 +178,11 @@ async function handleAuth(request, env, cors) {
 }
 
 async function handleCollect(request, env, cors) {
+  // Drop owner / test traffic by public IP (never stored)
+  if (isExcludedIp(request, env)) {
+    return json({ ok: true, skipped: "excluded_ip" }, 200, cors);
+  }
+
   // Accept application/json or text/plain (beacon-safe) JSON bodies
   const body = await readBodyJson(request);
   if (!body || !body.sessionId || !Array.isArray(body.events) || !body.events.length) {
@@ -145,6 +197,18 @@ async function handleCollect(request, env, cors) {
   const referrer = String(body.referrer || "").slice(0, 500);
   const landing = normalizePath(body.landingPath || body.events[0]?.path || "/");
   const utm = body.utm || {};
+  const ip = clientIp(request);
+
+  // Only count IP visits on first collect for a session (not heartbeats)
+  let isNewSession = false;
+  try {
+    const existing = await env.DB.prepare(`SELECT id FROM sessions WHERE id = ?`)
+      .bind(sessionId)
+      .first();
+    isNewSession = !existing;
+  } catch (_) {
+    isNewSession = true;
+  }
 
   // Prefer schema with visitor_id; fall back if column missing on older D1 DBs
   try {
@@ -186,6 +250,10 @@ async function handleCollect(request, env, cors) {
         String(utm.campaign || "").slice(0, 80)
       )
       .run();
+  }
+
+  if (isNewSession) {
+    await recordIpVisit(env, ip, sessionId, startedAt || now);
   }
 
   const stmts = [];
@@ -421,6 +489,43 @@ async function handleOverview(url, env, cors) {
     .sort((a, b) => b.count - a.count)
     .slice(0, 12);
 
+  let ipLog = [];
+  let ipSummary = [];
+  try {
+    ipLog = (
+      await env.DB.prepare(
+        `SELECT ip, ts, visit_n, session_id
+         FROM ip_visit_log
+         WHERE ts >= ? AND ts <= ?
+         ORDER BY ts DESC
+         LIMIT 200`
+      )
+        .bind(since, until)
+        .all()
+    ).results.map((r) => ({
+      ip: r.ip,
+      ts: r.ts,
+      visitN: r.visit_n,
+      sessionId: r.session_id,
+    }));
+    ipSummary = (
+      await env.DB.prepare(
+        `SELECT ip, first_seen, last_seen, visits
+         FROM ip_visitors
+         ORDER BY visits DESC, last_seen DESC
+         LIMIT 100`
+      ).all()
+    ).results.map((r) => ({
+      ip: r.ip,
+      firstSeen: r.first_seen,
+      lastSeen: r.last_seen,
+      visits: r.visits,
+    }));
+  } catch (_) {
+    ipLog = [];
+    ipSummary = [];
+  }
+
   const total = sessions.length || 1;
 
   return json(
@@ -449,6 +554,8 @@ async function handleOverview(url, env, cors) {
       pages,
       referrers,
       sessions: journeys.slice(0, 100),
+      ipLog,
+      ipSummary,
     },
     200,
     cors

@@ -173,6 +173,13 @@ window.RB_STATS_DEMO = function buildDemo() {
       .map(([host, count]) => ({ host, count }))
       .sort((a, b) => b.count - a.count),
     sessions,
+    ipLog: sessions.slice(0, 24).map((s, i) => ({
+      ip: "203.0.113." + (10 + (i % 7)),
+      ts: s.startedAt,
+      visitN: 1 + Math.floor(i / 7),
+      sessionId: s.id,
+    })),
+    ipSummary: [],
   };
 };
 

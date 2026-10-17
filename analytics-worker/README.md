@@ -34,6 +34,20 @@ window.RB_ANALYTICS = {
 
 6. Commit and push the site. Collect starts on every page that loads `site-analytics.js`. Open stats with **⌘E** / **Ctrl+E** (or long-press bottom-left on mobile) and enter the same admin password.
 
+### IP visit log
+
+Each **new session** (not heartbeats) appends a row with IP, timestamp, and that IP’s running visit count. View it on the stats page under **IP visits**. Your `EXCLUDED_IPS` never appear there.
+
+### Exclude your own IPs
+
+Edit `EXCLUDED_IPS` in `wrangler.toml` (comma-separated public IPs), then redeploy:
+
+```bash
+npm run deploy
+```
+
+Find an IP on a device at https://api.ipify.org (phone on cellular often differs from home Wi‑Fi).
+
 ### Checklist if data isn’t showing
 
 | Symptom | Fix |

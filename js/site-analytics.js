@@ -11,6 +11,11 @@
   const ENDPOINT = String(cfg.endpoint || "").replace(/\/+$/, "");
   if (!ENDPOINT) return;
 
+  // Skip obvious automation (free client-side signal; server also classifies)
+  try {
+    if (navigator.webdriver) return;
+  } catch (_) {}
+
   const path = location.pathname || "";
   if (/(^|\/)stats\.html$/i.test(path)) return;
 
@@ -129,6 +134,10 @@
   }
 
   function buildPayload(events) {
+    let isBot = false;
+    try {
+      isBot = Boolean(navigator.webdriver);
+    } catch (_) {}
     return JSON.stringify({
       sessionId: session.id,
       visitorId,
@@ -137,6 +146,7 @@
       referrer: session.referrer,
       device: session.device,
       utm: session.utm,
+      isBot,
       events,
     });
   }

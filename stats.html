@@ -9,13 +9,13 @@
   <script src="js/site-theme.js"></script>
   <link rel="stylesheet" href="styles/reset.css" />
   <link rel="stylesheet" href="styles/globals.css" />
-  <link rel="stylesheet" href="styles/stats.css?v=35" />
+  <link rel="stylesheet" href="styles/stats.css?v=36" />
   <script src="js/analytics-config.js"></script>
 </head>
 <body class="stats-page">
   <header class="stats-top">
     <div class="stats-brand">
-      <a class="stats-back" href="index.html" aria-label="Back to home">
+      <a class="stats-back" href="index.html" aria-label="Back to Home">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
           <path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
@@ -81,7 +81,7 @@
 
       <div class="flow-detail" data-flow-detail hidden>
         <div class="flow-detail-head">
-          <button type="button" class="stats-back" data-flow-back aria-label="Back to journey flow">
+          <button type="button" class="stats-back" data-flow-back aria-label="Back to Journey Flow">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
               <path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
@@ -119,11 +119,24 @@
       </section>
     </div>
 
+    <section class="stats-panel stats-glass" aria-label="Visitor map">
+      <div class="stats-panel-head">
+        <div>
+          <h2>Where Visitors Come From</h2>
+          <p>Cloudflare edge geo on each new session (free) — bots excluded from the map</p>
+        </div>
+      </div>
+      <div class="geo-layout">
+        <div class="geo-map" data-stats-geo-map role="img" aria-label="World map of visitor locations"></div>
+        <div class="bar-chart geo-countries" data-stats-countries></div>
+      </div>
+    </section>
+
     <section class="stats-panel stats-glass" aria-label="IP visits">
       <div class="stats-panel-head">
         <div>
-          <h2>IP visits</h2>
-          <p>Each new session — timestamp and running visit count for that IP</p>
+          <h2>IP Visits</h2>
+          <p>Each new session — IP, location, timestamp, and running visit count</p>
         </div>
       </div>
       <div class="ip-log" data-stats-ips></div>
@@ -131,8 +144,8 @@
   </main>
 
   <script src="js/stats-visuals.js?v=4"></script>
-  <script src="js/stats-demo.js?v=3"></script>
-  <script src="js/stats-app.js?v=15"></script>
+  <script src="js/stats-demo.js?v=5"></script>
+  <script src="js/stats-app.js?v=17"></script>
   <script src="js/stats-gate.js"></script>
 </body>
 </html>

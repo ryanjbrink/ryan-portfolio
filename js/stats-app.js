@@ -21,6 +21,8 @@
     pages: document.querySelector("[data-stats-pages]"),
     referrers: document.querySelector("[data-stats-referrers]"),
     ips: document.querySelector("[data-stats-ips]"),
+    geoMap: document.querySelector("[data-stats-geo-map]"),
+    countries: document.querySelector("[data-stats-countries]"),
     locked: document.querySelector("[data-stats-locked]"),
     app: document.querySelector("[data-stats-app]"),
     range: document.querySelector("[data-stats-range]"),
@@ -30,6 +32,73 @@
     detailTitle: document.querySelector("[data-detail-title]"),
     detailKicker: document.querySelector("[data-detail-kicker]"),
   };
+
+  const COUNTRY_NAMES = {
+    US: "United States",
+    GB: "United Kingdom",
+    CA: "Canada",
+    AU: "Australia",
+    DE: "Germany",
+    FR: "France",
+    NL: "Netherlands",
+    IN: "India",
+    BR: "Brazil",
+    JP: "Japan",
+    KR: "South Korea",
+    SG: "Singapore",
+    IE: "Ireland",
+    ES: "Spain",
+    IT: "Italy",
+    MX: "Mexico",
+    SE: "Sweden",
+    NO: "Norway",
+    DK: "Denmark",
+    FI: "Finland",
+    PL: "Poland",
+    PT: "Portugal",
+    CH: "Switzerland",
+    AT: "Austria",
+    BE: "Belgium",
+    NZ: "New Zealand",
+    ZA: "South Africa",
+    AE: "United Arab Emirates",
+    IL: "Israel",
+    PH: "Philippines",
+    ID: "Indonesia",
+    TH: "Thailand",
+    VN: "Vietnam",
+    MY: "Malaysia",
+    TW: "Taiwan",
+    HK: "Hong Kong",
+    CN: "China",
+    RU: "Russia",
+    TR: "Turkey",
+    AR: "Argentina",
+    CL: "Chile",
+    CO: "Colombia",
+    NG: "Nigeria",
+    EG: "Egypt",
+    T1: "Tor / anonymous",
+    XX: "Unknown",
+  };
+
+  function countryLabel(code) {
+    const c = String(code || "").toUpperCase();
+    if (!c) return "Unknown";
+    return COUNTRY_NAMES[c] || c;
+  }
+
+  function placeLabel(row) {
+    const bits = [row.city, row.region, row.country ? countryLabel(row.country) : ""]
+      .map((s) => String(s || "").trim())
+      .filter(Boolean);
+    // Dedupe adjacent same strings
+    const out = [];
+    bits.forEach((b) => {
+      if (!out.length || out[out.length - 1].toLowerCase() !== b.toLowerCase()) out.push(b);
+    });
+    return out.join(", ") || "Unknown";
+  }
 
   let overview = null;
   let filteredSessions = [];
@@ -464,7 +533,9 @@
       <article class="stats-kpi stats-glass">
         <p class="stats-kpi-label">Sessions</p>
         <p class="stats-kpi-value">${k.sessions}</p>
-        <p class="stats-kpi-sub">Avg ${fmtDuration(k.avgSessionMs)}</p>
+        <p class="stats-kpi-sub">Avg ${fmtDuration(k.avgSessionMs)}${
+          k.bots ? ` · ${k.bots} bot${k.bots === 1 ? "" : "s"} filtered` : ""
+        }</p>
         ${sparkSvg("kpi-sess", sessPath, ink, 0.55)}
       </article>
       <article class="stats-kpi stats-glass">
@@ -965,7 +1036,66 @@
       .map(([host, value]) => ({ label: host, host, value, extra: "" }))
       .sort((a, b) => b.value - a.value);
     renderBars(els.referrers, sourceRows, "source");
+    renderGeo(overview);
     renderIpLog(overview.ipLog || []);
+  }
+
+  function renderGeo(data) {
+    const points = (data.geoPoints || []).filter(
+      (p) =>
+        p &&
+        Number.isFinite(Number(p.lat)) &&
+        Number.isFinite(Number(p.lon)) &&
+        Number(p.lat) >= -90 &&
+        Number(p.lat) <= 90
+    );
+    if (els.geoMap) {
+      if (!points.length) {
+        els.geoMap.innerHTML = `<p class="stats-empty">No mapped locations yet. New sessions after geo migration will appear here.</p>`;
+      } else {
+        const dots = points
+          .map((p) => {
+            const x = ((Number(p.lon) + 180) / 360) * 100;
+            const y = ((90 - Number(p.lat)) / 180) * 50;
+            const title = escapeHtml(placeLabel(p));
+            return `<circle class="geo-dot" cx="${x.toFixed(2)}" cy="${y.toFixed(
+              2
+            )}" r="1.15"><title>${title}</title></circle>`;
+          })
+          .join("");
+        els.geoMap.innerHTML = `<svg class="geo-map-svg" viewBox="0 0 100 50" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <rect class="geo-ocean" x="0" y="0" width="100" height="50" rx="1.2"/>
+          <g class="geo-grid" stroke-width="0.08">
+            <line x1="0" y1="12.5" x2="100" y2="12.5"/>
+            <line x1="0" y1="25" x2="100" y2="25"/>
+            <line x1="0" y1="37.5" x2="100" y2="37.5"/>
+            <line x1="25" y1="0" x2="25" y2="50"/>
+            <line x1="50" y1="0" x2="50" y2="50"/>
+            <line x1="75" y1="0" x2="75" y2="50"/>
+          </g>
+          ${dots}
+        </svg>`;
+      }
+    }
+
+    let countries = data.countries || [];
+    if (!countries.length && points.length) {
+      const m = new Map();
+      points.forEach((p) => {
+        const c = String(p.country || "XX").toUpperCase();
+        m.set(c, (m.get(c) || 0) + 1);
+      });
+      countries = [...m.entries()]
+        .map(([code, count]) => ({ code, count }))
+        .sort((a, b) => b.count - a.count);
+    }
+    const rows = countries.map((c) => ({
+      label: countryLabel(c.code),
+      host: c.code,
+      value: c.count,
+      extra: c.code,
+    }));
+    renderBars(els.countries, rows, "source");
   }
 
   function renderIpLog(rows) {
@@ -976,12 +1106,16 @@
       return;
     }
     els.ips.innerHTML =
-      `<div class="ip-log-head"><span>IP</span><span>When</span><span>Visits</span></div>` +
+      `<div class="ip-log-head"><span>IP</span><span>Where</span><span>When</span><span>Visits</span></div>` +
       inRange
         .map((r) => {
           const n = r.visitN != null ? r.visitN : r.visit_n;
-          return `<div class="ip-log-row">
-            <code class="ip-log-ip">${escapeHtml(r.ip || "")}</code>
+          const bot = r.isBot ? `<span class="ip-log-bot">Bot</span>` : "";
+          return `<div class="ip-log-row${r.isBot ? " is-bot" : ""}">
+            <code class="ip-log-ip">${escapeHtml(r.ip || "")}${bot}</code>
+            <span class="ip-log-where" title="${escapeHtml(placeLabel(r))}">${escapeHtml(
+            placeLabel(r)
+          )}</span>
             <span class="ip-log-when">${fmtTime(r.ts)}</span>
             <span class="ip-log-n">${n}</span>
           </div>`;

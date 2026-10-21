@@ -36,7 +36,22 @@ window.RB_ANALYTICS = {
 
 ### IP visit log
 
-Each **new session** (not heartbeats) appends a row with IP, timestamp, and that IP’s running visit count. View it on the stats page under **IP visits**. Your `EXCLUDED_IPS` never appear there.
+Each **new session** (not heartbeats) appends a row with IP, location, timestamp, and that IP’s running visit count. View it on the stats page under **IP Visits**. Your `EXCLUDED_IPS` never appear there.
+
+### Geo + bots (free)
+
+Uses Cloudflare’s free edge fields on each collect request (`request.cf` country / city / lat / lon) — no paid GeoIP API.
+
+- **Map + country bars** — human sessions only; bots filtered out of KPIs and the map
+- **Bot filter** — UA heuristics + optional `cf.botManagement` when present; client also skips `navigator.webdriver`
+- **Existing D1** — run the geo migration once, then redeploy:
+
+```bash
+npm run db:migrate:geo
+npm run deploy
+```
+
+Duplicate-column errors from re-running `migrate-geo.sql` are safe to ignore.
 
 ### Exclude your own IPs
 
@@ -56,6 +71,7 @@ Find an IP on a device at https://api.ipify.org (phone on cellular often differs
 | Collect never hits Worker | Confirm endpoint URL, redeploy Worker, hard-refresh site |
 | CORS errors in console | Add your site origin to `ALLOWED_ORIGINS` in `wrangler.toml`, then `npm run deploy` |
 | Auth fails | `npx wrangler secret put ADMIN_PASSWORD` must match what you type |
+| Map / Where empty | Run `npm run db:migrate:geo` then `npm run deploy`; only new sessions get coords |
 | Old DB missing visitors | Run the `ALTER TABLE` below |
 
 ### Existing D1 database

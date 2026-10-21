@@ -19,7 +19,7 @@
     const overlay = document.createElement("div");
     overlay.id = "rb-stats-gate";
     overlay.innerHTML = `
-      <div class="rb-gate-card" role="dialog" aria-modal="true" aria-label="Admin sign in">
+      <div class="rb-gate-card" role="dialog" aria-modal="true" aria-label="Admin Sign In">
         <p class="rb-gate-kicker">Admin</p>
         <h2 class="rb-gate-title">Site stats</h2>
         <p class="rb-gate-copy">Enter the admin password to view journeys and engagement.</p>

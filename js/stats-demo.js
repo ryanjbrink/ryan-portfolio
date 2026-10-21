@@ -148,6 +148,58 @@ window.RB_STATS_DEMO = function buildDemo() {
   const deepReads = sessions.filter((s) => s.deepRead).length;
   const contacts = sessions.filter((s) => s.contact).length;
 
+  // Sample edge geo (city + lat/lon) for map / IP log demo
+  const places = [
+    { country: "US", city: "Austin", region: "Texas", lat: 30.27, lon: -97.74 },
+    { country: "US", city: "New York", region: "New York", lat: 40.71, lon: -74.01 },
+    { country: "GB", city: "London", region: "England", lat: 51.51, lon: -0.13 },
+    { country: "DE", city: "Berlin", region: "Berlin", lat: 52.52, lon: 13.4 },
+    { country: "CA", city: "Toronto", region: "Ontario", lat: 43.65, lon: -79.38 },
+    { country: "IN", city: "Bengaluru", region: "Karnataka", lat: 12.97, lon: 77.59 },
+    { country: "AU", city: "Sydney", region: "NSW", lat: -33.87, lon: 151.21 },
+    { country: "NL", city: "Amsterdam", region: "North Holland", lat: 52.37, lon: 4.89 },
+    { country: "BR", city: "São Paulo", region: "SP", lat: -23.55, lon: -46.63 },
+    { country: "JP", city: "Tokyo", region: "Tokyo", lat: 35.68, lon: 139.69 },
+    { country: "SG", city: "Singapore", region: "Singapore", lat: 1.35, lon: 103.82 },
+    { country: "FR", city: "Paris", region: "Île-de-France", lat: 48.86, lon: 2.35 },
+  ];
+
+  const countryCounts = new Map();
+  const geoPoints = [];
+  sessions.forEach((s, i) => {
+    const place = places[i % places.length];
+    countryCounts.set(place.country, (countryCounts.get(place.country) || 0) + 1);
+    // Jitter so dots don't stack perfectly
+    const jitter = ((i * 17) % 9) * 0.08 - 0.32;
+    geoPoints.push({
+      lat: place.lat + jitter,
+      lon: place.lon + jitter * 1.4,
+      country: place.country,
+      city: place.city,
+    });
+  });
+
+  const countries = [...countryCounts.entries()]
+    .map(([code, count]) => ({ code, count }))
+    .sort((a, b) => b.count - a.count);
+
+  const ipLog = sessions.slice(0, 24).map((s, i) => {
+    const place = places[i % places.length];
+    const isBot = i === 5 || i === 14;
+    return {
+      ip: isBot ? "198.51.100." + (20 + (i % 5)) : "203.0.113." + (10 + (i % 7)),
+      ts: s.startedAt,
+      visitN: 1 + Math.floor(i / 7),
+      sessionId: s.id,
+      country: place.country,
+      city: place.city,
+      region: place.region,
+      latitude: place.lat,
+      longitude: place.lon,
+      isBot,
+    };
+  });
+
   return {
     days: 90,
     demo: true,
@@ -156,6 +208,7 @@ window.RB_STATS_DEMO = function buildDemo() {
       sessions: sessions.length,
       visitors,
       returning,
+      bots: 2,
       engagementRate: Math.round((engaged / sessions.length) * 100),
       bounceRate: Math.round((bounced / sessions.length) * 100),
       avgSessionMs: Math.round(sessions.reduce((a, s) => a + s.durationMs, 0) / sessions.length),
@@ -172,13 +225,10 @@ window.RB_STATS_DEMO = function buildDemo() {
     referrers: [...referrerCounts.entries()]
       .map(([host, count]) => ({ host, count }))
       .sort((a, b) => b.count - a.count),
+    countries,
+    geoPoints,
     sessions,
-    ipLog: sessions.slice(0, 24).map((s, i) => ({
-      ip: "203.0.113." + (10 + (i % 7)),
-      ts: s.startedAt,
-      visitN: 1 + Math.floor(i / 7),
-      sessionId: s.id,
-    })),
+    ipLog,
     ipSummary: [],
   };
 };

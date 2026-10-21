@@ -4,6 +4,9 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      fontFamily: {
+        mono: ['"JetBrains Mono"', "ui-monospace", "monospace"],
+      },
       maxWidth: {
         reader: "42rem",
       },

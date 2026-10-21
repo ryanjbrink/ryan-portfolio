@@ -7,7 +7,9 @@
     "deploy": "wrangler deploy",
     "db:create": "wrangler d1 create ryan-portfolio-analytics",
     "db:migrate": "wrangler d1 execute ryan-portfolio-analytics --remote --file=./schema.sql",
-    "db:migrate:local": "wrangler d1 execute ryan-portfolio-analytics --local --file=./schema.sql"
+    "db:migrate:local": "wrangler d1 execute ryan-portfolio-analytics --local --file=./schema.sql",
+    "db:migrate:geo": "wrangler d1 execute ryan-portfolio-analytics --remote --file=./migrate-geo.sql",
+    "db:migrate:geo:local": "wrangler d1 execute ryan-portfolio-analytics --local --file=./migrate-geo.sql"
   },
   "devDependencies": {
     "wrangler": "^4.14.0"

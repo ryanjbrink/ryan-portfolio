@@ -1,5 +1,5 @@
 /* Design tokens */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&family=Caveat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&family=Caveat:wght@500&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
   /* Light mode colors */
@@ -10,6 +10,14 @@
   --card-shadow: 0 2px 8px rgba(0, 12, 20, 0.08);
   --accent: #292929;
   --profile-blue: #2563eb;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Subheads / outlines (e.g. “hook/drop”) */
+.subhead {
+  font-family: var(--font-mono);
+  font-weight: 400;
 }
 
 /* Dark mode colors — html.dark set in <head> by site-theme.js before body exists */

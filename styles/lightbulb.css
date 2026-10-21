@@ -1,6 +1,6 @@
-/* Light bulb toggle styles */
+/* Hanging sun / moon theme toggle */
 
-.light-bulb-container {
+.theme-hang {
   position: fixed;
   top: 0;
   right: 30px;
@@ -9,77 +9,135 @@
   transition: opacity 0.2s ease;
 }
 
-body.case-study-open .light-bulb-container {
+body.case-study-open .theme-hang {
   opacity: 0;
   pointer-events: none;
 }
 
-.light-cord {
+.theme-hang-cord {
   width: 2px;
   height: 60px;
   background: linear-gradient(to bottom, #666, #888);
   margin: 0 auto;
   transform-origin: top center;
-  animation: cord-swing 3s ease-in-out infinite;
+  animation: theme-hang-swing 3s ease-in-out infinite;
 }
 
-.light-bulb {
+.theme-hang-btn {
   display: block;
   width: 80px;
   height: 80px;
+  margin: -6px auto 0;
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
   pointer-events: auto;
   transform-origin: top center;
-  animation: bulb-swing 3s ease-in-out infinite;
-  transition: transform 0.1s ease;
+  animation: theme-hang-swing 3s ease-in-out infinite;
+  transition: transform 0.15s ease;
 }
 
-.light-bulb:hover {
-  transform: scale(1.05);
+.theme-hang-btn:hover {
+  transform: scale(1.06);
 }
 
-.light-bulb:active {
-  transform: scale(0.95);
+.theme-hang-btn:active {
+  transform: scale(0.94);
 }
 
-.bulb-svg {
+.theme-hang-btn:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--text-primary) 45%, transparent);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+.theme-hang-svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  overflow: visible;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18));
 }
 
-.bulb-glow {
-  transition: opacity 0.3s ease;
+.theme-hang-cap {
+  fill: #b8b8b8;
 }
 
-.bulb-glass {
-  transition: fill 0.3s ease;
+.theme-hang-cap-top {
+  fill: #a0a0a0;
 }
 
-/* Light mode (bulb on) */
-body:not(.dark-mode) .bulb-glow {
-  opacity: 0.8;
+.theme-hang-sun,
+.theme-hang-moon {
+  transform-origin: 50px 48px;
+  transition:
+    opacity 0.35s var(--motion-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    transform 0.45s var(--motion-ease, cubic-bezier(0.22, 1, 0.36, 1));
 }
 
-body:not(.dark-mode) .bulb-glass {
-  fill: #fff9e6;
+/* Default (light): sun */
+.theme-hang-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
 }
 
-/* Dark mode (bulb off) */
-body.dark-mode .bulb-glow {
+.theme-hang-moon {
   opacity: 0;
+  transform: rotate(-25deg) scale(0.7);
+  pointer-events: none;
 }
 
-body.dark-mode .bulb-glass {
-  fill: #4a4a4a;
+.theme-hang-sun-core {
+  fill: #ffcc33;
 }
 
-/* Swinging animation */
-@keyframes cord-swing {
-  0%, 100% {
+.theme-hang-sun-glow {
+  fill: #ffe566;
+  opacity: 0.45;
+}
+
+.theme-hang-sun-ray {
+  stroke: #ffb020;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+.theme-hang-moon-glow {
+  fill: #c9d4e8;
+  opacity: 0.35;
+}
+
+.theme-hang-moon-body {
+  fill: #e8eef8;
+}
+
+.theme-hang-moon-crater {
+  fill: #c5d0e0;
+  opacity: 0.55;
+}
+
+/* Dark mode → moon */
+html.dark .theme-hang-sun,
+html.dark-mode .theme-hang-sun,
+body.dark-mode .theme-hang-sun,
+body.dark .theme-hang-sun {
+  opacity: 0;
+  transform: rotate(25deg) scale(0.7);
+  pointer-events: none;
+}
+
+html.dark .theme-hang-moon,
+html.dark-mode .theme-hang-moon,
+body.dark-mode .theme-hang-moon,
+body.dark .theme-hang-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+  pointer-events: auto;
+}
+
+@keyframes theme-hang-swing {
+  0%,
+  100% {
     transform: rotate(-2deg);
   }
   50% {
@@ -87,27 +145,29 @@ body.dark-mode .bulb-glass {
   }
 }
 
-@keyframes bulb-swing {
-  0%, 100% {
-    transform: rotate(-2deg);
+@media (prefers-reduced-motion: reduce) {
+  .theme-hang-cord,
+  .theme-hang-btn {
+    animation: none;
   }
-  50% {
-    transform: rotate(2deg);
+
+  .theme-hang-sun,
+  .theme-hang-moon {
+    transition: opacity 0.2s ease;
   }
 }
 
-/* Responsive - hide on mobile */
 @media (max-width: 768px) {
-  .light-bulb-container {
+  .theme-hang {
     right: 15px;
   }
-  
-  .light-bulb {
+
+  .theme-hang-btn {
     width: 60px;
     height: 60px;
   }
-  
-  .light-cord {
+
+  .theme-hang-cord {
     height: 40px;
   }
 }

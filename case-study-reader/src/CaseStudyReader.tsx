@@ -266,7 +266,7 @@ export function CaseStudyReader({
   const labelName = cardName || title || "Case study";
 
   const cardTagNode = cardTag ? (
-    <span className="font-normal text-black/55 dark:text-white/55">
+    <span className="font-mono font-normal tracking-[-0.02em] text-black/55 dark:text-white/55">
       {" "}
       {cardTagStrike ? <s>{cardTag}</s> : cardTag}
     </span>
@@ -434,6 +434,11 @@ export function CaseStudyReader({
       : undefined;
 
   const activeMedia = sectionMedia[activeIndex] ?? hero;
+  const activeCycle = sections[activeIndex]?.mediaCycle;
+  // SVG slides use dark type on a transparent canvas — keep light paper in both themes.
+  const activeDiagram =
+    isDiagramMedia(activeMedia) ||
+    Boolean(activeCycle?.some((frame) => isDiagramMedia(frame)));
 
   const shell = (
     <div
@@ -443,7 +448,7 @@ export function CaseStudyReader({
       {!isPage ? (
         <button
           type="button"
-          aria-label="Close case study"
+          aria-label="Close Case Study"
           className={BACKDROP}
           data-state={state}
           onClick={onClose}
@@ -537,7 +542,7 @@ export function CaseStudyReader({
                     <button
                       type="button"
                       onClick={onClose}
-                      aria-label="Back to home"
+                      aria-label="Back to Home"
                       className={[
                         "pointer-events-auto mb-5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full",
                         "bg-white/70 text-black border border-black/10",
@@ -634,10 +639,17 @@ export function CaseStudyReader({
                   Lock 2:3 so the frame never inherits a squished column aspect.
                   Height fills the column; width follows aspect, capped by column.
                 */}
-                <div className="pointer-events-auto relative aspect-[2/3] h-full max-h-full w-auto max-w-full overflow-hidden rounded-[28px] bg-[#d9d9d6] dark:bg-[#1a1a1a]">
+                <div
+                  className={[
+                    "pointer-events-auto relative aspect-[2/3] h-full max-h-full w-auto max-w-full overflow-hidden rounded-[28px]",
+                    activeDiagram
+                      ? "bg-[#d9d9d6]"
+                      : "bg-[#d9d9d6] dark:bg-[#1a1a1a]",
+                  ].join(" ")}
+                >
                   <MediaStage
                     media={activeMedia}
-                    cycle={sections[activeIndex]?.mediaCycle}
+                    cycle={activeCycle}
                     heading={sections[activeIndex]?.heading}
                     showCaption={false}
                     cycleControls
@@ -780,7 +792,7 @@ function MobileStoryReel({
         <button
           type="button"
           onClick={onHome}
-          aria-label="Back to home"
+          aria-label="Back to Home"
           className={[
             "absolute left-4 top-4 z-30 inline-flex h-11 w-11 items-center justify-center rounded-full",
             "bg-white/70 text-black border border-black/10",
@@ -835,9 +847,8 @@ function MobileStoryReel({
                 <div
                   className={[
                     "absolute inset-0",
-                    diagram
-                      ? "bg-[#e8e8e4] dark:bg-[#1c1c1c]"
-                      : "bg-[#1a1a1a]",
+                    // Diagrams keep light paper in dark mode (SVG type is dark).
+                    diagram ? "bg-[#e8e8e4]" : "bg-[#1a1a1a]",
                   ].join(" ")}
                 >
                   <MediaStage
@@ -859,7 +870,7 @@ function MobileStoryReel({
                     <p className="mb-2 text-[1rem] font-medium tracking-[-0.01em] text-white/70">
                       <span className="text-white">{labelName}</span>
                       {cardTag ? (
-                        <span className="font-normal text-white/55">
+                        <span className="font-mono font-normal tracking-[-0.02em] text-white/55">
                           {" "}
                           {cardTagStrike ? <s>{cardTag}</s> : cardTag}
                         </span>
@@ -1059,11 +1070,11 @@ function MediaStage({
           <button
             type="button"
             onClick={advance}
-            aria-label="Next image"
+            aria-label="Next Image"
             className="absolute inset-0 z-10 cursor-pointer bg-transparent"
           />
           <nav
-            aria-label="Images in this section"
+            aria-label="Images in This Section"
             className="pointer-events-none absolute inset-x-0 bottom-3 z-20 flex justify-center gap-1.5"
           >
             {frames.map((frame, i) => {
@@ -1173,7 +1184,7 @@ function SectionVideo({
 
 function ContentSkeleton() {
   return (
-    <div className="space-y-10" role="status" aria-label="Loading case study">
+    <div className="space-y-10" role="status" aria-label="Loading Case Study">
       {[0, 1, 2].map((i) => (
         <div key={i} className="animate-pulse space-y-3">
           <div className="h-6 w-40 rounded-md bg-black/[0.08] dark:bg-white/[0.1]" />

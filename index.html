@@ -22,8 +22,8 @@
   <script src="js/site-theme.js"></script>
   <link rel="stylesheet" href="styles/reset.css" />
   <link rel="stylesheet" href="styles/globals.css" />
-  <link rel="stylesheet" href="styles/home.css?v=228" />
-  <link rel="stylesheet" href="styles/lightbulb.css" />
+  <link rel="stylesheet" href="styles/home.css?v=276" />
+  <link rel="stylesheet" href="styles/lightbulb.css?v=3" />
   <link rel="prefetch" href="landstarresearch.html" as="document" />
   <link rel="prefetch" href="simplevariables.html" as="document" />
   <link rel="prefetch" href="phoney.html" as="document" />
@@ -35,24 +35,44 @@
   <link rel="prefetch" href="Images/landstar-hero.mp4?v=1" as="video" />
 </head>
 <body>
-  <!-- Light bulb toggle -->
-  <div class="light-bulb-container">
-    <div class="light-cord"></div>
-    <button class="light-bulb" aria-label="Toggle dark mode">
-      <svg class="bulb-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="bulb-glow" cx="50%" cy="50%">
-            <stop offset="0%" style="stop-color:#fff9e6;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#fff9e6;stop-opacity:0" />
-          </radialGradient>
-        </defs>
-        <!-- Bulb base (at top, connected to wire) -->
-        <rect class="bulb-base" x="44" y="10" width="12" height="3" fill="#a0a0a0" />
-        <rect class="bulb-base" x="45" y="13" width="10" height="8" fill="#b8b8b8" rx="1" />
-        <!-- Glow effect (only visible when on) -->
-        <circle class="bulb-glow" cx="50" cy="45" r="30" fill="url(#bulb-glow)" opacity="0" />
-        <!-- Bulb glass (hanging down) -->
-        <circle class="bulb-glass" cx="50" cy="45" r="20" fill="#fff9e6" stroke="#d4d4d4" stroke-width="1.5" />
+  <!-- Hanging sun / moon theme toggle -->
+  <div class="theme-hang">
+    <div class="theme-hang-cord" aria-hidden="true"></div>
+    <button class="theme-hang-btn" type="button" aria-label="Switch to Dark Mode">
+      <svg class="theme-hang-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect class="theme-hang-cap-top" x="44" y="8" width="12" height="3" rx="0.5" />
+        <rect class="theme-hang-cap" x="45" y="11" width="10" height="7" rx="1" />
+
+        <g class="theme-hang-sun">
+          <circle class="theme-hang-sun-glow" cx="50" cy="52" r="28" />
+          <g class="theme-hang-sun-rays" fill="none">
+            <line class="theme-hang-sun-ray" x1="50" y1="24" x2="50" y2="30" />
+            <line class="theme-hang-sun-ray" x1="50" y1="74" x2="50" y2="80" />
+            <line class="theme-hang-sun-ray" x1="28" y1="52" x2="34" y2="52" />
+            <line class="theme-hang-sun-ray" x1="66" y1="52" x2="72" y2="52" />
+            <line class="theme-hang-sun-ray" x1="34.3" y1="36.3" x2="38.5" y2="40.5" />
+            <line class="theme-hang-sun-ray" x1="61.5" y1="63.5" x2="65.7" y2="67.7" />
+            <line class="theme-hang-sun-ray" x1="65.7" y1="36.3" x2="61.5" y2="40.5" />
+            <line class="theme-hang-sun-ray" x1="38.5" y1="63.5" x2="34.3" y2="67.7" />
+          </g>
+          <circle class="theme-hang-sun-core" cx="50" cy="52" r="16" />
+        </g>
+
+        <g class="theme-hang-moon">
+          <defs>
+            <mask id="theme-hang-crescent">
+              <rect width="100" height="100" fill="black" />
+              <circle cx="50" cy="52" r="17" fill="white" />
+              <circle cx="58" cy="46" r="14" fill="black" />
+            </mask>
+          </defs>
+          <circle class="theme-hang-moon-glow" cx="50" cy="52" r="26" />
+          <circle class="theme-hang-moon-body" cx="50" cy="52" r="17" mask="url(#theme-hang-crescent)" />
+          <g mask="url(#theme-hang-crescent)">
+            <circle class="theme-hang-moon-crater" cx="44" cy="46" r="3.2" />
+            <circle class="theme-hang-moon-crater" cx="48" cy="58" r="2.8" />
+          </g>
+        </g>
       </svg>
     </button>
   </div>
@@ -65,7 +85,15 @@
       <rect x="16" y="17" width="8" height="14" rx="1.5" fill="rgba(200,200,200,0.55)" stroke="rgba(140,140,140,0.6)" stroke-width="0.4" />
     </svg>
     <div class="badge-cord" aria-hidden="true"></div>
-    <div class="employee-badge" aria-label="Draggable employee badge">
+    <button
+      type="button"
+      class="employee-badge"
+      id="about-badge"
+      aria-haspopup="dialog"
+      aria-controls="about-rx"
+      aria-expanded="false"
+      aria-label="Open About Me"
+    >
       <div class="badge-card">
         <div class="badge-identity">
           <p class="badge-name">Ryan Brink</p>
@@ -76,8 +104,68 @@
           <img class="badge-decal" src="Images/badge-decal.png" alt="" />
         </div>
       </div>
-    </div>
+    </button>
   </div>
+
+  <dialog class="about-dialog" id="about-rx" aria-labelledby="rx-title">
+    <div class="about-stage">
+      <div class="about-atmosphere about-atmosphere--edge" aria-hidden="true">
+        <div class="about-glass"></div>
+        <div class="about-field" id="about-field">
+          <canvas class="about-rays-canvas" id="about-rays" width="1" height="1"></canvas>
+        </div>
+      </div>
+      <div class="about-atmosphere about-atmosphere--core" aria-hidden="true">
+        <div class="about-glass"></div>
+        <div class="about-field" id="about-field-core">
+          <canvas class="about-rays-canvas" id="about-rays-core" width="1" height="1"></canvas>
+        </div>
+      </div>
+      <div class="about-veil" aria-hidden="true"></div>
+
+      <article class="about-content">
+        <div class="about-read">
+          <header class="about-head">
+            <div class="about-head-row">
+              <h2 class="about-title" id="rx-title">Ryan Brink</h2>
+              <button type="button" class="about-close" data-rx-close aria-label="Close">
+                <svg class="about-close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                  <path d="M6 6l12 12M6 18L18 6" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
+            <p class="about-meta">
+              <span class="about-role">Staff Product Designer</span>
+              <span class="about-meta-sep" aria-hidden="true">|</span>
+              <span class="about-org">HCA Healthcare</span>
+            </p>
+          </header>
+          <div class="about-body">
+            <p>I’m Ryan. I want to make the world a simpler place.</p>
+            <p>
+              Most of the tools people rely on at work weren’t designed with them in
+              mind. They’re complicated because someone else found it easier that way.
+              I’d rather take on that complexity myself, so the person using the
+              product doesn’t have to.
+            </p>
+            <p>
+              That’s the hard work: the research, the edge cases, the systems
+              underneath. When it’s done well, none of it shows. What’s left is an
+              experience that feels obvious, with a small moment of delight that
+              belongs to that product and no other.
+            </p>
+            <p>
+              I design creative solutions inside complex systems, for the people who
+              count on them: the clinician between patients, the driver at the dock,
+              the technician on the floor. I’m proud to do it in healthcare, where a
+              simpler tool can mean a faster response, a safer decision, or a few more
+              minutes with a patient.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </dialog>
 
     <main class="home">
     <section class="home-hero" aria-label="Introduction">
@@ -148,12 +236,15 @@
       </div>
       <div class="home-hero-wash" aria-hidden="true"></div>
       <div class="home-hero-actions">
-        <a href="current-role.html" class="home-hero-btn home-hero-btn--secondary" data-current-role>
-          <span>Current role</span>
-        </a>
-        <a href="#work" class="home-hero-btn home-hero-btn--primary">
-          <span>View work</span>
-        </a>
+        <h1 class="home-hero-tagline">Creative solutions inside complex systems</h1>
+        <div class="home-hero-ctas">
+          <a href="#work" class="home-hero-btn home-hero-btn--primary">
+            <span>Featured Work</span>
+          </a>
+          <a href="current-role.html" class="home-hero-btn home-hero-btn--secondary" data-current-role>
+            <span>Current Role</span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -362,10 +453,22 @@
   </main>
 
   <script>
-    // Dark mode toggle
-    const lightBulb = document.querySelector('.light-bulb');
+    // Dark mode toggle (hanging sun / moon)
+    const themeHangBtn = document.querySelector('.theme-hang-btn');
     const body = document.body;
-    
+
+    function syncThemeHangLabel() {
+      if (!themeHangBtn) return;
+      const dark = window.SiteTheme
+        ? window.SiteTheme.isDark()
+        : body.classList.contains('dark-mode') || body.classList.contains('dark');
+      themeHangBtn.setAttribute(
+        'aria-label',
+        dark ? 'Switch to Light Mode' : 'Switch to Dark Mode'
+      );
+      themeHangBtn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    }
+
     // Theme: SiteTheme defaults to sun-up/down; manual toggle still persists
     if (window.SiteTheme) {
       window.SiteTheme.syncFromStorage();
@@ -380,10 +483,12 @@
       document.documentElement.classList.toggle('dark-mode', dark);
       document.documentElement.classList.toggle('dark', dark);
     }
+    syncThemeHangLabel();
 
-    lightBulb.addEventListener('click', () => {
+    themeHangBtn?.addEventListener('click', () => {
       if (window.SiteTheme) {
         window.SiteTheme.set(!window.SiteTheme.isDark());
+        syncThemeHangLabel();
         return;
       }
       body.classList.toggle('dark-mode');
@@ -392,6 +497,7 @@
       document.documentElement.classList.toggle('dark-mode', dark);
       document.documentElement.classList.toggle('dark', dark);
       localStorage.setItem('theme', dark ? 'dark' : 'light');
+      syncThemeHangLabel();
     });
 
     // Never leave the page scroll-locked if a case study overlay failed to clean up
@@ -403,7 +509,7 @@
     unlockPageScroll();
     window.addEventListener('pageshow', unlockPageScroll);
 
-    // View work → scroll to case studies
+    // Featured work → scroll to case studies
     document.querySelector('a.home-hero-btn--primary[href="#work"]')?.addEventListener('click', (e) => {
       const work = document.getElementById('work');
       if (!work) return;
@@ -413,134 +519,197 @@
       history.replaceState(null, '', '#work');
     });
 
-    // Draggable employee badge (fixed top-left, mirrors light bulb)
-    const badgeContainer = document.querySelector('.employee-badge-container');
-    const badge = badgeContainer?.querySelector('.employee-badge');
-    let isDragging = false;
-    let didDrag = false;
-    let dragOffsetX = 0;
-    let dragOffsetY = 0;
-    let dragStartX = 0;
-    let dragStartY = 0;
-    let badgeHomeParent = null;
-    let badgeHomeNext = null;
+    // Badge → about (canvas rays — one bitmap instead of ~200 blurred DOM layers)
+    const aboutBadge = document.getElementById('about-badge');
+    const aboutRx = document.getElementById('about-rx');
+    const aboutRays = document.getElementById('about-rays');
+    const aboutRaysCore = document.getElementById('about-rays-core');
+    const aboutField = document.getElementById('about-field');
+    const aboutFieldCore = document.getElementById('about-field-core');
+    const aboutReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let aboutPaintToken = 0;
 
-    function resetBadgePosition() {
-      if (!badgeContainer || isDragging) return;
+    function aboutRgb(varName, fallback) {
+      const raw = getComputedStyle(aboutRx).getPropertyValue(varName).trim();
+      return raw || fallback;
+    }
 
-      badgeContainer.style.position = '';
-      badgeContainer.style.left = '';
-      badgeContainer.style.top = '';
-      badgeContainer.style.transform = '';
-      badgeContainer.classList.remove('is-positioned', 'is-dragging');
-
-      if (badgeHomeParent) {
-        badgeHomeParent.insertBefore(badgeContainer, badgeHomeNext);
-        badgeHomeParent = null;
-        badgeHomeNext = null;
+    function paintAboutRays() {
+      if (!aboutRays || !aboutField || !aboutRx?.open) return;
+      if (aboutReduceMotion.matches) {
+        aboutField.hidden = true;
+        if (aboutFieldCore) aboutFieldCore.hidden = true;
+        return;
       }
-    }
+      aboutField.hidden = false;
+      if (aboutFieldCore) aboutFieldCore.hidden = false;
 
-    function pinBadgeForDrag() {
-      const rect = badgeContainer.getBoundingClientRect();
+      const token = ++aboutPaintToken;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const w = aboutField.clientWidth || window.innerWidth;
+      const h = aboutField.clientHeight || window.innerHeight;
+      aboutRays.width = Math.max(1, Math.floor(w * dpr));
+      aboutRays.height = Math.max(1, Math.floor(h * dpr));
+      aboutRays.style.width = `${w}px`;
+      aboutRays.style.height = `${h}px`;
 
-      if (badgeContainer.parentElement !== document.body) {
-        badgeHomeParent = badgeContainer.parentElement;
-        badgeHomeNext = badgeContainer.nextSibling;
-        document.body.appendChild(badgeContainer);
+      const ctx = aboutRays.getContext('2d', { alpha: true, desynchronized: true });
+      if (!ctx) return;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+
+      const core = aboutRgb('--about-core', '255 196 130');
+      const accent = aboutRgb('--about-accent', '236 112 30');
+      const deep = aboutRgb('--about-deep', '196 78 28');
+      const ox = w * 0.5;
+      const oy = h * 0.5;
+      const reach = Math.hypot(w, h) * 0.72;
+
+      let seed = 11;
+      function rnd() {
+        seed = (seed * 16807) % 2147483647;
+        return (seed - 1) / 2147483646;
       }
-
-      badgeContainer.style.position = 'fixed';
-      badgeContainer.style.left = `${rect.left}px`;
-      badgeContainer.style.top = `${rect.top}px`;
-      badgeContainer.style.transform = 'none';
-      badgeContainer.classList.add('is-positioned');
-    }
-
-    function clampBadgePosition(x, y) {
-      const rect = badgeContainer.getBoundingClientRect();
-      const maxX = window.innerWidth - rect.width;
-      const maxY = window.innerHeight - rect.height;
-      return {
-        x: Math.max(0, Math.min(x, maxX)),
-        y: Math.max(0, Math.min(y, maxY)),
-      };
-    }
-
-    function startDrag(clientX, clientY) {
-      if (!badgeContainer) return;
-
-      pinBadgeForDrag();
-
-      const rect = badgeContainer.getBoundingClientRect();
-      dragOffsetX = clientX - rect.left;
-      dragOffsetY = clientY - rect.top;
-      dragStartX = clientX;
-      dragStartY = clientY;
-      didDrag = false;
-      isDragging = true;
-      badgeContainer.classList.add('is-dragging');
-    }
-
-    function moveDrag(clientX, clientY) {
-      if (!isDragging || !badgeContainer) return;
-
-      if (!didDrag) {
-        const dx = clientX - dragStartX;
-        const dy = clientY - dragStartY;
-        if (dx * dx + dy * dy < 16) return;
-        didDrag = true;
+      function between(a, b) {
+        return a + rnd() * (b - a);
+      }
+      function pick(list) {
+        return list[Math.floor(rnd() * list.length)];
       }
 
-      const { x, y } = clampBadgePosition(
-        clientX - dragOffsetX,
-        clientY - dragOffsetY
+      const layers = [
+        { n: 6, half: [0.03, 0.07], len: [0.6, 0.9], o: [0.06, 0.12], colors: [accent, deep] },
+        { n: 12, half: [0.008, 0.024], len: [0.45, 0.88], o: [0.08, 0.16], colors: [accent, deep, core] },
+        { n: 24, half: [0.003, 0.01], len: [0.35, 0.9], o: [0.1, 0.2], colors: [accent, core, deep] },
+        { n: 28, half: [0.001, 0.003], len: [0.3, 0.92], o: [0.1, 0.22], colors: [core, accent, deep] },
+        { n: 4, half: [0.0008, 0.0018], len: [0.75, 0.95], o: [0.18, 0.28], colors: [core, accent] },
+      ];
+
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.translate(ox, oy);
+
+      for (const L of layers) {
+        if (token !== aboutPaintToken) return;
+        for (let i = 0; i < L.n; i++) {
+          const angle = between(0, Math.PI * 2);
+          const half = between(L.half[0], L.half[1]);
+          const len = reach * between(L.len[0], L.len[1]);
+          const o = between(L.o[0], L.o[1]);
+          const rgb = pick(L.colors);
+          const grad = ctx.createLinearGradient(0, 0, Math.cos(angle) * len, Math.sin(angle) * len);
+          grad.addColorStop(0, `rgb(${rgb} / ${o})`);
+          grad.addColorStop(0.4, `rgb(${rgb} / ${o * 0.7})`);
+          grad.addColorStop(1, `rgb(${rgb} / 0)`);
+
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.lineTo(Math.cos(angle - half) * len, Math.sin(angle - half) * len);
+          ctx.lineTo(Math.cos(angle + half) * len, Math.sin(angle + half) * len);
+          ctx.closePath();
+          ctx.fillStyle = grad;
+          ctx.fill();
+        }
+      }
+      ctx.restore();
+
+      // Feather rays at the card edge so they dissolve into the outer spill
+      ctx.globalCompositeOperation = 'destination-in';
+      const edge = ctx.createRadialGradient(
+        ox,
+        oy,
+        Math.min(w, h) * 0.22,
+        ox,
+        oy,
+        Math.min(w, h) * 0.62
       );
-      badgeContainer.style.left = `${x}px`;
-      badgeContainer.style.top = `${y}px`;
-    }
+      edge.addColorStop(0, 'rgb(0 0 0 / 0.55)');
+      edge.addColorStop(0.55, '#000');
+      edge.addColorStop(0.82, 'rgb(0 0 0 / 0.75)');
+      edge.addColorStop(1, 'rgb(0 0 0 / 0)');
+      ctx.fillStyle = edge;
+      ctx.fillRect(0, 0, w, h);
+      ctx.globalCompositeOperation = 'source-over';
 
-    function endDrag() {
-      if (!isDragging) return;
-      isDragging = false;
-      badgeContainer.classList.remove('is-dragging');
-
-      // Plain click (no real drag) — snap back into the corner
-      if (!didDrag) {
-        resetBadgePosition();
+      // Mirror the same rays into the core (13px) layer
+      if (aboutRaysCore) {
+        aboutRaysCore.width = aboutRays.width;
+        aboutRaysCore.height = aboutRays.height;
+        aboutRaysCore.style.width = `${w}px`;
+        aboutRaysCore.style.height = `${h}px`;
+        const coreCtx = aboutRaysCore.getContext('2d', { alpha: true });
+        if (coreCtx) {
+          coreCtx.clearRect(0, 0, aboutRaysCore.width, aboutRaysCore.height);
+          coreCtx.drawImage(aboutRays, 0, 0);
+        }
       }
     }
 
-    if (badge) {
-      badge.addEventListener('mousedown', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        startDrag(e.clientX, e.clientY);
-      });
-
-      badge.addEventListener('touchstart', (e) => {
-        const touch = e.touches[0];
-        startDrag(touch.clientX, touch.clientY);
-      }, { passive: true });
+    function openAboutRx() {
+      if (!aboutRx || typeof aboutRx.showModal !== 'function') return;
+      aboutRx.showModal();
+      aboutBadge?.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('rx-open');
+      requestAnimationFrame(() => paintAboutRays());
     }
 
-    document.addEventListener('mousemove', (e) => {
-      moveDrag(e.clientX, e.clientY);
+    function closeAboutRx() {
+      if (!aboutRx?.open) return;
+      aboutRx.close();
+    }
+
+    aboutBadge?.addEventListener('click', openAboutRx);
+    aboutRx?.querySelectorAll('[data-rx-close]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeAboutRx();
+      });
+    });
+    // Dismiss when clicking outside the reading column (or on the dialog backdrop)
+    aboutRx?.addEventListener('click', (e) => {
+      if (!aboutRx.open) return;
+      const read = aboutRx.querySelector('.about-read');
+      if (e.target === aboutRx || (read && !read.contains(e.target))) {
+        closeAboutRx();
+      }
+    });
+    aboutRx?.querySelector('.about-read')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+    aboutRx?.addEventListener('close', () => {
+      aboutBadge?.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('rx-open');
+      aboutRx?.style.removeProperty('--px');
+      aboutRx?.style.removeProperty('--py');
+      aboutBadge?.focus();
     });
 
-    document.addEventListener('mouseup', endDrag);
+    let aboutResizeTimer = 0;
+    window.addEventListener('resize', () => {
+      if (!aboutRx?.open) return;
+      window.clearTimeout(aboutResizeTimer);
+      aboutResizeTimer = window.setTimeout(paintAboutRays, 120);
+    });
 
-    document.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      e.preventDefault();
-      const touch = e.touches[0];
-      moveDrag(touch.clientX, touch.clientY);
-    }, { passive: false });
+    if (aboutField && !aboutReduceMotion.matches) {
+      let aboutParallaxRaf = 0;
+      let aboutParallaxX = 0;
+      let aboutParallaxY = 0;
+      aboutRx?.addEventListener('pointermove', (e) => {
+        if (!aboutRx.open) return;
+        const rect = aboutRx.getBoundingClientRect();
+        aboutParallaxX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+        aboutParallaxY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+        if (aboutParallaxRaf) return;
+        aboutParallaxRaf = requestAnimationFrame(() => {
+          aboutParallaxRaf = 0;
+          aboutRx.style.setProperty('--px', aboutParallaxX.toFixed(3));
+          aboutRx.style.setProperty('--py', aboutParallaxY.toFixed(3));
+        });
+      });
+    }
 
-    document.addEventListener('touchend', endDrag);
-    document.addEventListener('touchcancel', endDrag);
-
-        // Simple Variables holographic card tilt
+    // Simple Variables holographic card tilt
     const svCell = document.querySelector('.case-study-visual.cell--simple-vars');
     if (svCell) {
       const svScene = svCell.querySelector('.sv-scene');

@@ -1,5 +1,12 @@
 /* Homepage — hero + scannable work grid */
 
+:root {
+  /* Shared content column — hero, work grid, and badge share this left edge */
+  --page-inline: clamp(20px, 4vw, 40px);
+  --content-max: 1280px;
+  --content-left: max(var(--page-inline), calc(50% - var(--content-max) / 2));
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -342,15 +349,34 @@ body.dark-mode .hero-cloud--cut-left-low {
 
 .home-hero-actions {
   position: absolute;
-  left: 50%;
+  left: var(--content-left);
+  right: auto;
   bottom: clamp(72px, 14vh, 128px);
-  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+  z-index: 6;
+  max-width: min(42rem, calc(100% - var(--page-inline) * 2));
+  text-align: left;
+}
+
+.home-hero-tagline {
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.022em;
+  line-height: 1.05;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+.home-hero-ctas {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 10px;
-  z-index: 6;
 }
 
 .home-hero-btn {
@@ -535,7 +561,7 @@ body.dark-mode .home-hero-btn--secondary {
   position: relative;
   z-index: 2;
   background: var(--page-bg);
-  padding: clamp(8px, 2vh, 24px) clamp(20px, 4vw, 40px) clamp(64px, 10vh, 120px);
+  padding: clamp(8px, 2vh, 24px) var(--page-inline) clamp(64px, 10vh, 120px);
   scroll-margin-top: 24px;
 }
 
@@ -543,7 +569,7 @@ body.dark-mode .home-hero-btn--secondary {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(48px, 8vh, 80px) clamp(24px, 4vw, 40px);
-  max-width: 1280px;
+  max-width: var(--content-max);
   margin: 0 auto;
 }
 
@@ -1078,9 +1104,11 @@ body.dark-mode .case-study-visual.cell--ford:hover {
 }
 
 .project-caption-tag {
+  font-family: var(--font-mono);
   font-size: clamp(12px, 3.8cqi, 24px);
   font-weight: 400;
   line-height: 1;
+  letter-spacing: -0.02em;
   color: var(--text-secondary);
 }
 
@@ -1417,42 +1445,23 @@ body.dark-mode a.cell:hover {
   background: rgba(255, 255, 255, 0.10);
 }
 
-/* ---------- Employee badge (fixed top-left, mirrors light bulb) ---------- */
-
-.employee-badge-container.is-role-focus .employee-badge {
-  animation: badge-role-focus 1.5s ease;
-}
-
-@keyframes badge-role-focus {
-  0%, 100% { transform: rotate(-2deg) scale(1); }
-  35% { transform: rotate(-2deg) scale(1.06); }
-  55% { transform: rotate(1deg) scale(1.04); }
-  75% { transform: rotate(-4deg) scale(1.05); }
-}
+/* ---------- Employee badge → about (prescription bottle) ---------- */
 
 .employee-badge-container {
   position: fixed;
   top: 0;
-  left: 30px;
+  left: var(--content-left);
   z-index: 1000;
   pointer-events: none;
   transition: opacity 0.2s ease;
   transform: scale(0.9);
-  transform-origin: top center;
+  transform-origin: top left;
 }
 
-body.case-study-open .employee-badge-container {
+body.case-study-open .employee-badge-container,
+body.rx-open .employee-badge-container {
   opacity: 0;
   pointer-events: none;
-}
-
-.employee-badge-container.is-positioned {
-  transform: none;
-}
-
-.employee-badge-container.is-dragging .badge-cord,
-.employee-badge-container.is-dragging .employee-badge {
-  animation: none;
 }
 
 .badge-clip {
@@ -1472,16 +1481,32 @@ body.case-study-open .employee-badge-container {
 }
 
 .employee-badge {
-  touch-action: none;
-  cursor: grab;
-  user-select: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
   pointer-events: auto;
   transform-origin: top center;
   animation: badge-swing 3s ease-in-out infinite;
+  transition: filter 0.2s ease;
 }
 
-.employee-badge-container.is-dragging .employee-badge {
-  cursor: grabbing;
+.employee-badge:hover .badge-card,
+.employee-badge:focus-visible .badge-card {
+  box-shadow:
+    0 22px 48px rgba(0, 0, 0, 0.22),
+    0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+.employee-badge:focus-visible {
+  outline: none;
+}
+
+.employee-badge:focus-visible .badge-card {
+  outline: 2px solid color-mix(in srgb, var(--text-primary) 40%, transparent);
+  outline-offset: 4px;
 }
 
 .badge-card {
@@ -1521,19 +1546,22 @@ body.case-study-open .employee-badge-container {
 }
 
 .badge-name {
+  font-family: var(--font-sans);
   font-size: 24px;
   font-weight: 700;
   line-height: 1.2;
   color: #000000;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.02em;
 }
 
 .badge-role {
-  font-size: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
   font-weight: 500;
   line-height: 1.3;
   color: var(--text-secondary);
   margin-top: 4px;
+  letter-spacing: 0.01em;
 }
 
 .badge-photo-wrap {
@@ -1569,7 +1597,8 @@ body.case-study-open .employee-badge-container {
   height: auto;
   z-index: 2;
   pointer-events: none;
-  filter: brightness(0) saturate(100%) invert(46%) sepia(98%) saturate(2476%) hue-rotate(2deg) brightness(103%) contrast(105%);
+  /* Tint toward brand orange #F84D00 */
+  filter: brightness(0) saturate(100%) invert(28%) sepia(98%) saturate(4000%) hue-rotate(2deg) brightness(1.05) contrast(1.12);
 }
 
 @keyframes badge-cord-swing {
@@ -1580,6 +1609,367 @@ body.case-study-open .employee-badge-container {
 @keyframes badge-swing {
   0%, 100% { transform: rotate(-2deg); }
   50%      { transform: rotate(2deg); }
+}
+
+/* ---------- About ----------
+   Primary: readable type
+   Secondary: edgeless amber atmosphere
+   Tertiary: quiet rays
+
+   Same stack + geometry. Tokens tuned per theme:
+   light = airy cream, homepage visible, warm glow;
+   dark = ember night, deeper dim, stronger rays.
+*/
+
+.about-dialog {
+  --about-ox: 50%;
+  --about-oy: 48%;
+  --about-blur-edge: 50px;
+  --about-blur-core: 80px;
+
+  /* Brand orange from badge — #F84D00 */
+  --about-brand: #f84d00;
+  --about-rays-opacity: 0.35;
+  --about-core: 255 170 120;
+  --about-accent: 248 77 0;
+  --about-deep: 196 54 0;
+  --about-ink: var(--text-primary);
+  --about-backdrop: rgb(255 248 242 / 0.26);
+  --about-glow-hot: color-mix(in srgb, #ff8a4a 54%, transparent);
+  --about-glow-mid: color-mix(in srgb, #f84d00 30%, transparent);
+  --about-wash-a: color-mix(in srgb, #fff1e6 38%, transparent);
+  --about-wash-b: color-mix(in srgb, #ff8a4a 18%, transparent);
+  --about-wash-c: color-mix(in srgb, #f84d00 9%, transparent);
+  --about-wash-d: color-mix(in srgb, #fff5eb 14%, transparent);
+  --about-base: color-mix(in srgb, #fff8f0 8%, transparent);
+  --about-veil-hot: rgb(248 77 0 / 0.12);
+  --about-veil-mid: rgb(255 252 248 / 0.06);
+  --about-veil-rim: rgb(255 250 244 / 0.1);
+
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  overflow: hidden;
+  color: var(--about-ink);
+  font-family: var(--font-sans);
+}
+
+html.dark .about-dialog,
+html.dark-mode .about-dialog,
+body.dark-mode .about-dialog {
+  /* —— Dark: quieter ember from #F84D00 —— */
+  --about-rays-opacity: 0.34;
+  --about-core: 255 200 170;
+  --about-accent: 248 77 0;
+  --about-deep: 196 54 0;
+  --about-ink: var(--text-primary);
+  --about-backdrop: rgb(6 7 9 / 0.4);
+  --about-glow-hot: color-mix(in srgb, #f84d00 18%, transparent);
+  --about-glow-mid: color-mix(in srgb, #c43600 12%, transparent);
+  --about-wash-a: color-mix(in srgb, #f84d00 11%, transparent);
+  --about-wash-b: color-mix(in srgb, #c43600 8%, transparent);
+  --about-wash-c: color-mix(in srgb, #1a1208 28%, transparent);
+  --about-wash-d: color-mix(in srgb, #0a0908 42%, transparent);
+  --about-base: color-mix(in srgb, #0a0908 14%, transparent);
+  --about-veil-hot: rgb(248 77 0 / 0.08);
+  --about-veil-mid: rgb(8 10 12 / 0.12);
+  --about-veil-rim: rgb(8 10 12 / 0.16);
+}
+
+.about-dialog::backdrop {
+  background: var(--about-backdrop);
+  backdrop-filter: blur(var(--about-blur-edge));
+  -webkit-backdrop-filter: blur(var(--about-blur-edge));
+}
+
+.about-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+/* Dual blur: 6px at the rim, 13px through the center */
+.about-atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform: translateZ(0);
+  animation: about-fade-in 0.35s ease both;
+}
+
+.about-atmosphere--edge {
+  z-index: 1;
+  filter: blur(var(--about-blur-edge));
+}
+
+.about-atmosphere--core {
+  z-index: 2;
+  filter: blur(var(--about-blur-core));
+  -webkit-mask-image: radial-gradient(
+    ellipse 58% 52% at var(--about-ox) var(--about-oy),
+    #000 0%,
+    #000 30%,
+    rgb(0 0 0 / 0.55) 55%,
+    transparent 74%
+  );
+  mask-image: radial-gradient(
+    ellipse 58% 52% at var(--about-ox) var(--about-oy),
+    #000 0%,
+    #000 30%,
+    rgb(0 0 0 / 0.55) 55%,
+    transparent 74%
+  );
+}
+
+.about-glass,
+.about-field {
+  position: absolute;
+  inset: 0;
+}
+
+.about-veil,
+.about-content {
+  position: absolute;
+  inset: 0;
+}
+
+/* Inverted wash: plain center for type, amber on the outer rim */
+.about-glass {
+  z-index: 1;
+  background:
+    radial-gradient(
+      ellipse 92% 88% at var(--about-ox) var(--about-oy),
+      transparent 0%,
+      transparent 38%,
+      var(--about-glow-mid) 64%,
+      var(--about-glow-hot) 100%
+    ),
+    radial-gradient(
+      ellipse 100% 100% at var(--about-ox) var(--about-oy),
+      transparent 0%,
+      transparent 32%,
+      var(--about-wash-a) 52%,
+      var(--about-wash-b) 70%,
+      var(--about-wash-c) 86%,
+      var(--about-wash-d) 100%
+    ),
+    var(--about-base);
+}
+
+@keyframes about-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Tertiary: quiet, soft, never competing with type */
+.about-field {
+  z-index: 2;
+  overflow: hidden;
+  opacity: var(--about-rays-opacity);
+  transform: translate3d(
+    calc(var(--px, 0) * 4px),
+    calc(var(--py, 0) * 4px),
+    0
+  );
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: transform;
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 62% at var(--about-ox) var(--about-oy),
+    rgb(0 0 0 / 0.35) 0%,
+    rgb(0 0 0 / 0.7) 42%,
+    #000 70%,
+    rgb(0 0 0 / 0.35) 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 70% 62% at var(--about-ox) var(--about-oy),
+    rgb(0 0 0 / 0.35) 0%,
+    rgb(0 0 0 / 0.7) 42%,
+    #000 70%,
+    rgb(0 0 0 / 0.35) 100%
+  );
+}
+
+.about-rays-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Frost veil — clear over type, color gathers at the rim */
+.about-veil {
+  z-index: 4;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 72% 68% at var(--about-ox) var(--about-oy),
+    transparent 0%,
+    transparent 42%,
+    var(--about-veil-mid) 68%,
+    var(--about-veil-hot) 100%
+  );
+}
+
+.about-content {
+  z-index: 5;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: safe center;
+  padding:
+    max(12vh, calc(env(safe-area-inset-top) + 48px))
+    max(1.5rem, env(safe-area-inset-right))
+    max(10vh, calc(env(safe-area-inset-bottom) + 40px))
+    max(1.5rem, env(safe-area-inset-left));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Soft reading pool — no edges, just enough density for type */
+.about-read {
+  position: relative;
+  box-sizing: border-box;
+  width: min(100%, 40rem);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 8px 4px;
+}
+
+.about-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.about-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.about-title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(26px, 3.2vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+}
+
+.about-meta {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45em;
+  font-family: var(--font-mono);
+  font-size: clamp(15px, 1.4vw, 17px);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  /* Readable brand orange — softened from #F84D00 */
+  color: color-mix(in srgb, #f84d00 78%, #5a2a12 22%);
+}
+
+html.dark .about-meta,
+html.dark-mode .about-meta,
+body.dark-mode .about-meta {
+  color: color-mix(in srgb, #f84d00 55%, #ffe0cc 45%);
+}
+
+.about-meta-sep {
+  opacity: 0.55;
+}
+
+.about-role,
+.about-org {
+  margin: 0;
+}
+
+.about-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.about-body p {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(16px, 1.35vw, 18px);
+  font-weight: 500;
+  line-height: 1.62;
+  letter-spacing: -0.011em;
+}
+
+.about-close {
+  flex-shrink: 0;
+  appearance: none;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 6%, transparent);
+  color: inherit;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.about-close-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.about-close:hover {
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  border-color: color-mix(in srgb, currentColor 22%, transparent);
+}
+
+.about-close:active {
+  transform: scale(0.96);
+}
+
+.about-close:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--about-brand, #f84d00) 70%, transparent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 560px) {
+  .about-content {
+    padding:
+      max(8vh, calc(env(safe-area-inset-top) + 28px))
+      1.25rem
+      max(6vh, calc(env(safe-area-inset-bottom) + 24px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-glass {
+    animation: none;
+  }
+
+  .about-field {
+    display: none;
+    transition: none;
+    will-change: auto;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1595,6 +1985,12 @@ body.case-study-open .employee-badge-container {
     --ford-enter-duration: 0.01ms;
     --ford-exit-duration: 0.01ms;
   }
+
+  .badge-cord,
+  .employee-badge {
+    animation: none;
+  }
+
 }
 
 /* ---------- Responsive fallback ---------- */
@@ -1618,8 +2014,8 @@ body.case-study-open .employee-badge-container {
 
 @media (max-width: 768px) {
   .employee-badge-container {
-    left: 15px;
     transform: scale(0.78);
+    transform-origin: top left;
   }
 
   .badge-cord {

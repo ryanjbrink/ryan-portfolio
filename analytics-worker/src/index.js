@@ -111,28 +111,112 @@ function isExcludedIp(request, env) {
   return list.includes(ip);
 }
 
-async function recordIpVisit(env, ip, sessionId, ts) {
+/** Free Cloudflare request.cf geo (no paid GeoIP API). */
+function geoFromRequest(request) {
+  const cf = request.cf || {};
+  const lat = cf.latitude != null && cf.latitude !== "" ? Number(cf.latitude) : null;
+  const lon = cf.longitude != null && cf.longitude !== "" ? Number(cf.longitude) : null;
+  return {
+    country: String(cf.country || "")
+      .toUpperCase()
+      .slice(0, 2),
+    city: String(cf.city || "").slice(0, 80),
+    region: String(cf.region || cf.regionCode || "").slice(0, 80),
+    latitude: Number.isFinite(lat) ? lat : null,
+    longitude: Number.isFinite(lon) ? lon : null,
+    colo: String(cf.colo || "").slice(0, 8),
+    asOrg: String(cf.asOrganization || "").slice(0, 120),
+  };
+}
+
+/**
+ * Free bot signals: UA heuristics + optional cf.botManagement when present
+ * (Bot Management add-on). No paid APIs.
+ */
+function isBotRequest(request) {
+  const ua = (request.headers.get("user-agent") || "").trim();
+  if (!ua) return true;
+  if (
+    /bot|crawl|spider|slurp|scrapy|httpclient|python-requests|curl\/|wget|headless|phantom|selenium|webdriver|puppeteer|playwright|facebookexternalhit|preview|monitor|uptime|pingdom|statuscake|ahrefs|semrush|bytespider|gptbot|claudebot|anthropic|perplexity/i.test(
+      ua
+    )
+  ) {
+    return true;
+  }
+  const bm = request.cf && request.cf.botManagement;
+  if (bm) {
+    if (bm.verifiedBot) return true;
+    if (typeof bm.score === "number" && bm.score < 30) return true;
+  }
+  return false;
+}
+
+async function recordIpVisit(env, ip, sessionId, ts, geo, isBot) {
   const safeIp = String(ip || "").slice(0, 64);
   if (!safeIp) return;
+  const country = geo.country || "";
+  const city = geo.city || "";
+  const region = geo.region || "";
+  const lat = geo.latitude;
+  const lon = geo.longitude;
+  const bot = isBot ? 1 : 0;
   try {
-    await env.DB.prepare(
-      `INSERT INTO ip_visitors (ip, first_seen, last_seen, visits)
-       VALUES (?, ?, ?, 1)
-       ON CONFLICT(ip) DO UPDATE SET
-         last_seen = excluded.last_seen,
-         visits = ip_visitors.visits + 1`
-    )
-      .bind(safeIp, ts, ts)
-      .run();
+    try {
+      await env.DB.prepare(
+        `INSERT INTO ip_visitors (ip, first_seen, last_seen, visits, country, city, region, latitude, longitude, is_bot)
+         VALUES (?, ?, ?, 1, ?, ?, ?, ?, ?, ?)
+         ON CONFLICT(ip) DO UPDATE SET
+           last_seen = excluded.last_seen,
+           visits = ip_visitors.visits + 1,
+           country = COALESCE(excluded.country, ip_visitors.country),
+           city = COALESCE(excluded.city, ip_visitors.city),
+           region = COALESCE(excluded.region, ip_visitors.region),
+           latitude = COALESCE(excluded.latitude, ip_visitors.latitude),
+           longitude = COALESCE(excluded.longitude, ip_visitors.longitude),
+           is_bot = CASE WHEN excluded.is_bot = 1 OR ip_visitors.is_bot = 1 THEN 1 ELSE 0 END`
+      )
+        .bind(safeIp, ts, ts, country || null, city || null, region || null, lat, lon, bot)
+        .run();
+    } catch (_) {
+      await env.DB.prepare(
+        `INSERT INTO ip_visitors (ip, first_seen, last_seen, visits)
+         VALUES (?, ?, ?, 1)
+         ON CONFLICT(ip) DO UPDATE SET
+           last_seen = excluded.last_seen,
+           visits = ip_visitors.visits + 1`
+      )
+        .bind(safeIp, ts, ts)
+        .run();
+    }
     const row = await env.DB.prepare(`SELECT visits FROM ip_visitors WHERE ip = ?`)
       .bind(safeIp)
       .first();
     const visitN = Number(row && row.visits) || 1;
-    await env.DB.prepare(
-      `INSERT INTO ip_visit_log (ip, ts, visit_n, session_id) VALUES (?, ?, ?, ?)`
-    )
-      .bind(safeIp, ts, visitN, sessionId)
-      .run();
+    try {
+      await env.DB.prepare(
+        `INSERT INTO ip_visit_log (ip, ts, visit_n, session_id, country, city, region, latitude, longitude, is_bot)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      )
+        .bind(
+          safeIp,
+          ts,
+          visitN,
+          sessionId,
+          country || null,
+          city || null,
+          region || null,
+          lat,
+          lon,
+          bot
+        )
+        .run();
+    } catch (_) {
+      await env.DB.prepare(
+        `INSERT INTO ip_visit_log (ip, ts, visit_n, session_id) VALUES (?, ?, ?, ?)`
+      )
+        .bind(safeIp, ts, visitN, sessionId)
+        .run();
+    }
   } catch (_) {
     // Table may not exist yet on older deploys — ignore until migrated
   }
@@ -198,6 +282,9 @@ async function handleCollect(request, env, cors) {
   const landing = normalizePath(body.landingPath || body.events[0]?.path || "/");
   const utm = body.utm || {};
   const ip = clientIp(request);
+  const geo = geoFromRequest(request);
+  const clientSaysBot = Boolean(body.isBot);
+  const isBot = clientSaysBot || isBotRequest(request);
 
   // Only count IP visits on first collect for a session (not heartbeats)
   let isNewSession = false;
@@ -210,14 +297,28 @@ async function handleCollect(request, env, cors) {
     isNewSession = true;
   }
 
-  // Prefer schema with visitor_id; fall back if column missing on older D1 DBs
+  // Prefer full geo schema; fall back through older shapes
+  const utmSource = String(utm.source || "").slice(0, 80);
+  const utmMedium = String(utm.medium || "").slice(0, 80);
+  const utmCampaign = String(utm.campaign || "").slice(0, 80);
+  let sessionSaved = false;
   try {
     await env.DB.prepare(
-      `INSERT INTO sessions (id, started_at, last_seen_at, referrer, landing_path, device, utm_source, utm_medium, utm_campaign, visitor_id)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `INSERT INTO sessions (
+         id, started_at, last_seen_at, referrer, landing_path, device,
+         utm_source, utm_medium, utm_campaign, visitor_id,
+         country, city, region, latitude, longitude, is_bot, as_org
+       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
        ON CONFLICT(id) DO UPDATE SET
          last_seen_at = excluded.last_seen_at,
-         visitor_id = COALESCE(sessions.visitor_id, excluded.visitor_id)`
+         visitor_id = COALESCE(sessions.visitor_id, excluded.visitor_id),
+         country = COALESCE(sessions.country, excluded.country),
+         city = COALESCE(sessions.city, excluded.city),
+         region = COALESCE(sessions.region, excluded.region),
+         latitude = COALESCE(sessions.latitude, excluded.latitude),
+         longitude = COALESCE(sessions.longitude, excluded.longitude),
+         is_bot = CASE WHEN sessions.is_bot = 1 OR excluded.is_bot = 1 THEN 1 ELSE 0 END,
+         as_org = COALESCE(sessions.as_org, excluded.as_org)`
     )
       .bind(
         sessionId,
@@ -226,34 +327,66 @@ async function handleCollect(request, env, cors) {
         referrer,
         landing,
         device,
-        String(utm.source || "").slice(0, 80),
-        String(utm.medium || "").slice(0, 80),
-        String(utm.campaign || "").slice(0, 80),
-        visitorId
+        utmSource,
+        utmMedium,
+        utmCampaign,
+        visitorId,
+        geo.country || null,
+        geo.city || null,
+        geo.region || null,
+        geo.latitude,
+        geo.longitude,
+        isBot ? 1 : 0,
+        geo.asOrg || null
       )
       .run();
-  } catch (_) {
-    await env.DB.prepare(
-      `INSERT INTO sessions (id, started_at, last_seen_at, referrer, landing_path, device, utm_source, utm_medium, utm_campaign)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-       ON CONFLICT(id) DO UPDATE SET last_seen_at = excluded.last_seen_at`
-    )
-      .bind(
-        sessionId,
-        startedAt,
-        now,
-        referrer,
-        landing,
-        device,
-        String(utm.source || "").slice(0, 80),
-        String(utm.medium || "").slice(0, 80),
-        String(utm.campaign || "").slice(0, 80)
+    sessionSaved = true;
+  } catch (_) {}
+  if (!sessionSaved) {
+    try {
+      await env.DB.prepare(
+        `INSERT INTO sessions (id, started_at, last_seen_at, referrer, landing_path, device, utm_source, utm_medium, utm_campaign, visitor_id)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         ON CONFLICT(id) DO UPDATE SET
+           last_seen_at = excluded.last_seen_at,
+           visitor_id = COALESCE(sessions.visitor_id, excluded.visitor_id)`
       )
-      .run();
+        .bind(
+          sessionId,
+          startedAt,
+          now,
+          referrer,
+          landing,
+          device,
+          utmSource,
+          utmMedium,
+          utmCampaign,
+          visitorId
+        )
+        .run();
+    } catch (_) {
+      await env.DB.prepare(
+        `INSERT INTO sessions (id, started_at, last_seen_at, referrer, landing_path, device, utm_source, utm_medium, utm_campaign)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+         ON CONFLICT(id) DO UPDATE SET last_seen_at = excluded.last_seen_at`
+      )
+        .bind(
+          sessionId,
+          startedAt,
+          now,
+          referrer,
+          landing,
+          device,
+          utmSource,
+          utmMedium,
+          utmCampaign
+        )
+        .run();
+    }
   }
 
   if (isNewSession) {
-    await recordIpVisit(env, ip, sessionId, startedAt || now);
+    await recordIpVisit(env, ip, sessionId, startedAt || now, geo, isBot);
   }
 
   const stmts = [];
@@ -345,9 +478,35 @@ async function handleOverview(url, env, cors) {
   let contacts = 0;
   let totalDwell = 0;
   let dwellSamples = 0;
+  let botSessions = 0;
   const visitorSessions = new Map();
+  const countryCounts = new Map();
+  const geoPoints = [];
 
   for (const s of sessions) {
+    const isBot = Number(s.is_bot) === 1;
+    if (isBot) botSessions += 1;
+
+    // Bots excluded from human KPIs / journey / geo map
+    if (isBot) continue;
+
+    if (s.country) {
+      countryCounts.set(s.country, (countryCounts.get(s.country) || 0) + 1);
+    }
+    if (
+      s.latitude != null &&
+      s.longitude != null &&
+      Number.isFinite(Number(s.latitude)) &&
+      Number.isFinite(Number(s.longitude))
+    ) {
+      geoPoints.push({
+        lat: Number(s.latitude),
+        lon: Number(s.longitude),
+        country: s.country || "",
+        city: s.city || "",
+      });
+    }
+
     const evs = bySession.get(s.id) || [];
     const pageViews = evs.filter((e) => e.type === "page_view");
     const pathSeq = [];
@@ -494,7 +653,7 @@ async function handleOverview(url, env, cors) {
   try {
     ipLog = (
       await env.DB.prepare(
-        `SELECT ip, ts, visit_n, session_id
+        `SELECT ip, ts, visit_n, session_id, country, city, region, latitude, longitude, is_bot
          FROM ip_visit_log
          WHERE ts >= ? AND ts <= ?
          ORDER BY ts DESC
@@ -507,10 +666,16 @@ async function handleOverview(url, env, cors) {
       ts: r.ts,
       visitN: r.visit_n,
       sessionId: r.session_id,
+      country: r.country || "",
+      city: r.city || "",
+      region: r.region || "",
+      latitude: r.latitude,
+      longitude: r.longitude,
+      isBot: Number(r.is_bot) === 1,
     }));
     ipSummary = (
       await env.DB.prepare(
-        `SELECT ip, first_seen, last_seen, visits
+        `SELECT ip, first_seen, last_seen, visits, country, city, region, is_bot
          FROM ip_visitors
          ORDER BY visits DESC, last_seen DESC
          LIMIT 100`
@@ -520,22 +685,96 @@ async function handleOverview(url, env, cors) {
       firstSeen: r.first_seen,
       lastSeen: r.last_seen,
       visits: r.visits,
+      country: r.country || "",
+      city: r.city || "",
+      region: r.region || "",
+      isBot: Number(r.is_bot) === 1,
     }));
   } catch (_) {
-    ipLog = [];
-    ipSummary = [];
+    // Older schema without geo columns
+    try {
+      ipLog = (
+        await env.DB.prepare(
+          `SELECT ip, ts, visit_n, session_id
+           FROM ip_visit_log
+           WHERE ts >= ? AND ts <= ?
+           ORDER BY ts DESC
+           LIMIT 200`
+        )
+          .bind(since, until)
+          .all()
+      ).results.map((r) => ({
+        ip: r.ip,
+        ts: r.ts,
+        visitN: r.visit_n,
+        sessionId: r.session_id,
+        country: "",
+        city: "",
+        region: "",
+        isBot: false,
+      }));
+      ipSummary = (
+        await env.DB.prepare(
+          `SELECT ip, first_seen, last_seen, visits
+           FROM ip_visitors
+           ORDER BY visits DESC, last_seen DESC
+           LIMIT 100`
+        ).all()
+      ).results.map((r) => ({
+        ip: r.ip,
+        firstSeen: r.first_seen,
+        lastSeen: r.last_seen,
+        visits: r.visits,
+        country: "",
+        city: "",
+        isBot: false,
+      }));
+    } catch (__) {
+      ipLog = [];
+      ipSummary = [];
+    }
   }
 
-  const total = sessions.length || 1;
+  // Prefer session geo; if empty (pre-migration), fall back to IP log countries
+  if (!countryCounts.size) {
+    for (const row of ipLog) {
+      if (row.country) {
+        countryCounts.set(row.country, (countryCounts.get(row.country) || 0) + 1);
+      }
+      if (
+        !row.isBot &&
+        row.latitude != null &&
+        row.longitude != null &&
+        Number.isFinite(Number(row.latitude)) &&
+        Number.isFinite(Number(row.longitude))
+      ) {
+        geoPoints.push({
+          lat: Number(row.latitude),
+          lon: Number(row.longitude),
+          country: row.country || "",
+          city: row.city || "",
+        });
+      }
+    }
+  }
+
+  const countries = [...countryCounts.entries()]
+    .map(([code, count]) => ({ code, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 40);
+
+  const humanSessions = journeys.length;
+  const total = humanSessions || 1;
 
   return json(
     {
       days,
       generatedAt: Date.now(),
       kpis: {
-        sessions: sessions.length,
+        sessions: humanSessions,
         visitors,
         returning,
+        bots: botSessions,
         engagementRate: Math.round((engaged / total) * 100),
         bounceRate: Math.round((bounced / total) * 100),
         avgSessionMs: dwellSamples ? Math.round(totalDwell / dwellSamples) : 0,
@@ -553,6 +792,8 @@ async function handleOverview(url, env, cors) {
       topJourneys,
       pages,
       referrers,
+      countries,
+      geoPoints: geoPoints.slice(0, 300),
       sessions: journeys.slice(0, 100),
       ipLog,
       ipSummary,

@@ -15,6 +15,11 @@ window.RB_STATS_VISUALS = {
       image: "Images/home-cards/home.jpg",
       tint: "#9eb0c4",
     },
+    "/about": {
+      label: "About",
+      image: "Images/favicon.svg",
+      tint: "#F84D00", /* badge orange */
+    },
     "/current-role.html": {
       label: "Current role",
       image: "Images/hcanew.png",

@@ -4,6 +4,7 @@ window.RB_STATS_DEMO = function buildDemo() {
   const day = 86400000;
   const paths = {
     home: "/",
+    about: "/about",
     role: "/current-role.html",
     ford: "/fordscan.html",
     landstar: "/landstarresearch.html",
@@ -14,19 +15,19 @@ window.RB_STATS_DEMO = function buildDemo() {
 
   const templates = [
     { path: [paths.home, paths.ford], duration: 95000, scroll: 80, ref: "linkedin.com", device: "desktop", contact: true },
-    { path: [paths.home, paths.landstar, paths.variables], duration: 210000, scroll: 100, ref: "(direct)", device: "desktop" },
+    { path: [paths.home, paths.about, paths.home, paths.landstar, paths.variables], duration: 210000, scroll: 100, ref: "(direct)", device: "desktop" },
     { path: [paths.home], duration: 8000, scroll: 10, ref: "twitter.com", device: "mobile", bounce: true },
     { path: [paths.home, paths.role, paths.ford], duration: 180000, scroll: 75, ref: "google.com", device: "desktop" },
-    { path: [paths.home, paths.phoney], duration: 62000, scroll: 55, ref: "(direct)", device: "mobile" },
+    { path: [paths.home, paths.about], duration: 62000, scroll: 55, ref: "(direct)", device: "mobile" },
     { path: [paths.home, paths.solaire], duration: 40000, scroll: 40, ref: "linkedin.com", device: "tablet" },
     { path: [paths.home, paths.landstar], duration: 120000, scroll: 90, ref: "(direct)", device: "desktop", contact: true },
     { path: [paths.home, paths.variables, paths.ford], duration: 150000, scroll: 70, ref: "newsletter", device: "desktop" },
     { path: [paths.ford], duration: 45000, scroll: 60, ref: "linkedin.com", device: "mobile" },
-    { path: [paths.home, paths.role], duration: 88000, scroll: 65, ref: "(direct)", device: "desktop" },
+    { path: [paths.home, paths.about, paths.home, paths.role], duration: 88000, scroll: 65, ref: "(direct)", device: "desktop" },
     { path: [paths.home], duration: 12000, scroll: 15, ref: "google.com", device: "mobile", bounce: true },
     { path: [paths.home, paths.ford, paths.landstar], duration: 240000, scroll: 95, ref: "(direct)", device: "desktop", contact: true },
     { path: [paths.home, paths.landstar, paths.role], duration: 160000, scroll: 85, ref: "linkedin.com", device: "desktop" },
-    { path: [paths.home, paths.variables], duration: 70000, scroll: 50, ref: "(direct)", device: "mobile" },
+    { path: [paths.home, paths.about, paths.home, paths.variables], duration: 70000, scroll: 50, ref: "(direct)", device: "mobile" },
     { path: [paths.home, paths.phoney, paths.solaire], duration: 130000, scroll: 70, ref: "google.com", device: "desktop" },
     { path: [paths.home], duration: 6000, scroll: 5, ref: "twitter.com", device: "mobile", bounce: true },
     { path: [paths.home, paths.ford], duration: 110000, scroll: 88, ref: "(direct)", device: "desktop" },
@@ -35,6 +36,7 @@ window.RB_STATS_DEMO = function buildDemo() {
 
   const labels = {
     "/": "Home",
+    "/about": "About",
     "/current-role.html": "Current role",
     "/fordscan.html": "Ford",
     "/landstarresearch.html": "Landstar",

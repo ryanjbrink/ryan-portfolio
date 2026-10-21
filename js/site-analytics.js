@@ -7,17 +7,29 @@
  * - exits/heartbeats are deduped; queue is capped; flush retries on failure
  */
 (function () {
-  const cfg = window.RB_ANALYTICS || {};
+  const cfg = (window.RB_ANALYTICS = window.RB_ANALYTICS || {});
   const ENDPOINT = String(cfg.endpoint || "").replace(/\/+$/, "");
-  if (!ENDPOINT) return;
+
+  function noopTrackPage() {}
+
+  if (!ENDPOINT) {
+    cfg.trackPage = noopTrackPage;
+    return;
+  }
 
   // Skip obvious automation (free client-side signal; server also classifies)
   try {
-    if (navigator.webdriver) return;
+    if (navigator.webdriver) {
+      cfg.trackPage = noopTrackPage;
+      return;
+    }
   } catch (_) {}
 
   const path = location.pathname || "";
-  if (/(^|\/)stats\.html$/i.test(path)) return;
+  if (/(^|\/)stats\.html$/i.test(path)) {
+    cfg.trackPage = noopTrackPage;
+    return;
+  }
 
   const STORAGE_KEY = "rb_analytics_session_v1";
   const VISITOR_KEY = "rb_analytics_visitor_v1";
@@ -110,20 +122,53 @@
   let flushing = false;
   let ending = false;
   const milestones = new Set();
+  // Virtual pages (e.g. About modal) override location.pathname until trackPage again
+  let currentPath = normalizePath(location.pathname || "/");
+  let currentTitle = String(document.title || "").slice(0, 160);
+
+  function titleForPath(p) {
+    if (p === "/about") return "About";
+    return String(document.title || "").slice(0, 160);
+  }
 
   function enqueue(type, meta) {
     if (ending && type !== "exit") return;
     queue.push({
       type: String(type || "event").slice(0, 40),
       ts: Date.now(),
-      path: normalizePath(location.pathname || "/"),
-      title: String(document.title || "").slice(0, 160),
+      path: currentPath,
+      title: currentTitle,
       meta: meta || {},
     });
     if (queue.length > MAX_QUEUE) queue = queue.slice(-MAX_QUEUE);
     if (queue.length >= 12) flush(false);
     else scheduleFlush();
   }
+
+  /** Virtual SPA-style page (About overlay, etc.). */
+  function trackPage(path) {
+    if (ending) return;
+    const next = normalizePath(path);
+    if (!next || next === currentPath) return;
+    enqueue("heartbeat", {
+      dwellMs: Date.now() - pageStarted,
+      scrollDepth: maxScroll,
+      virtual: true,
+    });
+    currentPath = next;
+    currentTitle = titleForPath(next);
+    pageStarted = Date.now();
+    maxScroll = 0;
+    milestones.clear();
+    enqueue("page_view", {
+      scrollDepth: 0,
+      dwellMs: 0,
+      virtual: next !== normalizePath(location.pathname || "/"),
+    });
+    flush(false);
+  }
+
+  cfg.trackPage = trackPage;
 
   function scheduleFlush() {
     if (flushTimer || flushing) return;

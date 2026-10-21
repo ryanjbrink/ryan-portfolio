@@ -10,6 +10,7 @@
 const PAGE_LABELS = {
   "/": "Home",
   "/index.html": "Home",
+  "/about": "About",
   "/current-role.html": "Current role",
   "/fordscan.html": "Ford",
   "/landstarresearch.html": "Landstar",

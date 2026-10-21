@@ -645,11 +645,18 @@
       }
     }
 
+    function trackAboutPage(path) {
+      try {
+        window.RB_ANALYTICS && window.RB_ANALYTICS.trackPage && window.RB_ANALYTICS.trackPage(path);
+      } catch (_) {}
+    }
+
     function openAboutRx() {
       if (!aboutRx || typeof aboutRx.showModal !== 'function') return;
       aboutRx.showModal();
       aboutBadge?.setAttribute('aria-expanded', 'true');
       document.body.classList.add('rx-open');
+      trackAboutPage('/about');
       requestAnimationFrame(() => paintAboutRays());
     }
 
@@ -681,6 +688,7 @@
       document.body.classList.remove('rx-open');
       aboutRx?.style.removeProperty('--px');
       aboutRx?.style.removeProperty('--py');
+      trackAboutPage('/');
       aboutBadge?.focus();
     });
 
@@ -741,7 +749,7 @@
     }
   </script>
   <script src="js/analytics-config.js"></script>
-  <script src="js/site-analytics.js"></script>
+  <script src="js/site-analytics.js?v=2"></script>
   <script src="js/stats-gate.js"></script>
 </body>
 </html>
